@@ -8,4 +8,11 @@ class TipoAvaliacaoModel {
 
   TipoAvaliacaoModel({this.id, this.nome, this.descricao, this.listaTipoRespostaAvaliacao});
 
+  factory TipoAvaliacaoModel.fromJson(Map<String, dynamic> json) {
+    return TipoAvaliacaoModel(
+      id: json["id"],
+      nome: json["nome"],
+      descricao: json["descricao"],
+    );
+  }
 }
