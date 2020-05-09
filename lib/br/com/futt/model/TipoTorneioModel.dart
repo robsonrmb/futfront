@@ -11,17 +11,19 @@ class TipoTorneioModel {
       id: json["id"],
       nome: json["nome"],
       descricao: json["descricao"],
+      geracaoJogos: json["geracaoJogos"],
     );
   }
+
   /* --------------------------------------
    * maneira mais simples e menos otimizada
-  converteJson(Map<String, dynamic> json) {
+   * --------------------------------------*/
+  static converteJson(Map<String, dynamic> json) {
     return TipoTorneioModel(
       id: json["id"],
       nome: json["nome"],
       descricao: json["descricao"],
+      geracaoJogos: json["geracaoJogos"],
     );
   }
-   ---------------------------------------- */
-
 }
