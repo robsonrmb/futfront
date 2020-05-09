@@ -227,25 +227,28 @@ class TorneioService {
 
   Future<List<TorneioModel>> listaPorFiltros(var torneioModel, {bool teste}) async {
 
-    if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.post(
-          "${ConstantesRest.URL_TORNEIOS}/filtros",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+    var torneioModel;
+    http.Response response = await http.post(
+        "${ConstantesRest.URL_TORNEIOS}/filtros",
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: {
+          jsonDecode(torneioModel)
+        }
+    );
+    var dadosJson = json.decode(response.body);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
-    }else{
+    if (teste != null && teste == true) {
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      return serviceFixo.listaPorFiltros(torneioModel);
+      dadosJson = serviceFixo.responseLista();
     }
+    List<TorneioModel> lista = List();
+    for (var registro in dadosJson) {
+      TorneioModel torneioModel = TorneioModel.fromJson(registro); //.converteJson
+      lista.add(torneioModel);
+    }
+    return lista;
   }
 
   Future<List<TorneioModel>> listaPorStatus(var status, {bool teste}) async {
