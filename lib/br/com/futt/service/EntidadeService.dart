@@ -1,83 +1,111 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
+import 'package:com/br/com/futt/service/fixo/EntidadeServiceFixo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class EntidadeService {
 
-  Future<EntidadeModel> listaPorUsuario() async {
+  Future<List<EntidadeModel>> listaPorUsuario({bool teste}) async {
 
     http.Response response = await http.get("${ConstantesRest.URL_ENTIDADE}/ativasdousuariologado");
-    if (response.statusCode == 200) {
-      Map<String, dynamic> dadosJson = json.decode(response.body);
-      List<EntidadeModel> listaEntidadeModel = dadosJson[""].map<EntidadeModel>(
-          (map){
-            return EntidadeModel.fromJson(map);
-          }
-      ).toList();
+    if (response.statusCode == 200 || (teste != null && teste == true)) {
+      var dadosJson = json.decode(response.body);
+      if (teste != null && teste == true) {
+        EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
+        dadosJson = serviceFixo.responseLista();
+      }
+      List<EntidadeModel> lista = List();
+      for (var registro in dadosJson) {
+        EntidadeModel entidadeModel = EntidadeModel.fromJson(
+            registro); //.converteJson
+        lista.add(entidadeModel);
+      }
+      return lista;
 
-    }else{
+    } else {
       throw Exception('Failed to load Tipo Torneio!!!');
     }
   }
 
-  Future<EntidadeModel> listaAtivas() async {
+  Future<List<EntidadeModel>> listaAtivas({bool teste}) async {
 
     http.Response response = await http.get("${ConstantesRest.URL_ENTIDADE}/ativas");
-    if (response.statusCode == 200) {
-      Map<String, dynamic> dadosJson = json.decode(response.body);
-      List<EntidadeModel> listaEntidadeModel = dadosJson[""].map<EntidadeModel>(
-              (map){
-            return EntidadeModel.fromJson(map);
-          }
-      ).toList();
+    if (response.statusCode == 200 || (teste != null && teste == true)) {
+      var dadosJson = json.decode(response.body);
+      if (teste != null && teste == true) {
+        EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
+        dadosJson = serviceFixo.responseLista();
+      }
+      List<EntidadeModel> lista = List();
+      for (var registro in dadosJson) {
+        EntidadeModel entidadeModel = EntidadeModel.fromJson(
+            registro); //.converteJson
+        lista.add(entidadeModel);
+      }
+      return lista;
 
-    }else{
+    } else {
       throw Exception('Failed to load Tipo Torneio!!!');
     }
   }
 
-  inclui(var entidadeModel) async {
+  inclui(var entidadeModel, {bool teste}) async {
 
-    http.Response response = await http.post(
-        ConstantesRest.URL_ENTIDADE,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonDecode(entidadeModel)
-    );
+    if (teste == null || teste == false) {
+      http.Response response = await http.post(
+          ConstantesRest.URL_ENTIDADE,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonDecode(entidadeModel)
+      );
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load!!!');
+      }
+    }else{
+      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
+      serviceFixo.inclui(entidadeModel);
     }
   }
 
-  atualiza(var entidadeModel) async {
+  atualiza(var entidadeModel, {bool teste}) async {
 
-    http.Response response = await http.put(
-        ConstantesRest.URL_ENTIDADE,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonDecode(entidadeModel)
-    );
+    if (teste == null || teste == false) {
+      http.Response response = await http.put(
+          ConstantesRest.URL_ENTIDADE,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonDecode(entidadeModel)
+      );
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load!!!');
+      }
+    }else{
+      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
+      serviceFixo.atualiza(entidadeModel);
     }
   }
 
-  atualizaDisponiblidade(String id, String qtdDias) async {
+  atualizaDisponiblidade(String id, String qtdDias, {bool teste}) async {
 
-    http.Response response = await http.put(
-        "${ConstantesRest.URL_ENTIDADE}/${id}/${qtdDias}",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        }
-    );
+    if (teste == null || teste == false) {
+      http.Response response = await http.put(
+          "${ConstantesRest.URL_ENTIDADE}/${id}/${qtdDias}",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          }
+      );
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
+      if (response.statusCode != 200) {
+        throw Exception('Failed to load!!!');
+      }
+    }else{
+      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
+      serviceFixo.atualizaDisponiblidade(id, qtdDias);
     }
   }
 

@@ -1,24 +1,38 @@
+import 'package:com/br/com/futt/model/RankingEntidadeModel.dart';
 import 'package:com/br/com/futt/model/RankingModel.dart';
 import 'dart:convert';
 
 class RankingServiceFixo {
 
   String retornoRanking = '[ '
+      '{'
+      '"id": 1, '
+      '"ano": 2020, '
+      '"pontuacao": 180, '
+      '"idUsuario": 1, '
+      '"nomeUsuario": "Robson", '
+      '"apelidoUsuario": "Robinho" '
+      '}, '
+      '{'
+      '"id": 2, '
+      '"ano": 2020, '
+      '"pontuacao": 160, '
+      '"idUsuario": 2, '
+      '"nomeUsuario": "Pedro", '
+      '"apelidoUsuario": "Pedrinho" '
+      '} '
+      ']';
+
+  String retornoRankingEntidade = '[ '
         '{'
           '"id": 1, '
-          '"ano": 2020, '
-          '"pontuacao": 180, '
-          '"idUsuario": 1, '
-          '"nomeUsuario": "Robson", '
-          '"apelidoUsuario": "Robinho" '
+          '"nome": "Confederação Brasileira de Futevolei", '
+          '"descricao": "CBFv" '
         '}, '
         '{'
           '"id": 2, '
-          '"ano": 2020, '
-          '"pontuacao": 160, '
-          '"idUsuario": 2, '
-          '"nomeUsuario": "Pedro", '
-          '"apelidoUsuario": "Pedrinho" '
+          '"nome": "Federação Internacional de Futevolei", '
+          '"descricao": "FIFv" '
         '} '
       ']';
 
@@ -31,8 +45,12 @@ class RankingServiceFixo {
       }
   );
 
-  String responseLista() {
+  String responseRankingLista() {
     return retornoRanking;
+  }
+
+  String responseRankingEntidadeLista() {
+    return retornoRankingEntidade;
   }
 
   Future<List<RankingModel>> _listaRankingFixo() async {
@@ -45,12 +63,22 @@ class RankingServiceFixo {
     return lista;
   }
 
+  Future<List<RankingEntidadeModel>> _listaRankingEntidadeFixo() async {
+    var dadosJson = json.decode(retornoRanking);
+    List<RankingEntidadeModel> lista = List();
+    for (var registro in dadosJson) {
+      RankingEntidadeModel rankingEntidadeModel = RankingEntidadeModel.fromJson(registro); //.converteJson
+      lista.add(rankingEntidadeModel);
+    }
+    return lista;
+  }
+
   Future<List<RankingModel>> listaRanking(String ano, String idRanking) async {
     return _listaRankingFixo();
   }
 
-  Future<List<RankingModel>> listaRankingEntidade() async {
-    return _listaRankingFixo();
+  Future<List<RankingEntidadeModel>> listaRankingEntidade() async {
+    return _listaRankingEntidadeFixo();
   }
 
 }

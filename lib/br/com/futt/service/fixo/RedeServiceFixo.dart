@@ -79,12 +79,16 @@ class RedeServiceFixo {
       }
   );
 
-  String responseLista() {
+  String responseRedeLista() {
     return retornoRedes;
   }
 
-  String responseObjeto() {
+  String responseRedeObjeto() {
     return retornoRedes;
+  }
+
+  String responseIntegrantesLista() {
+    return retornoIntegrantes;
   }
 
   _processaFixo() async {

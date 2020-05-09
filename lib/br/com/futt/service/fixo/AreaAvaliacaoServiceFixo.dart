@@ -3,7 +3,7 @@ import 'package:com/br/com/futt/model/AreaAvaliacaoModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class AreaAvaliacaoFixoServiceFixo {
+class AreaAvaliacaoServiceFixo {
 
   String retornoArea = '{'
         '"id": 1, '
