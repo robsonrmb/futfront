@@ -29,16 +29,13 @@ class TipoTorneioServiceFixo {
   }
 
   Future<List<TipoTorneioModel>> listaTodos() async {
-
     var dadosJson = json.decode(retorno);
-
     List<TipoTorneioModel> lista = List();
     for (var registro in dadosJson) {
       TipoTorneioModel tipoTorneioModel = TipoTorneioModel.fromJson(registro); //.converteJson
       lista.add(tipoTorneioModel);
     }
     return lista;
-
   }
 
 }
