@@ -1,46 +1,29 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/ParticipanteModel.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
+import 'package:com/br/com/futt/rest/TorneioRest.dart';
 import 'package:com/br/com/futt/service/fixo/TorneioServiceFixo.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class TorneioService {
 
-  inclui(var torneioModel, {bool teste}) async {
-
+  inclui(var torneioModel, {bool teste}) {
     if (teste == null || teste == false) {
-      http.Response response = await http.post(
-          "${ConstantesRest.URL_TORNEIOS}/adiciona",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(torneioModel)
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/adiciona";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPost(url, torneioModel);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.inclui(torneioModel);
     }
   }
 
-  adicionaPatrocinador(var torneioPatrocinadorModel, {bool teste}) async {
-
+  adicionaPatrocinador(var torneioPatrocinadorModel, {bool teste}) {
     if (teste == null || teste == false) {
-      http.Response response = await http.post(
-          "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(torneioPatrocinadorModel)
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPost(url, torneioPatrocinadorModel);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.adicionaPatrocinador(torneioPatrocinadorModel);
@@ -48,19 +31,11 @@ class TorneioService {
   }
 
   adicionaParticipante(var participanteModel, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      http.Response response = await http.post(
-          "${ConstantesRest.URL_TORNEIOS}/adicionaparticipante",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(participanteModel)
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPost(url, participanteModel);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.adicionaParticipante(participanteModel);
@@ -68,19 +43,11 @@ class TorneioService {
   }
 
   atualiza(var torneioModel, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/atualiza",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(torneioModel)
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/atualiza";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, torneioModel);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.atualiza(torneioModel);
@@ -90,20 +57,10 @@ class TorneioService {
   informaCampeoes(var torneioModel, {bool teste}) async {
 
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/informacampeoes",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/informacampeoes";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, torneioModel);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.informaCampeoes(torneioModel);
@@ -111,22 +68,11 @@ class TorneioService {
   }
 
   alteraStatus(String idTorneio, String status, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, null);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.alteraStatus(idTorneio, status);
@@ -134,22 +80,11 @@ class TorneioService {
   }
 
   desativaTorneio(String idTorneio, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/desativa",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/desativa";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, null);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.desativaTorneio(idTorneio);
@@ -157,22 +92,11 @@ class TorneioService {
   }
 
   finalizaTorneio(String idTorneio, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/finaliza",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/finaliza";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, null);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.finalizaTorneio(idTorneio);
@@ -180,22 +104,11 @@ class TorneioService {
   }
 
   resetTorneio(String idTorneio, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/reset",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/reset";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, null);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.resetTorneio(idTorneio);
@@ -203,22 +116,11 @@ class TorneioService {
   }
 
   gravaRankingTorneio(String idTorneio, {bool teste}) async {
-
     if (teste == null || teste == false) {
-      var torneioModel;
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/gravaranking",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: {
-            jsonDecode(torneioModel)
-          }
-      );
+      String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/gravaranking";
+      TorneioRest torneioRest = TorneioRest();
+      torneioRest.processaHttpPut(url, null);
 
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       serviceFixo.gravaRankingTorneio(idTorneio);
@@ -226,108 +128,33 @@ class TorneioService {
   }
 
   Future<List<TorneioModel>> listaPorFiltros(var torneioModel, {bool teste}) async {
-
-    var torneioModel;
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_TORNEIOS}/filtros",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: {
-          jsonDecode(torneioModel)
-        }
-    );
-    var dadosJson = json.decode(response.body);
-
-    if (teste != null && teste == true) {
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      dadosJson = serviceFixo.responseLista();
-    }
-    List<TorneioModel> lista = List();
-    for (var registro in dadosJson) {
-      TorneioModel torneioModel = TorneioModel.fromJson(registro); //.converteJson
-      lista.add(torneioModel);
-    }
-    return lista;
+    String url = "${ConstantesRest.URL_TORNEIOS}/filtros";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpPostReturn(url, torneioModel, teste);
   }
 
   Future<List<TorneioModel>> listaPorStatus(var status, {bool teste}) async {
-
-    http.Response response = await http.get("${ConstantesRest.URL_TORNEIOS}/status?status=${status}");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-        dadosJson = serviceFixo.responseLista();
-      }
-      List<TorneioModel> lista = List();
-      for (var registro in dadosJson) {
-        TorneioModel torneioModel = TorneioModel.fromJson(registro); //.converteJson
-        lista.add(torneioModel);
-      }
-      return lista;
-
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+    String url = "${ConstantesRest.URL_TORNEIOS}/status?status=${status}";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpGetList(url, teste);
   }
 
   Future<List<TorneioModel>> listaTodos({bool teste}) async {
-
-    http.Response response = await http.get("${ConstantesRest.URL_TORNEIOS}");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-        dadosJson = serviceFixo.responseLista();
-      }
-      List<TorneioModel> lista = List();
-      for (var registro in dadosJson) {
-        TorneioModel torneioModel = TorneioModel.fromJson(registro); //.converteJson
-        lista.add(torneioModel);
-      }
-      return lista;
-
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+    String url = "${ConstantesRest.URL_TORNEIOS}";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpGetList(url, teste);
   }
 
   Future<List<ParticipanteModel>> listaParticipantesDoTorneio(String idTorneio, {bool teste}) async {
-    http.Response response = await http.get(
-        "${ConstantesRest.URL_TORNEIOS}/participantes/${idTorneio}");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-        dadosJson = serviceFixo.responseLista();
-      }
-      List<ParticipanteModel> lista = List();
-      for (var registro in dadosJson) {
-        ParticipanteModel participanteModel = ParticipanteModel.fromJson(
-            registro); //.converteJson
-        lista.add(participanteModel);
-      }
-      return lista;
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+    String url = "${ConstantesRest.URL_TORNEIOS}/participantes/${idTorneio}";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpGetListParticipante(url, teste);
   }
 
   Future<TorneioModel> getTorneio(String idTorneio, {bool teste}) async {
-
-    http.Response response = await http.get("${ConstantesRest.URL_TORNEIOS}/${idTorneio}");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-        dadosJson = serviceFixo.responseObjeto();
-      }
-      return TorneioModel.fromJson(dadosJson);
-
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+    String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpGetObject(url, teste);
   }
 
 }
