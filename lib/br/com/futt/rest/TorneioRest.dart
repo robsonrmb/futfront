@@ -7,11 +7,11 @@ import 'dart:convert';
 
 class TorneioRest extends BaseRest {
 
-  Future<List<TorneioModel>> processaHttpGetList(String url, bool teste) async {
+  Future<List<TorneioModel>> processaHttpGetList(String url, bool fixo) async {
     http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
+    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
+      if (fixo != null && fixo == true) {
         TorneioServiceFixo serviceFixo = TorneioServiceFixo();
         dadosJson = serviceFixo.responseLista();
       }
@@ -27,11 +27,11 @@ class TorneioRest extends BaseRest {
     }
   }
 
-  Future<TorneioModel> processaHttpGetObject(String url, bool teste) async {
+  Future<TorneioModel> processaHttpGetObject(String url, bool fixo) async {
     http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
+    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
+      if (fixo != null && fixo == true) {
         TorneioServiceFixo serviceFixo = TorneioServiceFixo();
         dadosJson = serviceFixo.responseObjeto();
       }
@@ -42,7 +42,7 @@ class TorneioRest extends BaseRest {
     }
   }
 
-  Future<List<TorneioModel>> processaHttpPostReturn(String url, var torneioModel, bool teste) async {
+  Future<List<TorneioModel>> processaHttpPostReturn(String url, var torneioModel, bool fixo) async {
     http.Response response = await http.post(
         url,
         headers: <String, String>{
@@ -54,7 +54,7 @@ class TorneioRest extends BaseRest {
     );
     var dadosJson = json.decode(response.body);
 
-    if (teste != null && teste == true) {
+    if (fixo != null && fixo == true) {
       TorneioServiceFixo serviceFixo = TorneioServiceFixo();
       dadosJson = serviceFixo.responseLista();
     }
@@ -66,11 +66,11 @@ class TorneioRest extends BaseRest {
     return lista;
   }
 
-  Future<List<ParticipanteModel>> processaHttpGetListParticipante(String url, bool teste) async {
+  Future<List<ParticipanteModel>> processaHttpGetListParticipante(String url, bool fixo) async {
     http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
+    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
+      if (fixo != null && fixo == true) {
         TorneioServiceFixo serviceFixo = TorneioServiceFixo();
         dadosJson = serviceFixo.responseLista();
       }

@@ -6,8 +6,8 @@ import 'package:com/br/com/futt/service/fixo/TorneioServiceFixo.dart';
 
 class TorneioService {
 
-  inclui(var torneioModel, {bool teste}) {
-    if (teste == null || teste == false) {
+  inclui(var torneioModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/adiciona";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPost(url, torneioModel);
@@ -18,8 +18,8 @@ class TorneioService {
     }
   }
 
-  adicionaPatrocinador(var torneioPatrocinadorModel, {bool teste}) {
-    if (teste == null || teste == false) {
+  adicionaPatrocinador(var torneioPatrocinadorModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPost(url, torneioPatrocinadorModel);
@@ -30,8 +30,8 @@ class TorneioService {
     }
   }
 
-  adicionaParticipante(var participanteModel, {bool teste}) async {
-    if (teste == null || teste == false) {
+  adicionaParticipante(var participanteModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPost(url, participanteModel);
@@ -42,8 +42,8 @@ class TorneioService {
     }
   }
 
-  atualiza(var torneioModel, {bool teste}) async {
-    if (teste == null || teste == false) {
+  atualiza(var torneioModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/atualiza";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, torneioModel);
@@ -54,9 +54,9 @@ class TorneioService {
     }
   }
 
-  informaCampeoes(var torneioModel, {bool teste}) async {
+  informaCampeoes(var torneioModel, {bool fixo}) {
 
-    if (teste == null || teste == false) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/informacampeoes";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, torneioModel);
@@ -67,8 +67,8 @@ class TorneioService {
     }
   }
 
-  alteraStatus(String idTorneio, String status, {bool teste}) async {
-    if (teste == null || teste == false) {
+  alteraStatus(String idTorneio, String status, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, null);
@@ -79,8 +79,8 @@ class TorneioService {
     }
   }
 
-  desativaTorneio(String idTorneio, {bool teste}) async {
-    if (teste == null || teste == false) {
+  desativaTorneio(String idTorneio, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/desativa";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, null);
@@ -91,8 +91,8 @@ class TorneioService {
     }
   }
 
-  finalizaTorneio(String idTorneio, {bool teste}) async {
-    if (teste == null || teste == false) {
+  finalizaTorneio(String idTorneio, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/finaliza";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, null);
@@ -103,8 +103,8 @@ class TorneioService {
     }
   }
 
-  resetTorneio(String idTorneio, {bool teste}) async {
-    if (teste == null || teste == false) {
+  resetTorneio(String idTorneio, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/reset";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, null);
@@ -115,8 +115,8 @@ class TorneioService {
     }
   }
 
-  gravaRankingTorneio(String idTorneio, {bool teste}) async {
-    if (teste == null || teste == false) {
+  gravaRankingTorneio(String idTorneio, {bool fixo}) {
+    if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/gravaranking";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPut(url, null);
@@ -127,34 +127,34 @@ class TorneioService {
     }
   }
 
-  Future<List<TorneioModel>> listaPorFiltros(var torneioModel, {bool teste}) async {
+  Future<List<TorneioModel>> listaPorFiltros(var torneioModel, {bool fixo}) {
     String url = "${ConstantesRest.URL_TORNEIOS}/filtros";
     TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpPostReturn(url, torneioModel, teste);
+    return torneioRest.processaHttpPostReturn(url, torneioModel, fixo);
   }
 
-  Future<List<TorneioModel>> listaPorStatus(var status, {bool teste}) async {
+  Future<List<TorneioModel>> listaPorStatus(var status, {bool fixo}) {
     String url = "${ConstantesRest.URL_TORNEIOS}/status?status=${status}";
     TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpGetList(url, teste);
+    return torneioRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<TorneioModel>> listaTodos({bool teste}) async {
+  Future<List<TorneioModel>> listaTodos({bool fixo}) {
     String url = "${ConstantesRest.URL_TORNEIOS}";
     TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpGetList(url, teste);
+    return torneioRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<ParticipanteModel>> listaParticipantesDoTorneio(String idTorneio, {bool teste}) async {
+  Future<List<ParticipanteModel>> listaParticipantesDoTorneio(String idTorneio, {bool fixo}) {
     String url = "${ConstantesRest.URL_TORNEIOS}/participantes/${idTorneio}";
     TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpGetListParticipante(url, teste);
+    return torneioRest.processaHttpGetListParticipante(url, fixo);
   }
 
-  Future<TorneioModel> getTorneio(String idTorneio, {bool teste}) async {
+  Future<TorneioModel> getTorneio(String idTorneio, {bool fixo}) {
     String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}";
     TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpGetObject(url, teste);
+    return torneioRest.processaHttpGetObject(url, fixo);
   }
 
 }

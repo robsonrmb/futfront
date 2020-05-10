@@ -1,152 +1,80 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/JogoModel.dart';
+import 'package:com/br/com/futt/rest/JogoRest.dart';
 import 'package:com/br/com/futt/service/fixo/JogoServiceFixo.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class JogoService {
 
-  inclui(var jogoModel, {bool teste}) async {
+  inclui(var jogoModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
+      String url = "${ConstantesRest.URL_JOGO}/adiciona";
+      JogoRest jogoRest = JogoRest();
+      jogoRest.processaHttpPost(url, jogoModel);
 
-    if (teste == null || teste == false) {
-      http.Response response = await http.post(
-          "${ConstantesRest.URL_JOGO}/adiciona",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(jogoModel)
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       JogoServiceFixo serviceFixo = JogoServiceFixo();
       serviceFixo.inclui(jogoModel);
     }
   }
 
-  atualiza(var jogoModel, {bool teste}) async {
+  atualiza(var jogoModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
+      String url = "${ConstantesRest.URL_JOGO}/atualiza";
+      JogoRest jogoRest = JogoRest();
+      jogoRest.processaHttpPut(url, jogoModel);
 
-    if (teste == null || teste == false) {
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_JOGO}/atualiza",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(jogoModel)
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       JogoServiceFixo serviceFixo = JogoServiceFixo();
       serviceFixo.atualiza(jogoModel);
     }
   }
 
-  atualizaPlacar(var jogoModel, {bool teste}) async {
+  atualizaPlacar(var jogoModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
+      String url = "${ConstantesRest.URL_JOGO}/atualizaplacar";
+      JogoRest jogoRest = JogoRest();
+      jogoRest.processaHttpPut(url, jogoModel);
 
-    if (teste == null || teste == false) {
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_JOGO}/atualizaplacar",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(jogoModel)
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       JogoServiceFixo serviceFixo = JogoServiceFixo();
       serviceFixo.atualizaPlacar(jogoModel);
     }
   }
 
-  informaVencedor(var vencedorModel, {bool teste}) async {
+  informaVencedor(var vencedorModel, {bool fixo}) {
+    if (fixo == null || fixo == false) {
+      String url = "${ConstantesRest.URL_JOGO}/informavencedor";
+      JogoRest jogoRest = JogoRest();
+      jogoRest.processaHttpPut(url, vencedorModel);
 
-    if (teste == null || teste == false) {
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_JOGO}/informavencedor",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: jsonDecode(vencedorModel)
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       JogoServiceFixo serviceFixo = JogoServiceFixo();
       serviceFixo.informaVencedor(vencedorModel);
     }
   }
 
-  remove(String idJogo, {bool teste}) async {
+  remove(String idJogo, {bool fixo}) {
+    if (fixo == null || fixo == false) {
+      String url = "${ConstantesRest.URL_JOGO}/remove/${idJogo}";
+      JogoRest jogoRest = JogoRest();
+      jogoRest.processaHttpDelete(url);
 
-    if (teste == null || teste == false) {
-      http.Response response = await http.put(
-          "${ConstantesRest.URL_JOGO}/remove/${idJogo}",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          }
-      );
-
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load!!!');
-      }
     }else{
       JogoServiceFixo serviceFixo = JogoServiceFixo();
       serviceFixo.remove(idJogo);
     }
   }
 
-  Future<List<JogoModel>> listaPorUsuario({bool teste}) async {
-
-    http.Response response = await http.get("${ConstantesRest.URL_JOGO}/ativasdousuariologado");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        JogoServiceFixo serviceFixo = JogoServiceFixo();
-        dadosJson = serviceFixo.responseLista();
-      }
-      List<JogoModel> lista = List();
-      for (var registro in dadosJson) {
-        JogoModel jogoModel = JogoModel.fromJson(
-            registro); //.converteJson
-        lista.add(jogoModel);
-      }
-      return lista;
-
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+  Future<List<JogoModel>> listaPorUsuario({bool fixo}) {
+    String url = "${ConstantesRest.URL_JOGO}/ativasdousuariologado";
+    JogoRest jogoRest = JogoRest();
+    return jogoRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<JogoModel>> listaPorTorneios(String idTorneio, {bool teste}) async {
-
-    http.Response response = await http.get("${ConstantesRest.URL_JOGO}/torneios/${idTorneio}");
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
-      var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
-        JogoServiceFixo serviceFixo = JogoServiceFixo();
-        dadosJson = serviceFixo.responseLista();
-      }
-      List<JogoModel> lista = List();
-      for (var registro in dadosJson) {
-        JogoModel jogoModel = JogoModel.fromJson(
-            registro); //.converteJson
-        lista.add(jogoModel);
-      }
-      return lista;
-
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
-    }
+  Future<List<JogoModel>> listaPorTorneios(String idTorneio, {bool fixo}) async {
+    String url = "${ConstantesRest.URL_JOGO}/torneios/${idTorneio}";
+    JogoRest jogoRest = JogoRest();
+    return jogoRest.processaHttpGetList(url, fixo);
   }
 
 }

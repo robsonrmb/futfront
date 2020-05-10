@@ -6,11 +6,11 @@ import 'dart:convert';
 
 class UsuarioRest extends BaseRest {
 
-  Future<List<UsuarioModel>> processaHttpGetList(String url, bool teste) async {
+  Future<List<UsuarioModel>> processaHttpGetList(String url, bool fixo) async {
     http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
+    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
+      if (fixo != null && fixo == true) {
         UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
         dadosJson = serviceFixo.responseLista();
       }
@@ -27,11 +27,11 @@ class UsuarioRest extends BaseRest {
     }
   }
 
-  Future<UsuarioModel> processaHttpGetObject(String url, bool teste) async {
+  Future<UsuarioModel> processaHttpGetObject(String url, bool fixo) async {
     http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (teste != null && teste == true)) {
+    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
-      if (teste != null && teste == true) {
+      if (fixo != null && fixo == true) {
         UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
         dadosJson = serviceFixo.responseObjeto();
       }
@@ -42,7 +42,7 @@ class UsuarioRest extends BaseRest {
     }
   }
 
-  Future<List<UsuarioModel>> processaHttpPostReturn(String url, var usuarioModel, bool teste) async {
+  Future<List<UsuarioModel>> processaHttpPostReturn(String url, var usuarioModel, bool fixo) async {
     http.Response response = await http.post(
         url,
         headers: <String, String>{
@@ -54,7 +54,7 @@ class UsuarioRest extends BaseRest {
     );
     var dadosJson = json.decode(response.body);
 
-    if (teste != null && teste == true) {
+    if (fixo != null && fixo == true) {
       UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
       dadosJson = serviceFixo.responseLista();
     }
