@@ -25,6 +25,10 @@ void main() {
       "/nova_avaliacao" : (context) => NovaAvaliacaoView(),
     },
     home: LoginView(),
+    theme: ThemeData(
+      primaryColor: Colors.white,
+      accentColor: Colors.white,
+    ),
     debugShowCheckedModeBanner: false,
   ));
 }
