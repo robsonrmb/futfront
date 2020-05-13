@@ -1,6 +1,4 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
-import 'package:com/br/com/futt/model/IntegranteModel.dart';
-import 'package:com/br/com/futt/model/ParticipanteModel.dart';
 import 'package:com/br/com/futt/model/UsuarioModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

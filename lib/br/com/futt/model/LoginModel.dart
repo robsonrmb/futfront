@@ -11,9 +11,10 @@ class LoginModel {
     );
   }
 
-  Map<String, dynamic> toJson() =>
-      {
-        'email': email,
-        'senha': senha,
-      };
+  toJson() {
+    return {
+      'email': email,
+      'senha': senha,
+    };
+  }
 }

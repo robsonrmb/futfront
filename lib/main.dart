@@ -28,6 +28,7 @@ void main() {
     theme: ThemeData(
       primaryColor: Colors.white,
       accentColor: Colors.white,
+
     ),
     debugShowCheckedModeBanner: false,
   ));

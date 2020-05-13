@@ -1,4 +1,14 @@
+import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
+import 'package:com/br/com/futt/model/CadastroLoginModel.dart';
+import 'package:com/br/com/futt/service/UsuarioService.dart';
+import 'package:com/br/com/futt/service/fixo/UsuarioServiceFixo.dart';
+import 'package:com/br/com/futt/service/preferences/Preferences.dart';
+import 'package:com/br/com/futt/view/LoginView.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CadastroView extends StatefulWidget {
   @override
@@ -7,12 +17,264 @@ class CadastroView extends StatefulWidget {
 
 class _CadastroViewState extends State<CadastroView> {
 
+  String _mensagem = "";
+  TextEditingController _controllerNome = TextEditingController();
+  TextEditingController _controllerEmail = TextEditingController();
+  TextEditingController _controllerSenha = TextEditingController();
+  TextEditingController _controllerSenhaConfirmacao = TextEditingController();
+
+  void _cadastrar() async {
+    try {
+      CadastroLoginModel cadastroLoginModel = CadastroLoginModel();
+      cadastroLoginModel.email = _controllerEmail.text;
+      cadastroLoginModel.senha = _controllerSenha.text;
+      cadastroLoginModel.nome = _controllerNome.text;
+
+      if (_controllerSenha.text != _controllerSenhaConfirmacao.text) {
+        throw Exception('Confirme a senha corretamente!!!');
+      }
+
+      UsuarioService usuarioService = UsuarioService();
+      //usuarioService.inclui(cadastroLoginModel, ConstantesConfig.SERVICO_FIXO);
+
+      http.Response response = await http.post(
+          "https://jsonplaceholder.typicode.com/posts",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: json.encode({
+              "userId": 200,
+              "id": null,
+              "title": "Título",
+              "body": "Corpo da mensagem"
+            }
+          )
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
+
+      }else{
+        setState(() {
+          _mensagem = "Falha durante o procedimento!!!";
+        });
+      }
+
+    } on Exception catch (exception) {
+      print(exception.toString());
+      setState(() {
+        _mensagem = exception.toString();
+      });
+    } catch (error) {
+      setState(() {
+        _mensagem = error.toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text("Tela de cadastro"),
+        title: Text(
+            "Tela de cadastro",
+            style: TextStyle(
+              color: Colors.white
+            ),
+        ),
+        backgroundColor: Color(0xff086ba4),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/fundo.jpg"),
+                fit: BoxFit.fill
+            )
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Image.asset("images/logo.png", height: 60, width: 15),
+                ),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: Color(0xff086ba4).withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(5.0),
+                        border: Border.all(
+                            width: 1.0
+                        )
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TextField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              filled: false,
+                              fillColor: Colors.white,
+                              prefixIcon: Icon(Icons.person),
+                              // icon: new Icon(Icons.person),
+                              // prefixText: "Nome",
+                              // prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+                              // labelText: "Informe seu nome",
+                              hintText: "Nome",
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white
+                            ),
+                            //maxLength: 5,
+                            //maxLengthEnforced: true,
+                            controller: _controllerNome,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TextField(
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              filled: false,
+                              fillColor: Colors.white,
+                              prefixIcon: Icon(Icons.email),
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xffffffff),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white
+                            ),
+                            controller: _controllerEmail,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TextField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              filled: false,
+                              fillColor: Colors.white,
+                              prefixIcon: Icon(Icons.lock),
+                              hintText: "Senha",
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xffffffff),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white
+                            ),
+                            obscureText: true,
+                            controller: _controllerSenha,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 10),
+                          child: TextField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              filled: false,
+                              fillColor: Colors.white,
+                              prefixIcon: Icon(Icons.lock),
+                              hintText: "Confirmação da senha",
+                              hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xffffffff),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                            ),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white
+                            ),
+                            obscureText: true,
+                            controller: _controllerSenhaConfirmacao,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 1),
+                          child: RaisedButton(
+                            color: Color(0xff2c7ce7),
+                            textColor: Colors.white,
+                            padding: EdgeInsets.all(15),
+                            child: Text(
+                              "Cadastrar",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Candal',
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            onPressed: _cadastrar,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: RaisedButton(
+                            color: Colors.amber,
+                            textColor: Colors.white,
+                            padding: EdgeInsets.all(15),
+                            child: Text(
+                              "Já sou cadastrado",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Candal',
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                            onPressed: (){},
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 15),
+                          child: Text(
+                            _mensagem,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'Candal'
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

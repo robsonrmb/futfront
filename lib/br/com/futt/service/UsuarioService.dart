@@ -5,7 +5,7 @@ import 'package:com/br/com/futt/service/fixo/UsuarioServiceFixo.dart';
 
 class UsuarioService {
 
-  inclui(var cadastroLoginModel, {bool fixo}) {
+  inclui(var cadastroLoginModel, bool fixo) async {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_USUARIOS}/adiciona";
       UsuarioRest usuarioRest = UsuarioRest();
