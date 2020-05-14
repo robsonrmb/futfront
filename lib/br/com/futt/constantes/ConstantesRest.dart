@@ -18,6 +18,7 @@ class ConstantesRest {
   static const URL_PATROCINADOR = "${URL_BASE}/patrocinadores";
   static const URL_RANKING = "${URL_BASE}/ranking";
   static const URL_RANKING_ENTIDADE = "${URL_BASE}/rankingentidade";
+  static const URL_RESULTADOS = "${URL_BASE}/torneios/resultados";
   static const URL_REDE = "${URL_BASE}/redes";
   static const URL_TIPO_AVALIACOES = "${URL_BASE}/tipoavaliacoes";
   static const URL_TIPO_TORNEIO = "${URL_BASE}/tipotorneio";

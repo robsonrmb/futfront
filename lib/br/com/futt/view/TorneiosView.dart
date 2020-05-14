@@ -1,3 +1,4 @@
+import 'package:com/br/com/futt/view/ResultadosView.dart';
 import 'package:flutter/material.dart';
 
 class TorneiosView extends StatefulWidget {
@@ -72,7 +73,8 @@ class _TorneiosViewState extends State<TorneiosView> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/resultados");
+                    //Navigator.pushNamed(context, "/resultados");
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ResultadosView(idTorneio: 10,)));
                   },
                 ),
               )
