@@ -129,9 +129,6 @@ class _CadastroViewState extends State<CadastroView> {
                                 fontSize: 16,
                                 color: Colors.white,
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
                             ),
                             style: TextStyle(
                                 fontSize: 16,
@@ -155,9 +152,6 @@ class _CadastroViewState extends State<CadastroView> {
                                 fontSize: 16,
                                 color: Color(0xffffffff),
                               ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
                             ),
                             style: TextStyle(
                                 fontSize: 16,
@@ -178,9 +172,6 @@ class _CadastroViewState extends State<CadastroView> {
                               hintStyle: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xffffffff),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                             style: TextStyle(
@@ -203,9 +194,6 @@ class _CadastroViewState extends State<CadastroView> {
                               hintStyle: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xffffffff),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                             style: TextStyle(

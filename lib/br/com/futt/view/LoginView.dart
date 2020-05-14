@@ -136,9 +136,9 @@ class _LoginViewState extends State<LoginView> {
                                  fontSize: 16,
                                  color: Colors.white,
                                 ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
+                                // border: OutlineInputBorder(
+                                //    borderRadius: BorderRadius.circular(5),
+                                // ),
                             ),
                             style: TextStyle(
                                 fontSize: 16,
@@ -161,9 +161,6 @@ class _LoginViewState extends State<LoginView> {
                               hintStyle: TextStyle(
                                 fontSize: 16,
                                 color: Color(0xffffffff),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
                               ),
                             ),
                             style: TextStyle(

@@ -14,6 +14,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
   int _indiceAtual = 1;
+  String _titleAppBar = "Dashboard";
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +28,11 @@ class _HomeViewState extends State<HomeView> {
     _abrirAvaliacoes() {
       print("Abrindo avaliações...");
       Navigator.pushNamed(context, "/avaliacoes");
-      /*
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AvaliacoesView())
-      );
-       */
     }
 
     _abrirPerfil() {
       print("Abrindo perfil...");
       Navigator.pushNamed(context, "/perfil");
-      /*
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PerfilView())
-      );
-       */
     }
 
     _sairApp() async {
@@ -52,6 +41,17 @@ class _HomeViewState extends State<HomeView> {
       await prefs.remove(ConstantesConfig.PREFERENCES_SENHA);
 
       Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
+    }
+
+    String _getTitleAppBar(indice) {
+      _titleAppBar = "Dashboard";
+      if (indice == 0) {
+        _titleAppBar = "Torneios";
+
+      }else if (indice == 2) {
+        _titleAppBar = "Escolinhas";
+      }
+      return _titleAppBar;
     }
 
     return Scaffold(
@@ -67,14 +67,14 @@ class _HomeViewState extends State<HomeView> {
               fontSize: 20
             )
           ),
-          title: Text("Dashboard"),
+          title: Text(_titleAppBar),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.videocam),
+              icon: Icon(Icons.add),
               onPressed: _abrirAvaliacoes,
             ),
             IconButton(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.person),
               onPressed: _abrirPerfil,
             ),
             IconButton(
@@ -89,10 +89,11 @@ class _HomeViewState extends State<HomeView> {
         onTap: (indice){
           setState(() {
             _indiceAtual = indice;
+            _titleAppBar = _getTitleAppBar(indice);
           });
         },
         type: BottomNavigationBarType.fixed, //este e o padrão
-        fixedColor: Colors.orange,
+        fixedColor: Color(0xfff79e07),
         items: [
           BottomNavigationBarItem(
             title: Text("Torneios"),

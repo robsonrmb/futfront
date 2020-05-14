@@ -17,11 +17,6 @@ class _TorneiosViewState extends State<TorneiosView> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Text("Torneios..."),
-            ],
-          ),
-          Row(
-            children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 16),
                 child: RaisedButton(
