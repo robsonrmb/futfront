@@ -1,14 +1,8 @@
-import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/CadastroLoginModel.dart';
-import 'package:com/br/com/futt/service/UsuarioService.dart';
-import 'package:com/br/com/futt/service/fixo/UsuarioServiceFixo.dart';
-import 'package:com/br/com/futt/service/preferences/Preferences.dart';
 import 'package:com/br/com/futt/view/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 class CadastroView extends StatefulWidget {
   @override
@@ -34,7 +28,7 @@ class _CadastroViewState extends State<CadastroView> {
         throw Exception('Confirme a senha corretamente!!!');
       }
 
-      UsuarioService usuarioService = UsuarioService();
+      //UsuarioService usuarioService = UsuarioService();
       //usuarioService.inclui(cadastroLoginModel, ConstantesConfig.SERVICO_FIXO);
 
       http.Response response = await http.post(
@@ -69,6 +63,10 @@ class _CadastroViewState extends State<CadastroView> {
         _mensagem = error.toString();
       });
     }
+  }
+
+  void _voltar() {
+    Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
   }
 
   @override
@@ -253,7 +251,7 @@ class _CadastroViewState extends State<CadastroView> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(2),
                             ),
-                            onPressed: (){},
+                            onPressed: _voltar,
                           ),
                         ),
                         Padding(

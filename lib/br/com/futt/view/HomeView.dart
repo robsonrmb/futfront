@@ -1,7 +1,10 @@
+import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/view/DashboardView.dart';
 import 'package:com/br/com/futt/view/EscolinhasView.dart';
+import 'package:com/br/com/futt/view/LoginView.dart';
 import 'package:com/br/com/futt/view/TorneiosView.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -43,13 +46,27 @@ class _HomeViewState extends State<HomeView> {
        */
     }
 
+    _sairApp() async {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(ConstantesConfig.PREFERENCES_EMAIL);
+      await prefs.remove(ConstantesConfig.PREFERENCES_SENHA);
+
+      Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
+    }
+
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
             color: Colors.white,
             opacity: 1,
           ),
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xff093352),
+          textTheme: TextTheme(
+            title: TextStyle(
+              color: Colors.white,
+              fontSize: 20
+            )
+          ),
           title: Text("Dashboard"),
           actions: <Widget>[
             IconButton(
@@ -59,6 +76,10 @@ class _HomeViewState extends State<HomeView> {
             IconButton(
               icon: Icon(Icons.search),
               onPressed: _abrirPerfil,
+            ),
+            IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: _sairApp,
             ),
           ],
         ),

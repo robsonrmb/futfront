@@ -26,7 +26,8 @@ class _LoginViewState extends State<LoginView> {
     String email = await prefs.getString(ConstantesConfig.PREFERENCES_EMAIL);
     String senha = await prefs.getString(ConstantesConfig.PREFERENCES_SENHA);
 
-    if (email != "" && senha != "") {
+    if (email != null && senha != null && email != "" && senha != "") {
+      // validar dados na base
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
 
     }else{
@@ -35,6 +36,7 @@ class _LoginViewState extends State<LoginView> {
       });
     }
   }
+
   void _entrar() async {
     if (_controllerEmail.text != "" && _controllerSenha.text != "") {
       final prefs = await SharedPreferences.getInstance();
