@@ -26,8 +26,8 @@ void main() {
     },
     home: LoginView(),
     theme: ThemeData(
-      primaryColor: Colors.white,
-      accentColor: Colors.white,
+      primaryColor: Colors.black,
+      accentColor: Colors.black,
 
     ),
     debugShowCheckedModeBanner: false,

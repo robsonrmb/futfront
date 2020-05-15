@@ -119,7 +119,10 @@ class _CadastroViewState extends State<CadastroView> {
                             decoration: InputDecoration(
                               filled: false,
                               fillColor: Colors.white,
-                              prefixIcon: Icon(Icons.person),
+                              prefixIcon: Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                              ),
                               // icon: new Icon(Icons.person),
                               // prefixText: "Nome",
                               // prefixStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
@@ -146,7 +149,10 @@ class _CadastroViewState extends State<CadastroView> {
                             decoration: InputDecoration(
                               filled: false,
                               fillColor: Colors.white,
-                              prefixIcon: Icon(Icons.email),
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.white,
+                              ),
                               hintText: "Email",
                               hintStyle: TextStyle(
                                 fontSize: 16,
@@ -167,7 +173,10 @@ class _CadastroViewState extends State<CadastroView> {
                             decoration: InputDecoration(
                               filled: false,
                               fillColor: Colors.white,
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.white,
+                              ),
                               hintText: "Senha",
                               hintStyle: TextStyle(
                                 fontSize: 16,
@@ -189,7 +198,10 @@ class _CadastroViewState extends State<CadastroView> {
                             decoration: InputDecoration(
                               filled: false,
                               fillColor: Colors.white,
-                              prefixIcon: Icon(Icons.lock),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.white,
+                              ),
                               hintText: "Confirmação da senha",
                               hintStyle: TextStyle(
                                 fontSize: 16,

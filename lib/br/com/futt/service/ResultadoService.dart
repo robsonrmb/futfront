@@ -4,11 +4,10 @@ import 'package:com/br/com/futt/rest/ResultadoRest.dart';
 
 class ResultadoService {
 
-  Future<List<ResultadoModel>> listaResultadoDoTorneio(int idTorneio, bool fixo) async {
+  Future<List<ResultadoModel>> listaResultadoDoTorneio(int idTorneio, bool fixo) {
     String url = "${ConstantesRest.URL_RESULTADOS}/${idTorneio}";
     ResultadoRest resultadoRest = ResultadoRest();
-    Future<List<ResultadoModel>> lista = resultadoRest.processaHttpGetList(url, fixo);
-    return lista;
+    return resultadoRest.processaHttpGetList(url, fixo);
   }
 
 }

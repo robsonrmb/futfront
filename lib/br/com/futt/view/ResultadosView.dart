@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/ResultadoModel.dart';
 import 'package:com/br/com/futt/service/ResultadoService.dart';
+import 'package:com/br/com/futt/service/fixo/ResultadoServiceFixo.dart';
+import 'package:com/br/com/futt/view/subview/ResultadoTorneioSubView.dart';
 import 'package:flutter/material.dart';
 
 class ResultadosView extends StatefulWidget {
@@ -14,10 +18,9 @@ class ResultadosView extends StatefulWidget {
 
 class _ResultadosViewState extends State<ResultadosView> {
 
-  _listaResultados() {
+  Future<List<ResultadoModel>> _listaResultados() async {
     ResultadoService resultadoService = ResultadoService();
-    Future<List<ResultadoModel>> lista = resultadoService.listaResultadoDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
-    return lista;
+    return resultadoService.listaResultadoDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
   }
 
   @override
@@ -35,7 +38,9 @@ class _ResultadosViewState extends State<ResultadosView> {
           ),
           title: Text("Resultado"),
         ),
-        body: SingleChildScrollView(
+        body: ResultadoTorneioSubView(),
+        /*
+        SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(16),
             color: Color(0xfff8f8f8),
@@ -62,16 +67,9 @@ class _ResultadosViewState extends State<ResultadosView> {
                                 if (snapshot.hasData) {
                                   return ListView.separated(
                                       itemBuilder: (context, index){
-
-                                        List<ResultadoModel> resultados = snapshot.data;
-                                        ResultadoModel resultado = resultados[index];
-
                                         return Column(
                                           children: <Widget>[
-                                            ListTile(
-                                              title: Text("${resultado.nomeJogador1} - ${resultado.nomeJogador2}") ,
-                                              subtitle: Text("${resultado.apelidoJogador1} - ${resultado.apelidoJogador2}"),
-                                            )
+                                            Text("um"),
                                           ],
                                         );
                                       },
@@ -97,6 +95,7 @@ class _ResultadosViewState extends State<ResultadosView> {
             ),
           ),
         )
+        */
     );
   }
 }

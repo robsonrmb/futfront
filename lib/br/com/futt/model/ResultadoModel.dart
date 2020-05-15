@@ -1,34 +1,103 @@
 class ResultadoModel {
-  int idTorneio;
-  String tituloTorneio;
-  String dataTorneio;
-  String paisTorneio;
-  String cidadeTorneio;
-  int idJogador1;
-  int idJogador2;
-  String nomeJogador1;
-  String nomeJogador2;
-  String apelidoJogador1;
-  String apelidoJogador2;
+  int _idTorneio;
+  String _tituloTorneio;
+  String _dataTorneio;
+  String _paisTorneio;
+  String _cidadeTorneio;
+  int _idJogador1;
+  int _idJogador2;
+  String _nomeJogador1;
+  String _nomeJogador2;
+  String _apelidoJogador1;
+  String _apelidoJogador2;
 
-  ResultadoModel({this.idTorneio, this.tituloTorneio, this.dataTorneio,
-      this.paisTorneio, this.cidadeTorneio, this.idJogador1, this.idJogador2,
-      this.nomeJogador1, this.nomeJogador2, this.apelidoJogador1,
-      this.apelidoJogador2});
+  ResultadoModel.Dois();
+
+  ResultadoModel(this._idTorneio, this._tituloTorneio, this._dataTorneio,
+      this._paisTorneio, this._cidadeTorneio, this._idJogador1, this._idJogador2,
+      this._nomeJogador1, this._nomeJogador2, this._apelidoJogador1,
+      this._apelidoJogador2);
 
   factory ResultadoModel.fromJson(Map<String, dynamic> json) {
     return ResultadoModel(
-      idTorneio: json["idTorneio"],
-      tituloTorneio: json["tituloTorneio"],
-      dataTorneio: json["dataTorneio"],
-      paisTorneio: json["paisTorneio"],
-      cidadeTorneio: json["cidadeTorneio"],
-      idJogador1: json["idJogador1"],
-      idJogador2: json["idJogador2"],
-      nomeJogador1: json["nomeJogador1"],
-      nomeJogador2: json["nomeJogador2"],
-      apelidoJogador1: json["apelidoJogador1"],
-      apelidoJogador2: json["apelidoJogador2"],
+        json["idTorneio"],
+        json["tituloTorneio"],
+        json["dataTorneio"],
+        json["paisTorneio"],
+        json["cidadeTorneio"],
+        json["idJogador1"],
+        json["idJogador2"],
+        json["nomeJogador1"],
+        json["nomeJogador2"],
+        json["apelidoJogador1"],
+        json["apelidoJogador2"]
     );
   }
+
+  String get apelidoJogador2 => _apelidoJogador2;
+
+  set apelidoJogador2(String value) {
+    _apelidoJogador2 = value;
+  }
+
+  String get apelidoJogador1 => _apelidoJogador1;
+
+  set apelidoJogador1(String value) {
+    _apelidoJogador1 = value;
+  }
+
+  String get nomeJogador2 => _nomeJogador2;
+
+  set nomeJogador2(String value) {
+    _nomeJogador2 = value;
+  }
+
+  String get nomeJogador1 => _nomeJogador1;
+
+  set nomeJogador1(String value) {
+    _nomeJogador1 = value;
+  }
+
+  int get idJogador2 => _idJogador2;
+
+  set idJogador2(int value) {
+    _idJogador2 = value;
+  }
+
+  int get idJogador1 => _idJogador1;
+
+  set idJogador1(int value) {
+    _idJogador1 = value;
+  }
+
+  String get cidadeTorneio => _cidadeTorneio;
+
+  set cidadeTorneio(String value) {
+    _cidadeTorneio = value;
+  }
+
+  String get paisTorneio => _paisTorneio;
+
+  set paisTorneio(String value) {
+    _paisTorneio = value;
+  }
+
+  String get dataTorneio => _dataTorneio;
+
+  set dataTorneio(String value) {
+    _dataTorneio = value;
+  }
+
+  String get tituloTorneio => _tituloTorneio;
+
+  set tituloTorneio(String value) {
+    _tituloTorneio = value;
+  }
+
+  int get idTorneio => _idTorneio;
+
+  set idTorneio(int value) {
+    _idTorneio = value;
+  }
+
 }
