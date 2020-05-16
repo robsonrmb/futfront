@@ -5,19 +5,19 @@ import 'package:com/br/com/futt/service/fixo/EntidadeServiceFixo.dart';
 
 class EntidadeService {
 
-  Future<List<EntidadeModel>> listaPorUsuario({bool fixo}) async {
+  Future<List<EntidadeModel>> listaPorUsuario(bool fixo) async {
     String url = "${ConstantesRest.URL_ENTIDADE}/ativasdousuariologado";
     EntidadeRest entidadeRest = EntidadeRest();
     return entidadeRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<EntidadeModel>> listaAtivas({bool fixo}) async {
+  Future<List<EntidadeModel>> listaAtivas(bool fixo) async {
     String url = "${ConstantesRest.URL_ENTIDADE}/ativas";
     EntidadeRest entidadeRest = EntidadeRest();
     return entidadeRest.processaHttpGetList(url, fixo);
   }
 
-  inclui(var entidadeModel, {bool fixo}) {
+  inclui(var entidadeModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = ConstantesRest.URL_ENTIDADE;
       EntidadeRest entidadeRest = EntidadeRest();
@@ -29,7 +29,7 @@ class EntidadeService {
     }
   }
 
-  atualiza(var entidadeModel, {bool fixo}) {
+  atualiza(var entidadeModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = ConstantesRest.URL_ENTIDADE;
       EntidadeRest entidadeRest = EntidadeRest();
@@ -41,7 +41,7 @@ class EntidadeService {
     }
   }
 
-  atualizaDisponiblidade(String id, String qtdDias, {bool fixo}) {
+  atualizaDisponiblidade(String id, String qtdDias, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_ENTIDADE}/${id}/${qtdDias}";
       EntidadeRest entidadeRest = EntidadeRest();

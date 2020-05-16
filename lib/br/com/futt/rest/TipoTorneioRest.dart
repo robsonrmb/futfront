@@ -7,23 +7,39 @@ import 'dart:convert';
 class TipoTorneioRest extends BaseRest {
 
   Future<List<TipoTorneioModel>> processaHttpGetList(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaTipoTorneioModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         TipoTorneioServiceFixo serviceFixo = TipoTorneioServiceFixo();
-        dadosJson = serviceFixo.response();
-      }
-      List<TipoTorneioModel> lista = List();
-      for (var registro in dadosJson) {
-        TipoTorneioModel tipoTorneioModel = TipoTorneioModel.fromJson(registro); //.converteJson
-        lista.add(tipoTorneioModel);
-      }
-      return lista;
+        var dadosJson = json.decode(serviceFixo.responseLista());
+        return _parseListaTipoTorneioModel(dadosJson);
 
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
     }
 
+  }
+
+  List<TipoTorneioModel> _parseListaTipoTorneioModel(dadosJson) {
+    List<TipoTorneioModel> lista = List();
+    for (var registro in dadosJson) {
+      TipoTorneioModel resultadoModel = TipoTorneioModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
+    }
+    return lista;
   }
 }

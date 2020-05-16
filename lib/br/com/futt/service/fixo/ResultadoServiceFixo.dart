@@ -1,6 +1,3 @@
-import 'package:com/br/com/futt/model/ResultadoModel.dart';
-import 'dart:convert';
-
 class ResultadoServiceFixo {
 
   String retornoResultados = '['

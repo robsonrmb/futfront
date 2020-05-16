@@ -1,29 +1,52 @@
 class TipoTorneioModel {
-  int id;
-  String nome;
-  String descricao;
-  String geracaoJogos;
 
-  TipoTorneioModel({this.id, this.nome, this.descricao, this.geracaoJogos});
+  int _id;
+  String _nome;
+  String _descricao;
+  String _geracaoJogos;
+
+  TipoTorneioModel(this._id, this._nome, this._descricao, this._geracaoJogos);
 
   factory TipoTorneioModel.fromJson(Map<String, dynamic> json) {
     return TipoTorneioModel(
-      id: json["id"],
-      nome: json["nome"],
-      descricao: json["descricao"],
-      geracaoJogos: json["geracaoJogos"],
+      json["id"],
+      json["nome"],
+      json["descricao"],
+      json["geracaoJogos"],
     );
   }
 
-  /* --------------------------------------
-   * maneira mais simples e menos otimizada
-   * --------------------------------------*/
-  static converteJson(Map<String, dynamic> json) {
-    return TipoTorneioModel(
-      id: json["id"],
-      nome: json["nome"],
-      descricao: json["descricao"],
-      geracaoJogos: json["geracaoJogos"],
-    );
+  @override
+  String toString() => _nome;
+
+  @override
+  operator ==(o) => o is TipoTorneioModel && o.id == id;
+
+  @override
+  int get hashCode => id.hashCode^nome.hashCode;
+
+  String get geracaoJogos => _geracaoJogos;
+
+  set geracaoJogos(String value) {
+    _geracaoJogos = value;
   }
+
+  String get descricao => _descricao;
+
+  set descricao(String value) {
+    _descricao = value;
+  }
+
+  String get nome => _nome;
+
+  set nome(String value) {
+    _nome = value;
+  }
+
+  int get id => _id;
+
+  set id(int value) {
+    _id = value;
+  }
+
 }
