@@ -1,19 +1,19 @@
-import 'package:com/br/com/futt/model/ResultadoModel.dart';
+import 'package:com/br/com/futt/model/ParticipanteModel.dart';
 import 'package:com/br/com/futt/rest/BaseRest.dart';
-import 'package:com/br/com/futt/service/fixo/ResultadoServiceFixo.dart';
+import 'package:com/br/com/futt/service/fixo/ParticipanteServiceFixo.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class ResultadoRest extends BaseRest {
+class ParticipanteRest extends BaseRest {
 
-  Future<List<ResultadoModel>> processaHttpGetList(String url, bool fixo) async {
-    ResultadoServiceFixo serviceFixo = ResultadoServiceFixo();
+  Future<List<ParticipanteModel>> processaHttpGetList(String url, bool fixo) async {
+    ParticipanteServiceFixo serviceFixo = ParticipanteServiceFixo();
     var dadosJson = json.decode(serviceFixo.responseLista());
-    List<ResultadoModel> lista = List();
+    List<ParticipanteModel> lista = List();
     for (var registro in dadosJson) {
-      ResultadoModel resultadoModel = ResultadoModel.fromJson(
+      ParticipanteModel participanteModel = ParticipanteModel.fromJson(
           registro); //.converteJson
-      lista.add(resultadoModel);
+      lista.add(participanteModel);
     }
     return lista;
     /*
@@ -21,14 +21,14 @@ class ResultadoRest extends BaseRest {
     if (response.statusCode == 200 || (fixo != null && fixo == true)) {
       var dadosJson = json.decode(response.body);
       if (fixo != null && fixo == true) {
-        ResultadoServiceFixo serviceFixo = ResultadoServiceFixo();
+        ParticipanteServiceFixo serviceFixo = ParticipanteServiceFixo();
         dadosJson = json.decode(serviceFixo.responseLista());
       }
-      List<ResultadoModel> lista = List();
+      List<ParticipanteModel> lista = List();
       for (var registro in dadosJson) {
-        ResultadoModel resultadoModel = ResultadoModel.fromJson(
+        ParticipanteModel participanteModel = ParticipanteModel.fromJson(
             registro); //.converteJson
-        lista.add(resultadoModel);
+        lista.add(participanteModel);
       }
       return lista;
 

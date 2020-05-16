@@ -90,63 +90,6 @@ class _ResultadosViewState extends State<ResultadosView> {
             )
           ],
         ),
-        /*
-        SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(16),
-            color: Color(0xfff8f8f8),
-            child: Center(
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Text("Lista dos resultados do torneio - ${widget.idTorneio}"),
-                        FutureBuilder<List<ResultadoModel>>(
-                          future: _listaResultados(),
-                          builder: (context, snapshot){
-                            switch(snapshot.connectionState) {
-                              case ConnectionState.none:
-                              case ConnectionState.waiting:
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              case ConnectionState.active:
-                              case ConnectionState.done:
-                                if (snapshot.hasData) {
-                                  return ListView.separated(
-                                      itemBuilder: (context, index){
-                                        return Column(
-                                          children: <Widget>[
-                                            Text("um"),
-                                          ],
-                                        );
-                                      },
-                                      separatorBuilder: (context, index) => Divider(
-                                          height: 3,
-                                          color: Colors.red
-                                      ),
-                                      itemCount: snapshot.data.length
-                                  );
-                                }else{
-                                  return Center(
-                                    child: Text("Sem valores!!!"),
-                                  );
-                                }
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        )
-        */
     );
   }
 }

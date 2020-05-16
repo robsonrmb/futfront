@@ -1,4 +1,5 @@
 class ResultadoModel {
+
   int _idTorneio;
   String _tituloTorneio;
   String _dataTorneio;
@@ -12,8 +13,6 @@ class ResultadoModel {
   String _apelidoJogador2;
   String _fotoJogador1;
   String _fotoJogador2;
-
-  ResultadoModel.Dois();
 
   ResultadoModel(this._idTorneio, this._tituloTorneio, this._dataTorneio,
       this._paisTorneio, this._cidadeTorneio, this._idJogador1, this._idJogador2,

@@ -1,22 +1,60 @@
 class ParticipanteModel {
-  int idUsuario;
-  String nome;
-  String nomeFoto;
-  String pais;
-  String estado;
 
-  int idTorneio;
+  int _idUsuario;
+  String _nome;
+  String _nomeFoto;
+  String _pais;
+  String _cidade;
+  int _idTorneio;
 
-  ParticipanteModel({this.idUsuario, this.nome, this.nomeFoto, this.pais,
-      this.estado, this.idTorneio});
+  ParticipanteModel(this._idUsuario, this._nome, this._nomeFoto, this._pais,
+      this._cidade, this._idTorneio);
 
   factory ParticipanteModel.fromJson(Map<String, dynamic> json) {
     return ParticipanteModel(
-      idUsuario: json["idUsuario"],
-      nome: json["nome"],
-      nomeFoto: json["nomeFoto"],
-      pais: json["pais"],
-      estado: json["estado"],
+      json["idUsuario"],
+      json["nome"],
+      json["nomeFoto"],
+      json["pais"],
+      json["cidade"],
+      json["idTorneio"],
     );
   }
+
+  int get idTorneio => _idTorneio;
+
+  set idTorneio(int value) {
+    _idTorneio = value;
+  }
+
+  String get cidade => _cidade;
+
+  set cidade(String value) {
+    _cidade = value;
+  }
+
+  String get pais => _pais;
+
+  set pais(String value) {
+    _pais = value;
+  }
+
+  String get nomeFoto => _nomeFoto;
+
+  set nomeFoto(String value) {
+    _nomeFoto = value;
+  }
+
+  String get nome => _nome;
+
+  set nome(String value) {
+    _nome = value;
+  }
+
+  int get idUsuario => _idUsuario;
+
+  set idUsuario(int value) {
+    _idUsuario = value;
+  }
+
 }

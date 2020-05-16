@@ -1,3 +1,4 @@
+import 'package:com/br/com/futt/view/subview/ParticipantesTorneioSubView.dart';
 import 'package:flutter/material.dart';
 
 class ParticipantesView extends StatefulWidget {
@@ -9,25 +10,69 @@ class _ParticipantesViewState extends State<ParticipantesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text("Participantes!!!"),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Color(0xff093352),
+        textTheme: TextTheme(
+            title: TextStyle(
+                color: Colors.white,
+                fontSize: 20
+            )
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+        title: Text("Participantes"),
+      ),
+      body: new Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text("lista de participantes..."),
-                  ],
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Image.asset("images/torneios.png", height: 46, width: 46,),
                 ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Text("Copa Brasil de Futevolei",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Candal'
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Text("Rio de Janeiro",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Text("10.08.2020",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-        )
+          Expanded(
+            child: ParticipantesTorneioSubView(),
+          )
+        ],
+      ),
     );
   }
 }
