@@ -10,13 +10,15 @@ class ResultadoModel {
   String _nomeJogador2;
   String _apelidoJogador1;
   String _apelidoJogador2;
+  String _fotoJogador1;
+  String _fotoJogador2;
 
   ResultadoModel.Dois();
 
   ResultadoModel(this._idTorneio, this._tituloTorneio, this._dataTorneio,
       this._paisTorneio, this._cidadeTorneio, this._idJogador1, this._idJogador2,
       this._nomeJogador1, this._nomeJogador2, this._apelidoJogador1,
-      this._apelidoJogador2);
+      this._apelidoJogador2, this._fotoJogador1, this._fotoJogador2);
 
   factory ResultadoModel.fromJson(Map<String, dynamic> json) {
     return ResultadoModel(
@@ -30,7 +32,9 @@ class ResultadoModel {
         json["nomeJogador1"],
         json["nomeJogador2"],
         json["apelidoJogador1"],
-        json["apelidoJogador2"]
+        json["apelidoJogador2"],
+        json["fotoJogador1"],
+        json["fotoJogador2"]
     );
   }
 
@@ -98,6 +102,18 @@ class ResultadoModel {
 
   set idTorneio(int value) {
     _idTorneio = value;
+  }
+
+  String get fotoJogador2 => _fotoJogador2;
+
+  set fotoJogador2(String value) {
+    _fotoJogador2 = value;
+  }
+
+  String get fotoJogador1 => _fotoJogador1;
+
+  set fotoJogador1(String value) {
+    _fotoJogador1 = value;
   }
 
 }

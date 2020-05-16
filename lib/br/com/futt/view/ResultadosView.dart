@@ -38,7 +38,58 @@ class _ResultadosViewState extends State<ResultadosView> {
           ),
           title: Text("Resultado"),
         ),
-        body: ResultadoTorneioSubView(),
+        body: new Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Image.asset("images/torneios.png", height: 46, width: 46,),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text("Copa Brasil de Futevolei",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontFamily: 'Candal'
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text("Rio de Janeiro",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 5),
+                        child: Text("10.08.2020",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: ResultadoTorneioSubView(),
+            )
+          ],
+        ),
         /*
         SingleChildScrollView(
           child: Container(

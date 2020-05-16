@@ -54,7 +54,7 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage: NetworkImage('https://gartic.com.br/imgs/mural/fe/felipe_nog15/bolsonaro-5.png'),
+                        backgroundImage: NetworkImage('${resultado.fotoJogador1}'),
                         radius: 30.0,
                       ),
                       title: Row(
@@ -78,12 +78,13 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                           Text(
                             " ${resultado.nomeJogador1} e ${resultado.nomeJogador2}",
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
                       ),
+                      /*
                       subtitle: Row(
                         children: <Widget>[
                           Container(
@@ -109,15 +110,15 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                             ),
                           ),
                         ],
-                      ),
-                      /*
+                      ),*/
                       trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            GestureDetector(
-                              child: Icon(Icons.flight),
-                              onTap: (){},
+                            CircleAvatar(
+                              backgroundImage: NetworkImage('${resultado.fotoJogador2}'),
+                              radius: 30.0,
                             ),
+                            /*
                             GestureDetector(
                               child: Icon(Icons.flight_land),
                               onTap: (){},
@@ -127,9 +128,8 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                               onTap: (){
                                 Navigator.pushNamed(context, "/novo_torneio");
                               },
-                            ),
+                            ),*/
                           ]),
-                       */
                     ),
                   );
                 },
