@@ -1,27 +1,23 @@
-import 'dart:convert';
-
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/ResultadoModel.dart';
 import 'package:com/br/com/futt/service/ResultadoService.dart';
-import 'package:com/br/com/futt/service/fixo/ResultadoServiceFixo.dart';
 import 'package:com/br/com/futt/view/subview/ResultadoTorneioSubView.dart';
 import 'package:flutter/material.dart';
 
 class ResultadosView extends StatefulWidget {
 
   int idTorneio;
-  ResultadosView({this.idTorneio});
+  String nomeTorneio;
+  String paisTorneio;
+  String cidadeTorneio;
+  String dataTorneio;
+  ResultadosView({this.idTorneio, this.nomeTorneio, this.paisTorneio, this.cidadeTorneio, this.dataTorneio});
 
   @override
   _ResultadosViewState createState() => _ResultadosViewState();
 }
 
 class _ResultadosViewState extends State<ResultadosView> {
-
-  Future<List<ResultadoModel>> _listaResultados() async {
-    ResultadoService resultadoService = ResultadoService();
-    return resultadoService.listaResultadoDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +50,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.only(bottom: 5),
-                        child: Text("Copa Brasil de Futevolei",
+                        child: Text("${widget.nomeTorneio}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 20,
@@ -64,7 +60,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 5),
-                        child: Text("Rio de Janeiro",
+                        child: Text("${widget.paisTorneio} - ${widget.cidadeTorneio}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -73,7 +69,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 5),
-                        child: Text("10.08.2020",
+                        child: Text("${widget.dataTorneio}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 12,
@@ -86,7 +82,7 @@ class _ResultadosViewState extends State<ResultadosView> {
               ),
             ),
             Expanded(
-              child: ResultadoTorneioSubView(),
+              child: ResultadoTorneioSubView(widget.idTorneio),
             )
           ],
         ),

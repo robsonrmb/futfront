@@ -1,10 +1,13 @@
-import 'dart:convert';
-
+import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/ParticipanteModel.dart';
-import 'package:com/br/com/futt/service/fixo/ParticipanteServiceFixo.dart';
+import 'package:com/br/com/futt/service/ParticipanteService.dart';
 import 'package:flutter/material.dart';
 
 class ParticipantesTorneioSubView extends StatefulWidget {
+
+  int idTorneio;
+  ParticipantesTorneioSubView(this.idTorneio);
+
   @override
   _ParticipantesTorneioSubViewState createState() => _ParticipantesTorneioSubViewState();
 }
@@ -12,16 +15,8 @@ class ParticipantesTorneioSubView extends StatefulWidget {
 class _ParticipantesTorneioSubViewState extends State<ParticipantesTorneioSubView> {
 
   Future<List<ParticipanteModel>> _listaParticipantes() async {
-    //ParticipanteService resultadoService = ParticipanteService();
-    //Future<List<ParticipanteModel>> lista = resultadoService.listaParticipanteDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
-    ParticipanteServiceFixo serviceFixo = ParticipanteServiceFixo();
-    var dadosJson = json.decode(serviceFixo.responseLista());
-    List<ParticipanteModel> lista = List();
-    for (var registro in dadosJson) {
-      ParticipanteModel resultadoModel = ParticipanteModel.fromJson(registro); //.converteJson
-      lista.add(resultadoModel);
-    }
-    return lista;
+    ParticipanteService resultadoService = ParticipanteService();
+    return resultadoService.listaParticipantesDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
   }
 
   @override

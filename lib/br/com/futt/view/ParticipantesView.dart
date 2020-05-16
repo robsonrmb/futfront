@@ -2,6 +2,14 @@ import 'package:com/br/com/futt/view/subview/ParticipantesTorneioSubView.dart';
 import 'package:flutter/material.dart';
 
 class ParticipantesView extends StatefulWidget {
+
+  int idTorneio;
+  String nomeTorneio;
+  String paisTorneio;
+  String cidadeTorneio;
+  String dataTorneio;
+  ParticipantesView({this.idTorneio, this.nomeTorneio, this.paisTorneio, this.cidadeTorneio, this.dataTorneio});
+
   @override
   _ParticipantesViewState createState() => _ParticipantesViewState();
 }
@@ -37,7 +45,7 @@ class _ParticipantesViewState extends State<ParticipantesView> {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(bottom: 5),
-                      child: Text("Copa Brasil de Futevolei",
+                      child: Text("${widget.nomeTorneio}",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -47,7 +55,7 @@ class _ParticipantesViewState extends State<ParticipantesView> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 5),
-                      child: Text("Rio de Janeiro",
+                      child: Text("${widget.paisTorneio} - ${widget.cidadeTorneio}",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 12,
@@ -56,7 +64,7 @@ class _ParticipantesViewState extends State<ParticipantesView> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 5),
-                      child: Text("10.08.2020",
+                      child: Text("${widget.dataTorneio}",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 12,
@@ -69,7 +77,7 @@ class _ParticipantesViewState extends State<ParticipantesView> {
             ),
           ),
           Expanded(
-            child: ParticipantesTorneioSubView(),
+            child: ParticipantesTorneioSubView(widget.idTorneio),
           )
         ],
       ),

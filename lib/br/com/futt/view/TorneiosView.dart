@@ -1,3 +1,4 @@
+import 'package:com/br/com/futt/view/ParticipantesView.dart';
 import 'package:com/br/com/futt/view/ResultadosView.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +75,9 @@ class _TorneiosViewState extends State<TorneiosView> {
                   ),
                   onPressed: () {
                     //Navigator.pushNamed(context, "/resultados");
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ResultadosView(idTorneio: 10,)));
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => ResultadosView(idTorneio: 10, nomeTorneio: "Copa Nordeste de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Porto de Galinhas", dataTorneio: "10.07.2020")
+                    ));
                   },
                 ),
               )
@@ -95,7 +98,9 @@ class _TorneiosViewState extends State<TorneiosView> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/participantes");
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => ParticipantesView(idTorneio: 20, nomeTorneio: "Copa Brasil de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Rio de Janeiro", dataTorneio: "15.10.2020")
+                    ));
                   },
                 ),
               )

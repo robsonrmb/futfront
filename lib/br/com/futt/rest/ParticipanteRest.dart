@@ -7,34 +7,39 @@ import 'dart:convert';
 class ParticipanteRest extends BaseRest {
 
   Future<List<ParticipanteModel>> processaHttpGetList(String url, bool fixo) async {
-    ParticipanteServiceFixo serviceFixo = ParticipanteServiceFixo();
-    var dadosJson = json.decode(serviceFixo.responseLista());
-    List<ParticipanteModel> lista = List();
-    for (var registro in dadosJson) {
-      ParticipanteModel participanteModel = ParticipanteModel.fromJson(
-          registro); //.converteJson
-      lista.add(participanteModel);
-    }
-    return lista;
-    /*
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaParticipanteModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         ParticipanteServiceFixo serviceFixo = ParticipanteServiceFixo();
-        dadosJson = json.decode(serviceFixo.responseLista());
-      }
-      List<ParticipanteModel> lista = List();
-      for (var registro in dadosJson) {
-        ParticipanteModel participanteModel = ParticipanteModel.fromJson(
-            registro); //.converteJson
-        lista.add(participanteModel);
-      }
-      return lista;
+        var dadosJson = json.decode(serviceFixo.responseLista());
+        return _parseListaParticipanteModel(dadosJson);
 
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar participantes!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
     }
-     */
+
+  }
+
+  List<ParticipanteModel> _parseListaParticipanteModel(dadosJson) {
+    List<ParticipanteModel> lista = List();
+    for (var registro in dadosJson) {
+      ParticipanteModel resultadoModel = ParticipanteModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
+    }
+    return lista;
   }
 }
