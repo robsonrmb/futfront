@@ -2,8 +2,10 @@ import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/ClassificacaoTorneioModel.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
 import 'package:com/br/com/futt/model/TipoTorneioModel.dart';
+import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/service/ClassificacaoTorneioService.dart';
 import 'package:com/br/com/futt/service/EntidadeService.dart';
+import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,11 +24,11 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   TextEditingController _controllerDataInicio = TextEditingController();
   TextEditingController _controllerDataFim = TextEditingController();
   TextEditingController _controllerQtdDuplas = TextEditingController();
-  TextEditingController _controllerLocal = TextEditingController();
+  TextEditingController _controllerCidade = TextEditingController();
   TextEditingController _controllerMais = TextEditingController();
 
   void _cadastrar() async {
-
+    Navigator.pop(context);
   }
 
   Future<List<TipoTorneioModel>> _listaTipoTorneios() async {
@@ -42,6 +44,11 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   Future<List<ClassificacaoTorneioModel>> _listaClassificacaoTorneios() async {
     ClassificacaoTorneioService classificacaoTorneioService = ClassificacaoTorneioService();
     return classificacaoTorneioService.listaTodos(ConstantesConfig.SERVICO_FIXO);
+  }
+
+  Future<List<PaisModel>> _listaPaises() async {
+    PaisService paisService = PaisService();
+    return paisService.listaPaises();
   }
 
   @override
@@ -113,6 +120,9 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                               //fontWeight: FontWeight.w300,
                               color: Colors.black,
                             ),
+                            /* border: OutlineInputBorder(
+                              gapPadding: 5,
+                            ),*/
                           ),
                           style: TextStyle(
                               fontSize: 16,
@@ -126,7 +136,6 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: FindDropdown<TipoTorneioModel>(
-                          showSearchBox: false,
                           onFind: (String filter) => _listaTipoTorneios(),
                           searchBoxDecoration: InputDecoration(
                             hintText: "Search",
@@ -161,121 +170,144 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
+                        child: FindDropdown<PaisModel>(
+                          showSearchBox: false,
+                          onFind: (String filter) => _listaPaises(),
+                          searchBoxDecoration: InputDecoration(
+                            hintText: "Search",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (PaisModel data) => print(data),
+                        ),
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "Cidade",
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[400],
+                          ),
+                          /* border: OutlineInputBorder(
+                                    gapPadding: 1,
+                                  ),*/
+                        ),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black
+                        ),
+                        //maxLength: 100,
+                        //maxLengthEnforced: true,
+                        controller: _controllerCidade,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                              child: Container(
-                                padding: EdgeInsets.only(right: 10),
-                                child: TextField(
-                                  keyboardType: TextInputType.datetime,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: "Data inicio",
-                                    hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                    ),
+                              child: TextField(
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "Data Início",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[400],
                                   ),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black
-                                  ),
-                                  controller: _controllerDataInicio,
+                                  /* border: OutlineInputBorder(
+                                    gapPadding: 1,
+                                  ),*/
                                 ),
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black
+                                ),
+                                maxLength: 10,
+                                //maxLengthEnforced: true,
+                                controller: _controllerDataInicio,
                               ),
                             ),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.only(right: 10),
-                                child: TextField(
-                                  keyboardType: TextInputType.datetime,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: "Data fim",
-                                    hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black
-                                  ),
-                                  controller: _controllerDataFim,
-                                ),
-                              ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
                             ),
                             Expanded(
-                              child: Container(
-                                padding: EdgeInsets.only(right: 5),
-                                child: TextField(
-                                  keyboardType: TextInputType.number,
-                                  decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: "Qtd de duplas",
-                                    hintStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                    ),
+                              child: TextField(
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "Data fim",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[400],
                                   ),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black
-                                  ),
-                                  controller: _controllerQtdDuplas,
+                                  /* border: OutlineInputBorder(
+                                    gapPadding: 1,
+                                  ),*/
                                 ),
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black
+                                ),
+                                maxLength: 10,
+                                //maxLengthEnforced: true,
+                                controller: _controllerDataFim,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0, 0, 3, 0),
+                            ),
+                            Expanded(
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "32, 16, 8 ou 4",
+                                  hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[400],
+                                  ),
+                                  /* border: OutlineInputBorder(
+                                    gapPadding: 1,
+                                  ),*/
+                                ),
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black
+                                ),
+                                maxLength: 2,
+                                //maxLengthEnforced: true,
+                                controller: _controllerQtdDuplas,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: TextField(
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: "Local do torneio",
-                            hintStyle: TextStyle(
-                              fontSize: 14,
-                              //fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                            ),
-                          ),
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                          ),
-                          //maxLength: 5,
-                          //maxLengthEnforced: true,
-                          controller: _controllerLocal,
-                        ),
-                      ),
                       Container(
-                        color: Colors.grey[300],
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(
+                                width: 1.0,
+                              color: Colors.grey[400],
+                            )
+                        ),
                         child: TextField(
                           maxLines: 10,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: "Observações",
-                            hintStyle: TextStyle(
-                              fontSize: 14,
-                              //fontWeight: FontWeight.w300,
-                              color: Colors.black,
-                            ),
-                          ),
+                          decoration: InputDecoration.collapsed(hintText: "Observação"),
                           style: TextStyle(
                               fontSize: 16,
                               color: Colors.black
                           ),
-                          //maxLength: 5,
-                          //maxLengthEnforced: true,
                           controller: _controllerMais,
                         ),
                       ),
