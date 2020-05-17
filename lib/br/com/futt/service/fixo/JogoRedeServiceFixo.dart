@@ -1,6 +1,4 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/JogoRedeModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class JogoRedeServiceFixo {
@@ -45,35 +43,12 @@ class JogoRedeServiceFixo {
         '} '
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoJogos;
   }
 
   String responseObjeto() {
     return retornoJogo;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
   }
 
   Future<JogoRedeModel> _buscaJogoFixo() async {
@@ -89,22 +64,6 @@ class JogoRedeServiceFixo {
       lista.add(jogoRedeModel);
     }
     return lista;
-  }
-
-  inclui(var jogoRedeModel) async {
-    return _processaFixo();
-  }
-
-  atualiza(var jogoRedeModel) async {
-    return _processaFixo();
-  }
-
-  atualizaPlacar(var jogoRedeModel) async {
-    return _processaFixo();
-  }
-
-  remove(String idJogo) async {
-    return _processaFixo();
   }
 
   Future<List<JogoRedeModel>> listaPorRede(String idRede) async {

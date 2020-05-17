@@ -2,19 +2,19 @@ import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/ParticipanteModel.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/rest/TorneioRest.dart';
-import 'package:com/br/com/futt/service/fixo/TorneioServiceFixo.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 
 class TorneioService {
 
-  inclui(var torneioModel, {bool fixo}) {
+  inclui(var torneioModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/adiciona";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPost(url, torneioModel);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.inclui(torneioModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -25,8 +25,8 @@ class TorneioService {
       torneioRest.processaHttpPost(url, torneioPatrocinadorModel);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.adicionaPatrocinador(torneioPatrocinadorModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -37,8 +37,8 @@ class TorneioService {
       torneioRest.processaHttpPost(url, participanteModel);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.adicionaParticipante(participanteModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -49,8 +49,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, torneioModel);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.atualiza(torneioModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -62,8 +62,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, torneioModel);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.informaCampeoes(torneioModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -74,8 +74,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, null);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.alteraStatus(idTorneio, status);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -86,8 +86,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, null);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.desativaTorneio(idTorneio);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -98,8 +98,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, null);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.finalizaTorneio(idTorneio);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -110,8 +110,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, null);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.resetTorneio(idTorneio);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -122,8 +122,8 @@ class TorneioService {
       torneioRest.processaHttpPut(url, null);
 
     }else{
-      TorneioServiceFixo serviceFixo = TorneioServiceFixo();
-      serviceFixo.gravaRankingTorneio(idTorneio);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

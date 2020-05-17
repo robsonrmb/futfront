@@ -36,15 +36,6 @@ class RankingServiceFixo {
         '} '
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseRankingLista() {
     return retornoRanking;
   }

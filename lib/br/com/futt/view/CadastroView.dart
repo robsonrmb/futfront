@@ -41,15 +41,14 @@ class _CadastroViewState extends State<CadastroView> {
               "id": null,
               "title": "Título",
               "body": "Corpo da mensagem"
-            }
-          )
+          })
       );
       if (response.statusCode >= 200 && response.statusCode < 300) {
         Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
 
       }else{
         setState(() {
-          _mensagem = "Falha durante o procedimento!!!";
+          _mensagem = "Falha durante o processamento!!!";
         });
       }
 

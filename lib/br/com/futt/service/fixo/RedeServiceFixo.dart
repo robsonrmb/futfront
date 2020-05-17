@@ -1,7 +1,5 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/IntegranteModel.dart';
 import 'package:com/br/com/futt/model/RedeModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class RedeServiceFixo {
@@ -70,15 +68,6 @@ class RedeServiceFixo {
         '} '
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseRedeLista() {
     return retornoRedes;
   }
@@ -89,20 +78,6 @@ class RedeServiceFixo {
 
   String responseIntegrantesLista() {
     return retornoIntegrantes;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
   }
 
   Future<RedeModel> _buscaRedeFixo() async {
@@ -128,30 +103,6 @@ class RedeServiceFixo {
       lista.add(integranteModel);
     }
     return lista;
-  }
-
-  inclui(var redeModel) async {
-    _processaFixo();
-  }
-
-  atualizaPatrocinador(var redePatrocinadorModel) async {
-    _processaFixo();
-  }
-
-  atualizaIntegrante(var integranteModel) async {
-    _processaFixo();
-  }
-
-  atualiza(var redeModel) async {
-    _processaFixo();
-  }
-
-  alteraStatus(String idRede, String status) async {
-    _processaFixo();
-  }
-
-  desativaRede(String idRede) async {
-    _processaFixo();
   }
 
   Future<List<RedeModel>> listaPorFiltros(var redeModel) async {

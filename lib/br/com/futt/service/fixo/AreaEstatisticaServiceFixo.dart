@@ -1,6 +1,4 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/AreaEstatisticaModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AreaEstatisticaServiceFixo {
@@ -24,35 +22,12 @@ class AreaEstatisticaServiceFixo {
         '}'
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoAreas;
   }
 
   String responseObjeto() {
     return retornoArea;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
   }
 
   Future<AreaEstatisticaModel> _buscaAreaEstatisticaFixo() async {

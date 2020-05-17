@@ -1,6 +1,4 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/UsuarioModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class UsuarioServiceFixo {
@@ -51,55 +49,12 @@ class UsuarioServiceFixo {
         '} '
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoUsuarios;
   }
 
   String responseObjeto() {
     return retornoUsuarios;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
-  }
-
-  inclui(var cadastroLoginModel) async {
-    _processaFixo();
-  }
-
-  incluiFoto(var usuarioModel) async {
-    _processaFixo();
-  }
-
-  atualiza(var usuarioModel) async {
-    _processaFixo();
-  }
-
-  desativa(String idUsuario) async {
-    _processaFixo();
-  }
-
-  exclui(String idUsuario) async {
-    _processaFixo();
   }
 
   Future<UsuarioModel> _buscaUsuarioFixo() async {

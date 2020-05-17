@@ -23,15 +23,6 @@ class EstatisticaServiceFixo {
       '"quantidade": 60 '
       '} ';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseObjeto() {
     return retornoEstatistica;
   }

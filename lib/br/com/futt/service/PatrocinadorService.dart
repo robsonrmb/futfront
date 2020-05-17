@@ -1,6 +1,7 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/PatrocinadorModel.dart';
 import 'package:com/br/com/futt/rest/PatrocinadorRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/PatrocinadorServiceFixo.dart';
 
 class PatrocinadorService {
@@ -12,8 +13,8 @@ class PatrocinadorService {
       patrocinadorRest.processaHttpPost(url, patrocinadorModel);
       
     }else{
-      PatrocinadorServiceFixo serviceFixo = PatrocinadorServiceFixo();
-      serviceFixo.inclui(patrocinadorModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -24,8 +25,8 @@ class PatrocinadorService {
       patrocinadorRest.processaHttpPut(url, patrocinadorModel);
       
     }else{
-      PatrocinadorServiceFixo serviceFixo = PatrocinadorServiceFixo();
-      serviceFixo.atualiza(patrocinadorModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -36,8 +37,8 @@ class PatrocinadorService {
       patrocinadorRest.processaHttpDelete(url);
 
     }else{
-      PatrocinadorServiceFixo serviceFixo = PatrocinadorServiceFixo();
-      serviceFixo.remove(idPatrocinador);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

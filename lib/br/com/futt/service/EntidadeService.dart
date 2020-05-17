@@ -1,6 +1,7 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
 import 'package:com/br/com/futt/rest/EntidadeRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/EntidadeServiceFixo.dart';
 
 class EntidadeService {
@@ -24,8 +25,8 @@ class EntidadeService {
       entidadeRest.processaHttpPost(url, entidadeModel);
 
     }else{
-      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
-      serviceFixo.inclui(entidadeModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -36,8 +37,8 @@ class EntidadeService {
       entidadeRest.processaHttpPut(url, entidadeModel);
 
     }else{
-      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
-      serviceFixo.atualiza(entidadeModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -48,8 +49,8 @@ class EntidadeService {
       entidadeRest.processaHttpPut(url, null);
 
     }else{
-      EntidadeServiceFixo serviceFixo = EntidadeServiceFixo();
-      serviceFixo.atualizaDisponiblidade(id, qtdDias);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

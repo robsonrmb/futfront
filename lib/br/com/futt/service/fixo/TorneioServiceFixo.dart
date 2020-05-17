@@ -1,7 +1,5 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/ParticipanteModel.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class TorneioServiceFixo {
@@ -136,75 +134,12 @@ class TorneioServiceFixo {
         '} '
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoTorneios;
   }
 
   String responseObjeto() {
     return retornoTorneio;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
-  }
-
-  inclui(var torneioModel) async {
-    _processaFixo();
-  }
-
-  adicionaPatrocinador(var torneioPatrocinadorModel) async {
-    _processaFixo();
-  }
-
-  adicionaParticipante(var participanteModel) async {
-    _processaFixo();
-  }
-
-  atualiza(var torneioModel) async {
-    _processaFixo();
-  }
-
-  informaCampeoes(var torneioModel) async {
-    _processaFixo();
-  }
-
-  alteraStatus(String idTorneio, String status) async {
-    _processaFixo();
-  }
-
-  desativaTorneio(String idTorneio) async {
-    _processaFixo();
-  }
-
-  finalizaTorneio(String idTorneio) async {
-    _processaFixo();
-  }
-
-  resetTorneio(String idTorneio) async {
-    _processaFixo();
-  }
-
-  gravaRankingTorneio(String idTorneio) async {
-    _processaFixo();
   }
 
   Future<List<TorneioModel>> _listaTorneiosFixo() async {

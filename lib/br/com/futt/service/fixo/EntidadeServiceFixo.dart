@@ -1,6 +1,4 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class EntidadeServiceFixo {
@@ -48,35 +46,12 @@ class EntidadeServiceFixo {
         '}'
       ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoEntidades;
   }
 
   String responseObjeto() {
     return retornoEntidade;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
   }
 
   Future<EntidadeModel> _buscaEntidadeFixo() async {
@@ -100,18 +75,6 @@ class EntidadeServiceFixo {
 
   Future<List<EntidadeModel>> listaAtivas() async {
     return _listaEntidadesFixo();
-  }
-
-  inclui(var entidadeModel) async {
-    _processaFixo();
-  }
-
-  atualiza(var entidadeModel) async {
-    _processaFixo();
-  }
-
-  atualizaDisponiblidade(String id, String qtdDias) async {
-    _processaFixo();
   }
 
 }

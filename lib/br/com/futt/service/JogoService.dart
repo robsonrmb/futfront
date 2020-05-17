@@ -1,6 +1,7 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/JogoModel.dart';
 import 'package:com/br/com/futt/rest/JogoRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/JogoServiceFixo.dart';
 
 class JogoService {
@@ -12,8 +13,8 @@ class JogoService {
       jogoRest.processaHttpPost(url, jogoModel);
 
     }else{
-      JogoServiceFixo serviceFixo = JogoServiceFixo();
-      serviceFixo.inclui(jogoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -24,8 +25,8 @@ class JogoService {
       jogoRest.processaHttpPut(url, jogoModel);
 
     }else{
-      JogoServiceFixo serviceFixo = JogoServiceFixo();
-      serviceFixo.atualiza(jogoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -36,8 +37,8 @@ class JogoService {
       jogoRest.processaHttpPut(url, jogoModel);
 
     }else{
-      JogoServiceFixo serviceFixo = JogoServiceFixo();
-      serviceFixo.atualizaPlacar(jogoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -48,8 +49,8 @@ class JogoService {
       jogoRest.processaHttpPut(url, vencedorModel);
 
     }else{
-      JogoServiceFixo serviceFixo = JogoServiceFixo();
-      serviceFixo.informaVencedor(vencedorModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -60,8 +61,8 @@ class JogoService {
       jogoRest.processaHttpDelete(url);
 
     }else{
-      JogoServiceFixo serviceFixo = JogoServiceFixo();
-      serviceFixo.remove(idJogo);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

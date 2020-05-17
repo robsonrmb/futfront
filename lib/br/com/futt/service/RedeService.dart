@@ -2,6 +2,7 @@ import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/IntegranteModel.dart';
 import 'package:com/br/com/futt/model/RedeModel.dart';
 import 'package:com/br/com/futt/rest/RedeRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/RedeServiceFixo.dart';
 
 class RedeService {
@@ -13,8 +14,8 @@ class RedeService {
       redeRest.processaHttpPost(url, redeModel);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.inclui(redeModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -25,8 +26,8 @@ class RedeService {
       redeRest.processaHttpPut(url, redePatrocinadorModel);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.atualizaPatrocinador(redePatrocinadorModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -37,8 +38,8 @@ class RedeService {
       redeRest.processaHttpPut(url, integranteModel);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.atualizaIntegrante(integranteModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -49,8 +50,8 @@ class RedeService {
       redeRest.processaHttpPut(url, redeModel);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.atualiza(redeModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -61,8 +62,8 @@ class RedeService {
       redeRest.processaHttpPut(url, null);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.alteraStatus(idRede, status);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -73,8 +74,8 @@ class RedeService {
       redeRest.processaHttpPut(url, null);
 
     }else{
-      RedeServiceFixo serviceFixo = RedeServiceFixo();
-      serviceFixo.desativaRede(idRede);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

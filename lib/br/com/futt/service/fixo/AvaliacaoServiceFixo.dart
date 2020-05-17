@@ -1,6 +1,4 @@
-import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/AvaliacaoModel.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AvaliacaoServiceFixo {
@@ -55,35 +53,12 @@ class AvaliacaoServiceFixo {
       '}'
     ']';
 
-  var envio = json.encode(
-      {
-        "userId": 200,
-        "id": null,
-        "title": "Título",
-        "body": "Corpo da mensagem"
-      }
-  );
-
   String responseLista() {
     return retornoAvaliacoes;
   }
 
   String responseObjeto() {
     return retornoAvaliacao;
-  }
-
-  _processaFixo() async {
-    http.Response response = await http.post(
-        "${ConstantesRest.URL_BASE_TESTE}/posts",
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: envio
-    );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load!!!');
-    }
   }
 
   Future<AvaliacaoModel> _buscaAreaAvaliacaoFixo() async {
@@ -99,18 +74,6 @@ class AvaliacaoServiceFixo {
       lista.add(avaliacaoModel);
     }
     return lista;
-  }
-
-  inclui(var AvaliacaoModel) async {
-    _processaFixo();
-  }
-
-  aceita(var AvaliacaoModel) async {
-    _processaFixo();
-  }
-
-  recusa(var AvaliacaoModel) async {
-    _processaFixo();
   }
 
   Future<List<AvaliacaoModel>> listaRecebidasPendentes(String idUsuario) async {

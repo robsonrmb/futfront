@@ -1,75 +1,288 @@
 class TorneioModel {
-  int id;
-  String nome;
-  int status;
-  String pais;
-  String estado;
-  String cidade;
-  String local;
-  DateTime dataInicio;
-  DateTime dataFim;
-  int ano;
-  int qtdDuplas;
-  String genero;
-  String info;
-  int usuarioAdministrador;
-  int atletaCampeao1;
-  int atletaCampeao2;
-  int atletaCampeao3;
-  int atletaCampeao4;
-  int atletaCampeao5;
-  int atletaViceCampeao1;
-  int atletaViceCampeao2;
-  int atletaViceCampeao3;
-  int atletaViceCampeao4;
-  int atletaViceCampeao5;
-  int atletaTerceiroLugar1;
-  int atletaTerceiroLugar2;
-  int atletaTerceiroLugar3;
-  int atletaTerceiroLugar4;
-  int atletaTerceiroLugar5;
+  int _id;
+  String _nome;
+  int _status;
+  String _pais;
+  String _estado;
+  String _cidade;
+  String _local;
+  DateTime _dataInicio;
+  DateTime _dataFim;
+  int _ano;
+  int _qtdDuplas;
+  String _genero;
+  String _info;
+  int _usuarioAdministrador;
+  int _atletaCampeao1;
+  int _atletaCampeao2;
+  int _atletaCampeao3;
+  int _atletaCampeao4;
+  int _atletaCampeao5;
+  int _atletaViceCampeao1;
+  int _atletaViceCampeao2;
+  int _atletaViceCampeao3;
+  int _atletaViceCampeao4;
+  int _atletaViceCampeao5;
+  int _atletaTerceiroLugar1;
+  int _atletaTerceiroLugar2;
+  int _atletaTerceiroLugar3;
+  int _atletaTerceiroLugar4;
+  int _atletaTerceiroLugar5;
 
-  TorneioModel({this.id, this.nome, this.status, this.pais, this.estado, this.cidade,
-      this.local, this.dataInicio, this.dataFim, this.ano, this.qtdDuplas,
-      this.genero, this.info, this.usuarioAdministrador, this.atletaCampeao1,
-      this.atletaCampeao2, this.atletaCampeao3, this.atletaCampeao4,
-      this.atletaCampeao5, this.atletaViceCampeao1, this.atletaViceCampeao2,
-      this.atletaViceCampeao3, this.atletaViceCampeao4, this.atletaViceCampeao5,
-      this.atletaTerceiroLugar1, this.atletaTerceiroLugar2,
-      this.atletaTerceiroLugar3, this.atletaTerceiroLugar4,
-      this.atletaTerceiroLugar5});
+  int _idTipoTorneio;
+  int _idClassificacaoTorneio;
+  int _idEntidadeTorneio;
+  int _idRankingEntidadeTorneio;
+
+  TorneioModel.Novo(this._id, this._nome, this._idTipoTorneio, this._idClassificacaoTorneio,
+      this._genero, this._idEntidadeTorneio, this._idRankingEntidadeTorneio, this._pais, this._cidade,
+      this._local, this._dataInicio, this._dataFim, this._qtdDuplas, this._info);
+
+  TorneioModel(this._id, this._nome, this._status, this._pais, this._estado, this._cidade,
+      this._local, this._dataInicio, this._dataFim, this._ano, this._qtdDuplas,
+      this._genero, this._info, this._usuarioAdministrador, this._atletaCampeao1,
+      this._atletaCampeao2, this._atletaCampeao3, this._atletaCampeao4,
+      this._atletaCampeao5, this._atletaViceCampeao1, this._atletaViceCampeao2,
+      this._atletaViceCampeao3, this._atletaViceCampeao4, this._atletaViceCampeao5,
+      this._atletaTerceiroLugar1, this._atletaTerceiroLugar2,
+      this._atletaTerceiroLugar3, this._atletaTerceiroLugar4,
+      this._atletaTerceiroLugar5, this._idTipoTorneio, this._idClassificacaoTorneio,
+      this._idEntidadeTorneio, this._idRankingEntidadeTorneio);
 
   factory TorneioModel.fromJson(Map<String, dynamic> json) {
     return TorneioModel(
-      id: json["id"],
-      nome: json["nome"],
-      status: json["status"],
-      pais: json["pais"],
-      estado: json["estado"],
-      cidade: json["cidade"],
-      local: json["local"],
-      dataInicio: json["dataInicio"],
-      dataFim: json["dataFim"],
-      ano: json["ano"],
-      qtdDuplas: json["qtdDuplas"],
-      genero: json["genero"],
-      info: json["info"],
-      usuarioAdministrador: json["usuarioAdministrador"],
-      atletaCampeao1: json["atletaCampeao1"],
-      atletaCampeao2: json["atletaCampeao2"],
-      atletaCampeao3: json["atletaCampeao3"],
-      atletaCampeao4: json["atletaCampeao4"],
-      atletaCampeao5: json["atletaCampeao5"],
-      atletaViceCampeao1: json["atletaViceCampeao1"],
-      atletaViceCampeao2: json["atletaViceCampeao2"],
-      atletaViceCampeao3: json["atletaViceCampeao3"],
-      atletaViceCampeao4: json["atletaViceCampeao4"],
-      atletaViceCampeao5: json["atletaViceCampeao5"],
-      atletaTerceiroLugar1: json["atletaTerceiroLugar1"],
-      atletaTerceiroLugar2: json["atletaTerceiroLugar2"],
-      atletaTerceiroLugar3: json["atletaTerceiroLugar3"],
-      atletaTerceiroLugar4: json["atletaTerceiroLugar4"],
-      atletaTerceiroLugar5: json["atletaTerceiroLugar5"],
+      json["id"],
+      json["nome"],
+      json["status"],
+      json["pais"],
+      json["estado"],
+      json["cidade"],
+      json["local"],
+      json["dataInicio"],
+      json["dataFim"],
+      json["ano"],
+      json["qtdDuplas"],
+      json["genero"],
+      json["info"],
+      json["usuarioAdministrador"],
+      json["atletaCampeao1"],
+      json["atletaCampeao2"],
+      json["atletaCampeao3"],
+      json["atletaCampeao4"],
+      json["atletaCampeao5"],
+      json["atletaViceCampeao1"],
+      json["atletaViceCampeao2"],
+      json["atletaViceCampeao3"],
+      json["atletaViceCampeao4"],
+      json["atletaViceCampeao5"],
+      json["atletaTerceiroLugar1"],
+      json["atletaTerceiroLugar2"],
+      json["atletaTerceiroLugar3"],
+      json["atletaTerceiroLugar4"],
+      json["atletaTerceiroLugar5"],
+      json["idTipoTorneio"],
+      json["idClassificacaoTorneio"],
+      json["idEntidadeTorneio"],
+      json["idRankingEntidadeTorneio"],
     );
   }
+
+  int get idRankingEntidadeTorneio => _idRankingEntidadeTorneio;
+
+  set idRankingEntidadeTorneio(int value) {
+    _idRankingEntidadeTorneio = value;
+  }
+
+  int get idEntidadeTorneio => _idEntidadeTorneio;
+
+  set idEntidadeTorneio(int value) {
+    _idEntidadeTorneio = value;
+  }
+
+  int get idClassificacaoTorneio => _idClassificacaoTorneio;
+
+  set idClassificacaoTorneio(int value) {
+    _idClassificacaoTorneio = value;
+  }
+
+  int get idTipoTorneio => _idTipoTorneio;
+
+  set idTipoTorneio(int value) {
+    _idTipoTorneio = value;
+  }
+
+  int get atletaTerceiroLugar5 => _atletaTerceiroLugar5;
+
+  set atletaTerceiroLugar5(int value) {
+    _atletaTerceiroLugar5 = value;
+  }
+
+  int get atletaTerceiroLugar4 => _atletaTerceiroLugar4;
+
+  set atletaTerceiroLugar4(int value) {
+    _atletaTerceiroLugar4 = value;
+  }
+
+  int get atletaTerceiroLugar3 => _atletaTerceiroLugar3;
+
+  set atletaTerceiroLugar3(int value) {
+    _atletaTerceiroLugar3 = value;
+  }
+
+  int get atletaTerceiroLugar2 => _atletaTerceiroLugar2;
+
+  set atletaTerceiroLugar2(int value) {
+    _atletaTerceiroLugar2 = value;
+  }
+
+  int get atletaTerceiroLugar1 => _atletaTerceiroLugar1;
+
+  set atletaTerceiroLugar1(int value) {
+    _atletaTerceiroLugar1 = value;
+  }
+
+  int get atletaViceCampeao5 => _atletaViceCampeao5;
+
+  set atletaViceCampeao5(int value) {
+    _atletaViceCampeao5 = value;
+  }
+
+  int get atletaViceCampeao4 => _atletaViceCampeao4;
+
+  set atletaViceCampeao4(int value) {
+    _atletaViceCampeao4 = value;
+  }
+
+  int get atletaViceCampeao3 => _atletaViceCampeao3;
+
+  set atletaViceCampeao3(int value) {
+    _atletaViceCampeao3 = value;
+  }
+
+  int get atletaViceCampeao2 => _atletaViceCampeao2;
+
+  set atletaViceCampeao2(int value) {
+    _atletaViceCampeao2 = value;
+  }
+
+  int get atletaViceCampeao1 => _atletaViceCampeao1;
+
+  set atletaViceCampeao1(int value) {
+    _atletaViceCampeao1 = value;
+  }
+
+  int get atletaCampeao5 => _atletaCampeao5;
+
+  set atletaCampeao5(int value) {
+    _atletaCampeao5 = value;
+  }
+
+  int get atletaCampeao4 => _atletaCampeao4;
+
+  set atletaCampeao4(int value) {
+    _atletaCampeao4 = value;
+  }
+
+  int get atletaCampeao3 => _atletaCampeao3;
+
+  set atletaCampeao3(int value) {
+    _atletaCampeao3 = value;
+  }
+
+  int get atletaCampeao2 => _atletaCampeao2;
+
+  set atletaCampeao2(int value) {
+    _atletaCampeao2 = value;
+  }
+
+  int get atletaCampeao1 => _atletaCampeao1;
+
+  set atletaCampeao1(int value) {
+    _atletaCampeao1 = value;
+  }
+
+  int get usuarioAdministrador => _usuarioAdministrador;
+
+  set usuarioAdministrador(int value) {
+    _usuarioAdministrador = value;
+  }
+
+  String get info => _info;
+
+  set info(String value) {
+    _info = value;
+  }
+
+  String get genero => _genero;
+
+  set genero(String value) {
+    _genero = value;
+  }
+
+  int get qtdDuplas => _qtdDuplas;
+
+  set qtdDuplas(int value) {
+    _qtdDuplas = value;
+  }
+
+  int get ano => _ano;
+
+  set ano(int value) {
+    _ano = value;
+  }
+
+  DateTime get dataFim => _dataFim;
+
+  set dataFim(DateTime value) {
+    _dataFim = value;
+  }
+
+  DateTime get dataInicio => _dataInicio;
+
+  set dataInicio(DateTime value) {
+    _dataInicio = value;
+  }
+
+  String get local => _local;
+
+  set local(String value) {
+    _local = value;
+  }
+
+  String get cidade => _cidade;
+
+  set cidade(String value) {
+    _cidade = value;
+  }
+
+  String get estado => _estado;
+
+  set estado(String value) {
+    _estado = value;
+  }
+
+  String get pais => _pais;
+
+  set pais(String value) {
+    _pais = value;
+  }
+
+  int get status => _status;
+
+  set status(int value) {
+    _status = value;
+  }
+
+  String get nome => _nome;
+
+  set nome(String value) {
+    _nome = value;
+  }
+
+  int get id => _id;
+
+  set id(int value) {
+    _id = value;
+  }
+
 }

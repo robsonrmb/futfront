@@ -1,6 +1,7 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/AvaliacaoModel.dart';
 import 'package:com/br/com/futt/rest/AvaliacaoRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/AvaliacaoServiceFixo.dart';
 
 class AvaliacaoService {
@@ -12,8 +13,8 @@ class AvaliacaoService {
       avaliacaoRest.processaHttpPost(url, avaliacaoModel);
 
     }else{
-      AvaliacaoServiceFixo serviceFixo = AvaliacaoServiceFixo();
-      serviceFixo.inclui(avaliacaoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -24,8 +25,8 @@ class AvaliacaoService {
       avaliacaoRest.processaHttpPut(url, avaliacaoModel);
 
     }else{
-      AvaliacaoServiceFixo serviceFixo = AvaliacaoServiceFixo();
-      serviceFixo.aceita(AvaliacaoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -36,8 +37,8 @@ class AvaliacaoService {
       avaliacaoRest.processaHttpPut(url, avaliacaoModel);
 
     }else{
-      AvaliacaoServiceFixo serviceFixo = AvaliacaoServiceFixo();
-      serviceFixo.recusa(avaliacaoModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

@@ -1,19 +1,20 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/UsuarioModel.dart';
 import 'package:com/br/com/futt/rest/UsuarioRest.dart';
+import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
 import 'package:com/br/com/futt/service/fixo/UsuarioServiceFixo.dart';
 
 class UsuarioService {
 
-  inclui(var cadastroLoginModel, bool fixo) async {
+  inclui(var cadastroLoginModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_USUARIOS}/adiciona";
       UsuarioRest usuarioRest = UsuarioRest();
       usuarioRest.processaHttpPost(url, cadastroLoginModel);
 
     }else{
-      UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
-      serviceFixo.inclui(cadastroLoginModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -24,8 +25,8 @@ class UsuarioService {
       usuarioRest.processaHttpPost(url, usuarioModel);
 
     }else{
-      UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
-      serviceFixo.incluiFoto(usuarioModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -36,8 +37,8 @@ class UsuarioService {
       usuarioRest.processaHttpPut(url, usuarioModel);
 
     }else{
-      UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
-      serviceFixo.atualiza(usuarioModel);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -48,8 +49,8 @@ class UsuarioService {
       usuarioRest.processaHttpPut(url, "");
 
     }else{
-      UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
-      serviceFixo.desativa(idUsuario);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 
@@ -60,8 +61,8 @@ class UsuarioService {
       usuarioRest.processaHttpDelete(url);
 
     }else{
-      UsuarioServiceFixo serviceFixo = UsuarioServiceFixo();
-      serviceFixo.exclui(idUsuario);
+      BaseRestFixo serviceFixo = BaseRestFixo();
+      serviceFixo.processaHttpPostFixo();
     }
   }
 

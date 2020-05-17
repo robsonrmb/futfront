@@ -2,15 +2,19 @@ import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/ClassificacaoTorneioModel.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
 import 'package:com/br/com/futt/model/TipoTorneioModel.dart';
+import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/service/ClassificacaoTorneioService.dart';
 import 'package:com/br/com/futt/service/EntidadeService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
+import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class NovoTorneioView extends StatefulWidget {
   @override
@@ -21,14 +25,98 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
 
   String _mensagem = "";
   TextEditingController _controllerNome = TextEditingController();
+  int _controllerTipoTorneio = 0;
+  int _controllerClassificacaoTorneio = 0;
+  String _controllerGeneroTorneio = "";
+  int _controllerEntidadeTorneio = 0;
+  int _controllerRankingEntidadeTorneio = 0;
+  String _controllerPaisTorneio = "";
+  TextEditingController _controllerCidade = TextEditingController();
+  TextEditingController _controllerLocal = TextEditingController();
   TextEditingController _controllerDataInicio = TextEditingController();
   TextEditingController _controllerDataFim = TextEditingController();
   TextEditingController _controllerQtdDuplas = TextEditingController();
-  TextEditingController _controllerCidade = TextEditingController();
   TextEditingController _controllerMais = TextEditingController();
 
   void _cadastrar() async {
-    Navigator.pop(context);
+    try {
+      valida();
+
+      //Grava torneios
+      TorneioModel torneioModel = TorneioModel.Novo(
+          null, _controllerNome.text, _controllerTipoTorneio, _controllerClassificacaoTorneio, _controllerGeneroTorneio,
+          _controllerEntidadeTorneio, _controllerRankingEntidadeTorneio, _controllerPaisTorneio, _controllerCidade.text,
+          _controllerLocal.text, DateTime.parse(_controllerDataInicio.text), DateTime.parse(_controllerDataFim.text),
+          int.parse(_controllerQtdDuplas.text), _controllerMais.text
+      );
+      //TorneioService torneioService = TorneioService();
+      //torneioService.inclui(torneioModel, ConstantesConfig.SERVICO_FIXO);
+
+      http.Response response = await http.post(
+          "https://jsonplaceholder.typicode.com/posts",
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: json.encode({
+            "userId": 200,
+            "id": null,
+            "title": "Título",
+            "body": "Corpo da mensagem"
+          })
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Navigator.pop(context);
+
+      }else{
+        setState(() {
+          _mensagem = "Falha durante o processamento!!!";
+        });
+      }
+
+
+    } on Exception catch (exception) {
+      print(exception.toString());
+      setState(() {
+        _mensagem = exception.toString();
+      });
+    } catch (error) {
+      setState(() {
+        _mensagem = error.toString();
+      });
+    }
+  }
+
+  void valida() {
+    String retorno = "";
+    if (_controllerNome.text == "") {
+      throw Exception('Informe o título do torneio.');
+    }else if (_controllerTipoTorneio == 0) {
+      throw Exception('Informe o tipo de torneio.');
+    }else if (_controllerClassificacaoTorneio == 0) {
+      throw Exception('Informe a classificação do torneio.');
+    }else if (_controllerPaisTorneio == "") {
+      throw Exception('Informe o país de onde se realizará o torneio.');
+    }else if (_controllerCidade.text == "") {
+      throw Exception('Informe a cidade de onde se realizará o torneio.');
+    }else if (_controllerDataInicio.text == "") {
+      throw Exception('Informe a data de início do torneio.');
+    }else if (_controllerDataFim.text == "") {
+      throw Exception('Informe a data fim do torneio.');
+    }else{
+      if (_controllerTipoTorneio == 1) {
+        if (_controllerQtdDuplas.text != 16 && _controllerQtdDuplas.text != 32) {
+          throw Exception('Qtd de duplas para tipo de torneio: 16 ou 32.');
+        }
+      }else if (_controllerTipoTorneio == 2) {
+        if (_controllerQtdDuplas.text != 4 && _controllerQtdDuplas.text != 8 && _controllerQtdDuplas.text != 16) {
+          throw Exception('Qtd de duplas para tipo de torneio: 4, 8 ou 16.');
+        }
+      }else if (_controllerTipoTorneio == 3) {
+        if (_controllerQtdDuplas.text != 0 && _controllerQtdDuplas.text != "") {
+          throw Exception('Para torneios em grupo não informe a qtd de duplas.');
+        }
+      }
+    }
   }
 
   Future<List<TipoTorneioModel>> _listaTipoTorneios() async {
@@ -118,7 +206,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             hintStyle: TextStyle(
                               fontSize: 14,
                               //fontWeight: FontWeight.w300,
-                              color: Colors.black,
+                              color: Colors.grey[400],
                             ),
                             /* border: OutlineInputBorder(
                               gapPadding: 5,
@@ -141,7 +229,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             hintText: "Search",
                             border: OutlineInputBorder(),
                           ),
-                          onChanged: (TipoTorneioModel data) => print(data.id),
+                          onChanged: (TipoTorneioModel data) => _controllerTipoTorneio = data.id,
                         ),
                       ),
                       Padding(
@@ -153,7 +241,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             hintText: "Search",
                             border: OutlineInputBorder(),
                           ),
-                          onChanged: (ClassificacaoTorneioModel data) => print(data),
+                          onChanged: (ClassificacaoTorneioModel data) => _controllerClassificacaoTorneio = data.id,
                         ),
                       ),
                       Padding(
@@ -165,7 +253,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             hintText: "Search",
                             border: OutlineInputBorder(),
                           ),
-                          onChanged: (EntidadeModel data) => print(data),
+                          onChanged: (EntidadeModel data) => _controllerEntidadeTorneio = data.id,
                         ),
                       ),
                       Padding(
@@ -177,7 +265,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             hintText: "Search",
                             border: OutlineInputBorder(),
                           ),
-                          onChanged: (PaisModel data) => print(data),
+                          onChanged: (PaisModel data) => _controllerPaisTorneio = data.id,
                         ),
                       ),
                       TextField(
@@ -211,7 +299,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                           children: <Widget>[
                             Expanded(
                               child: TextField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.datetime,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
@@ -238,7 +326,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                             ),
                             Expanded(
                               child: TextField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.datetime,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.white,
@@ -303,7 +391,13 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                         child: TextField(
                           maxLines: 10,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration.collapsed(hintText: "Observação"),
+                          decoration: InputDecoration.collapsed(
+                            hintText: "Observação",
+                            hintStyle: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[400],
+                            ),
+                          ),
                           style: TextStyle(
                               fontSize: 16,
                               color: Colors.black
@@ -351,4 +445,5 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
       ),
     );
   }
+
 }
