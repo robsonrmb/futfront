@@ -6,6 +6,7 @@ import 'package:com/br/com/futt/service/ClassificacaoTorneioService.dart';
 import 'package:com/br/com/futt/service/EntidadeService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
 import 'package:find_dropdown/find_dropdown.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,6 +20,10 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   String _mensagem = "";
   TextEditingController _controllerNome = TextEditingController();
   TextEditingController _controllerDataInicio = TextEditingController();
+  TextEditingController _controllerDataFim = TextEditingController();
+  TextEditingController _controllerQtdDuplas = TextEditingController();
+  TextEditingController _controllerLocal = TextEditingController();
+  TextEditingController _controllerMais = TextEditingController();
 
   void _cadastrar() async {
 
@@ -88,11 +93,11 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(bottom: 10),
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                         child: TextField(
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            filled: false,
+                            filled: true,
                             fillColor: Colors.white,
                             prefixIcon: Icon(
                               Icons.done_all,
@@ -156,14 +161,112 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.datetime,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: "Data inicio",
+                                    hintStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black
+                                  ),
+                                  controller: _controllerDataInicio,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.datetime,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: "Data fim",
+                                    hintStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black
+                                  ),
+                                  controller: _controllerDataFim,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(right: 5),
+                                child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: "Qtd de duplas",
+                                    hintStyle: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black
+                                  ),
+                                  controller: _controllerQtdDuplas,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
                         child: TextField(
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            filled: false,
+                            filled: true,
                             fillColor: Colors.white,
-                            hintText: "Data inicio",
+                            hintText: "Local do torneio",
                             hintStyle: TextStyle(
+                              fontSize: 14,
+                              //fontWeight: FontWeight.w300,
+                              color: Colors.black,
+                            ),
+                          ),
+                          style: TextStyle(
                               fontSize: 16,
+                              color: Colors.black,
+                          ),
+                          //maxLength: 5,
+                          //maxLengthEnforced: true,
+                          controller: _controllerLocal,
+                        ),
+                      ),
+                      Container(
+                        color: Colors.grey[300],
+                        child: TextField(
+                          maxLines: 10,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: "Observações",
+                            hintStyle: TextStyle(
+                              fontSize: 14,
+                              //fontWeight: FontWeight.w300,
                               color: Colors.black,
                             ),
                           ),
@@ -171,11 +274,13 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                               fontSize: 16,
                               color: Colors.black
                           ),
-                          controller: _controllerDataInicio,
+                          //maxLength: 5,
+                          //maxLengthEnforced: true,
+                          controller: _controllerMais,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 1),
+                        padding: EdgeInsets.only(top: 10),
                         child: RaisedButton(
                           color: Color(0xff086ba4),
                           textColor: Colors.white,
@@ -204,10 +309,6 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                           ),
                         ),
                       ),
-                      Container(
-                        color: Colors.grey[300],
-                        height: 300,
-                      )
                     ],
                   ),
                 ),
