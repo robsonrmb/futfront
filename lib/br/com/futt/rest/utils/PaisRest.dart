@@ -1,7 +1,6 @@
 import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/rest/BaseRest.dart';
 import 'package:com/br/com/futt/service/fixo/utils/PaisServiceFixo.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PaisRest extends BaseRest {

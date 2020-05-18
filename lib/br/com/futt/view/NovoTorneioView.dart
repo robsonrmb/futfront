@@ -3,9 +3,11 @@ import 'package:com/br/com/futt/model/ClassificacaoTorneioModel.dart';
 import 'package:com/br/com/futt/model/EntidadeModel.dart';
 import 'package:com/br/com/futt/model/TipoTorneioModel.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
+import 'package:com/br/com/futt/model/utils/GeneroModel.dart';
 import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/service/ClassificacaoTorneioService.dart';
 import 'package:com/br/com/futt/service/EntidadeService.dart';
+import 'package:com/br/com/futt/service/GeneroService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
@@ -87,7 +89,6 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   }
 
   void valida() {
-    String retorno = "";
     if (_controllerNome.text == "") {
       throw Exception('Informe o título do torneio.');
     }else if (_controllerTipoTorneio == 0) {
@@ -104,15 +105,15 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
       throw Exception('Informe a data fim do torneio.');
     }else{
       if (_controllerTipoTorneio == 1) {
-        if (_controllerQtdDuplas.text != 16 && _controllerQtdDuplas.text != 32) {
+        if (_controllerQtdDuplas.text != "16" && _controllerQtdDuplas.text != "32") {
           throw Exception('Qtd de duplas para tipo de torneio: 16 ou 32.');
         }
       }else if (_controllerTipoTorneio == 2) {
-        if (_controllerQtdDuplas.text != 4 && _controllerQtdDuplas.text != 8 && _controllerQtdDuplas.text != 16) {
+        if (_controllerQtdDuplas.text != "4" && _controllerQtdDuplas.text != "8" && _controllerQtdDuplas.text != "16") {
           throw Exception('Qtd de duplas para tipo de torneio: 4, 8 ou 16.');
         }
       }else if (_controllerTipoTorneio == 3) {
-        if (_controllerQtdDuplas.text != 0 && _controllerQtdDuplas.text != "") {
+        if (_controllerQtdDuplas.text != "0" && _controllerQtdDuplas.text != "") {
           throw Exception('Para torneios em grupo não informe a qtd de duplas.');
         }
       }
@@ -137,6 +138,11 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   Future<List<PaisModel>> _listaPaises() async {
     PaisService paisService = PaisService();
     return paisService.listaPaises();
+  }
+
+  Future<List<GeneroModel>> _listaGeneros() async {
+    GeneroService generoService = GeneroService();
+    return generoService.listaGeneros();
   }
 
   @override
@@ -246,6 +252,18 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
+                        child: FindDropdown<GeneroModel>(
+                          showSearchBox: false,
+                          onFind: (String filter) => _listaGeneros(),
+                          searchBoxDecoration: InputDecoration(
+                            hintText: "Search",
+                            border: OutlineInputBorder(),
+                          ),
+                          onChanged: (GeneroModel data) => _controllerGeneroTorneio = data.id,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 10),
                         child: FindDropdown<EntidadeModel>(
                           showSearchBox: false,
                           onFind: (String filter) => _listaEntidadesDoUsuario(),
@@ -289,6 +307,31 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                         //maxLength: 100,
                         //maxLengthEnforced: true,
                         controller: _controllerCidade,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                      ),
+                      TextField(
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "Local",
+                          hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[400],
+                          ),
+                          /* border: OutlineInputBorder(
+                                    gapPadding: 1,
+                                  ),*/
+                        ),
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black
+                        ),
+                        //maxLength: 100,
+                        //maxLengthEnforced: true,
+                        controller: _controllerLocal,
                       ),
                       Padding(
                         padding: EdgeInsets.all(5),
