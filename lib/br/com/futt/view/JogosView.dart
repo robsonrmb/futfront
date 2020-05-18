@@ -1,5 +1,6 @@
 import 'package:com/br/com/futt/constantes/ConstantesFasesDeJogos.dart';
 import 'package:com/br/com/futt/view/subview/JogosTorneioSubView.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class JogosView extends StatefulWidget {
@@ -17,6 +18,8 @@ class _JogosViewState extends State<JogosView> {
   int _indiceAtual = 0;
   int _indiceFase = 0;
   int _paramFase = 0;
+  double _opacidadeLeft = 1.0;
+  double _opacidadeRight = 1.0;
   String _fase = "";
   List<String> _fases;
   Map<int, int> _mapaDoIdFases;
@@ -28,7 +31,14 @@ class _JogosViewState extends State<JogosView> {
         _paramFase = _mapaDoIdFases[_indiceFase];
         _fase = _fases[_indiceFase];
         _indiceAtual = 0;
+        _opacidadeRight = 1.0;
+        _opacidadeLeft = 1.0;
+        if (_indiceFase == 0) {
+          _opacidadeLeft = 0.3;
+        }
       });
+    }else{
+
     }
   }
 
@@ -39,6 +49,11 @@ class _JogosViewState extends State<JogosView> {
         _paramFase = _mapaDoIdFases[_indiceFase];
         _fase = _fases[_indiceFase];
         _indiceAtual = 0;
+        _opacidadeLeft = 1.0;
+        _opacidadeRight = 1.0;
+        if (_indiceFase == _fases.length-1) {
+          _opacidadeRight = 0.3;
+        }
       });
     }
   }
@@ -56,6 +71,7 @@ class _JogosViewState extends State<JogosView> {
         4: ConstantesFasesDeJogos.TERCEIRO_LUGAR
       };
       setState(() {
+        _paramFase = _mapaDoIdFases[0];
         _fase = "8ª de Final";
         _fases = [
           "8ª de Final",
@@ -73,6 +89,7 @@ class _JogosViewState extends State<JogosView> {
         3: ConstantesFasesDeJogos.TERCEIRO_LUGAR
       };
       setState(() {
+        _paramFase = _mapaDoIdFases[0];
         _fase = "4ª de Final";
         _fases = [
           "4ª de Final",
@@ -138,69 +155,74 @@ class _JogosViewState extends State<JogosView> {
         ),
         title: Text("Jogos"),
       ),
-      body: new Column(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Image.asset("images/torneios.png", height: 46, width: 46,),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 5),
-                      child: Text("${_indiceFase} - ${_fase}",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'Candal'
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 5),
-                      child: RaisedButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        padding: EdgeInsets.all(15),
-                        child: Text(
-                          "Fase anterior",
-                          style: TextStyle(
-                              fontSize: 20
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/group.png"),
+                fit: BoxFit.fill
+            )
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: GestureDetector(
+                      child: Container(
+                        height: 40, width: 40,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("images/setaMenor.jpg"),
+                              fit: BoxFit.fill,
+                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(_opacidadeLeft),BlendMode.dstATop),
                           ),
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
-                        onPressed: _faseAnterior,
+                      ),
+                      onTap: _faseAnterior,
+                    )
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text("${_fase}", // ${_indiceFase}
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontFamily: 'Candal',
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 5),
-                      child: RaisedButton(
-                        color: Colors.blue,
-                        textColor: Colors.white,
-                        padding: EdgeInsets.all(15),
-                        child: Text(
-                          "Próxima fase",
-                          style: TextStyle(
-                              fontSize: 20
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: GestureDetector(
+                      child: Container(
+                        height: 40, width: 40,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage("images/setaMaior.jpg"),
+                              fit: BoxFit.fill,
+                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(_opacidadeRight), BlendMode.dstATop),
                           ),
+                          borderRadius: BorderRadius.circular(5.0),
                         ),
-                        onPressed: _proximaFase,
                       ),
+                      onTap: _proximaFase,
                     ),
-                  ],
-                )
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: subViews[_indiceAtual],
-          )
-        ],
+            Expanded(
+              child: subViews[_indiceAtual],
+            )
+          ],
+        ),
       ),
     );
   }

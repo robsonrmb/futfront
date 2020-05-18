@@ -55,7 +55,7 @@ class _TorneiosViewState extends State<TorneiosView> {
                   ),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => JogosView(idSubView: 4),
+                        builder: (context) => JogosView(idSubView: 1),
                     ));
                   },
                 ),

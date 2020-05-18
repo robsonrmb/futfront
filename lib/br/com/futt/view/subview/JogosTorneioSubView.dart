@@ -18,28 +18,7 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
   Future<List<JogoModel>> _listaJogos() async {
     JogoService jogoService = JogoService();
     return jogoService.listaPorTorneios(widget.idTorneio, widget.idFase, ConstantesConfig.SERVICO_FIXO);
-    /*
-    JogoService jogoService = JogoService();
-    if (widget.idFase == 0) {
-      Future<List<JogoModel>> listaJogos = jogoService.listaPorTorneios(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
-      listaJogos = buscaJogosDaFase(widget.idFase, listaJogos);
-      return listaJogos;
-    }else{
-      return new List<JogoModel>();
-    }
-    */
   }
-  /*
-  Future<List<JogoModel>> buscaJogosDaFase(int idFase, List<JogoModel> listaJogos) {
-    List<JogoModel> novaLista = List<JogoModel>();
-    for (var jogoModel in listaJogos){
-      if (jogoModel.idFase == idFase) {
-        novaLista.add(jogoModel);
-      }
-    }
-    return listaJogos;
-  }
-   */
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +49,31 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: ListTile(
-                      leading: Text(
-                        "${jogo.idJogador1} e ${jogo.idJogador2}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      leading: Container(
+                        height: 40, width: 40,
+                        decoration: BoxDecoration(
+                          color: Color(0xff093352),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "${jogo.pontuacao1}",
+                              style: TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ]
                         ),
                       ),
                       title: Row(
                         children: <Widget>[
                           Text(
-                            "${jogo.pontuacao1}",
+                            "${jogo.nomeJogador1} e ${jogo.nomeJogador2}",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -91,9 +84,9 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
                       subtitle: Row(
                         children: <Widget>[
                           Text(
-                            "${jogo.pontuacao2}",
+                            "${jogo.nomeJogador3} e ${jogo.nomeJogador4}",
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -102,33 +95,38 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
                       trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            Text(
-                              "${jogo.idJogador3} e ${jogo.idJogador4}",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                            Container(
+                              height: 40, width: 40,
+                              decoration: BoxDecoration(
+                                color: Color(0xff093352),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      "${jogo.pontuacao2}",
+                                      style: TextStyle(
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ]
                               ),
                             ),
-                            /*
                             GestureDetector(
-                              child: Icon(Icons.flight_land),
-                              onTap: (){},
+                              child: Icon(Icons.arrow_drop_down, color: Colors.grey[300],)
                             ),
                             GestureDetector(
-                              child: Icon(Icons.flight_takeoff),
-                              onTap: (){
-                                Navigator.pushNamed(context, "/novo_torneio");
-                              },
-                            ),*/
+                              child: Icon(Icons.edit),
+                              onTap: (){},
+                            ),
                           ]),
                     ),
                   );
                 },
-                /*
-                separatorBuilder: (context, index) => Divider(
-                  height: 3,
-                  color: Colors.amber,
-                ),*/
               );
             }else{
               return Center(
