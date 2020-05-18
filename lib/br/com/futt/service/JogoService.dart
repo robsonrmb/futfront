@@ -69,13 +69,13 @@ class JogoService {
   Future<List<JogoModel>> listaPorUsuario({bool fixo}) {
     String url = "${ConstantesRest.URL_JOGO}/ativasdousuariologado";
     JogoRest jogoRest = JogoRest();
-    return jogoRest.processaHttpGetList(url, fixo);
+    return jogoRest.processaHttpGetList(url, 0, fixo);
   }
 
-  Future<List<JogoModel>> listaPorTorneios(String idTorneio, {bool fixo}) async {
-    String url = "${ConstantesRest.URL_JOGO}/torneios/${idTorneio}";
+  Future<List<JogoModel>> listaPorTorneios(int idTorneio, int idFase, bool fixo) async {
+    String url = "${ConstantesRest.URL_JOGO}/torneios/${idTorneio}/${idFase}";
     JogoRest jogoRest = JogoRest();
-    return jogoRest.processaHttpGetList(url, fixo);
+    return jogoRest.processaHttpGetList(url, idFase, fixo);
   }
 
 }

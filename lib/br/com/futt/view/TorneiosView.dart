@@ -1,3 +1,4 @@
+import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:com/br/com/futt/view/ParticipantesView.dart';
 import 'package:com/br/com/futt/view/ResultadosView.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,9 @@ class _TorneiosViewState extends State<TorneiosView> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "/jogos");
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => JogosView(idSubView: 4),
+                    ));
                   },
                 ),
               )

@@ -23,7 +23,7 @@ class JogoServiceFixo {
         '"idJogador10": 0 '
       '}';
 
-  String retornoJogos = '[ '
+  String retornoJogosFase1 = '[ '
         '{'
           '"id": 1, '
           '"numero": 1, '
@@ -42,11 +42,75 @@ class JogoServiceFixo {
           '"idJogador8": 0, '
           '"idJogador9": 0, '
           '"idJogador10": 0 '
+        '}, '
+        '{'
+          '"id": 2, '
+          '"numero": 2, '
+          '"pontuacao1": 10, '
+          '"pontuacao2": 18, '
+          '"data": null, '
+          '"idFase": 1, '
+          '"idTorneio": 4, '
+          '"idJogador1": 5, '
+          '"idJogador2": 6, '
+          '"idJogador3": 7, '
+          '"idJogador4": 8, '
+          '"idJogador5": 0, '
+          '"idJogador6": 0, '
+          '"idJogador7": 0, '
+          '"idJogador8": 0, '
+          '"idJogador9": 0, '
+          '"idJogador10": 0 '
         '} '
       ']';
 
-  String responseLista() {
-    return retornoJogos;
+  String retornoJogosFase2 = '[ '
+        '{'
+          '"id": 1, '
+          '"numero": 1, '
+          '"pontuacao1": 18, '
+          '"pontuacao2": 12, '
+          '"data": null, '
+          '"idFase": 2, '
+          '"idTorneio": 4, '
+          '"idJogador1": 1, '
+          '"idJogador2": 2, '
+          '"idJogador3": 7, '
+          '"idJogador4": 8, '
+          '"idJogador5": 0, '
+          '"idJogador6": 0, '
+          '"idJogador7": 0, '
+          '"idJogador8": 0, '
+          '"idJogador9": 0, '
+          '"idJogador10": 0 '
+        '}, '
+        '{'
+          '"id": 2, '
+          '"numero": 2, '
+          '"pontuacao1": 10, '
+          '"pontuacao2": 18, '
+          '"data": null, '
+          '"idFase": 2, '
+          '"idTorneio": 4, '
+          '"idJogador1": 3, '
+          '"idJogador2": 4, '
+          '"idJogador3": 5, '
+          '"idJogador4": 6, '
+          '"idJogador5": 0, '
+          '"idJogador6": 0, '
+          '"idJogador7": 0, '
+          '"idJogador8": 0, '
+          '"idJogador9": 0, '
+          '"idJogador10": 0 '
+        '} '
+      ']';
+
+  String responseLista(int idFase) {
+    if (idFase%2 == 0) {
+      return retornoJogosFase1;
+    }else{
+      return retornoJogosFase2;
+    }
   }
 
   String responseObjeto() {
@@ -56,24 +120,6 @@ class JogoServiceFixo {
   Future<JogoModel> _buscaJogoFixo() async {
     var dadosJson = json.decode(retornoJogo);
     return JogoModel.fromJson(dadosJson); //.converteJson
-  }
-
-  Future<List<JogoModel>> _listaJogosFixo() async {
-    var dadosJson = json.decode(retornoJogos);
-    List<JogoModel> lista = List();
-    for (var registro in dadosJson) {
-      JogoModel jogoModel = JogoModel.fromJson(registro); //.converteJson
-      lista.add(jogoModel);
-    }
-    return lista;
-  }
-
-  Future<List<JogoModel>> listaPorUsuario() async {
-    return _listaJogosFixo();
-  }
-
-  Future<List<JogoModel>> listaPorTorneios(String idTorneio) async {
-    return _listaJogosFixo();
   }
 
 }
