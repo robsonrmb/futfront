@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class JogosView extends StatefulWidget {
 
   int idTorneio;
+  String nomeTorneio;
   int idSubView;
-  JogosView({this.idTorneio, this.idSubView});
+  JogosView({this.idTorneio, this.nomeTorneio, this.idSubView});
 
   @override
   _JogosViewState createState() => _JogosViewState();
@@ -18,7 +19,7 @@ class _JogosViewState extends State<JogosView> {
   int _indiceAtual = 0;
   int _indiceFase = 0;
   int _paramFase = 0;
-  double _opacidadeLeft = 1.0;
+  double _opacidadeLeft = 0.3;
   double _opacidadeRight = 1.0;
   String _fase = "";
   List<String> _fases;
@@ -190,12 +191,23 @@ class _JogosViewState extends State<JogosView> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 5),
-                    child: Text("${_fase}", // ${_indiceFase}
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontFamily: 'Candal',
-                      ),
+                    child: Column(
+                      children: <Widget>[
+                        Text("${_fase}", // ${_indiceFase}
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Candal',
+                          ),
+                        ),
+                        Text(widget.nomeTorneio, // ${_indiceFase}
+                          style: TextStyle(
+                            color: Colors.grey[500],
+                            fontSize: 14,
+                            fontFamily: 'Candal',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Padding(

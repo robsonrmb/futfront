@@ -48,7 +48,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
       TorneioModel torneioModel = TorneioModel.Novo(
           null, _controllerNome.text, _controllerTipoTorneio, _controllerClassificacaoTorneio, _controllerGeneroTorneio,
           _controllerEntidadeTorneio, _controllerRankingEntidadeTorneio, _controllerPaisTorneio, _controllerCidade.text,
-          _controllerLocal.text, DateTime.parse(_controllerDataInicio.text), DateTime.parse(_controllerDataFim.text),
+          _controllerLocal.text, _controllerDataInicio.text, _controllerDataFim.text,
           int.parse(_controllerQtdDuplas.text), _controllerMais.text
       );
       //TorneioService torneioService = TorneioService();

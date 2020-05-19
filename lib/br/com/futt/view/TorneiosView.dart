@@ -1,6 +1,5 @@
-import 'package:com/br/com/futt/view/JogosView.dart';
-import 'package:com/br/com/futt/view/ParticipantesView.dart';
-import 'package:com/br/com/futt/view/ResultadosView.dart';
+import 'package:com/br/com/futt/view/subview/TorneiosSubView.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TorneiosView extends StatefulWidget {
@@ -8,109 +7,181 @@ class TorneiosView extends StatefulWidget {
   _TorneiosViewState createState() => _TorneiosViewState();
 }
 
+/*
+novo torneio:
+  Navigator.pushNamed(context, "/novo_torneio");
+jogos:
+  Navigator.push(context, MaterialPageRoute(
+      builder: (context) => JogosView(idSubView: 1),
+  ));
+ranking / resultados:
+  Navigator.push(context, MaterialPageRoute(
+      builder: (context) => ResultadosView(idTorneio: 10, nomeTorneio: "Copa Nordeste de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Porto de Galinhas", dataTorneio: "10.07.2020")
+  ));
+participantes:
+  Navigator.push(context, MaterialPageRoute(
+      builder: (context) => ParticipantesView(idTorneio: 20, nomeTorneio: "Copa Brasil de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Rio de Janeiro", dataTorneio: "15.10.2020")
+  ));
+ */
+
 class _TorneiosViewState extends State<TorneiosView> {
+
+  TextEditingController _controllerNome = TextEditingController();
+  TextEditingController _controllerPais = TextEditingController();
+  TextEditingController _controllerCidade = TextEditingController();
+  TextEditingController _controllerData = TextEditingController();
+
+  int _indiceDeBusca = 0; //Busca todos os torneios
+  String _nomeFiltro = "";
+  String _paisFiltro = "";
+  String _cidadeFiltro = "";
+  String _dataFiltro = "";
+
+  _pesquisarTorneios() {
+    setState(() {
+      _indiceDeBusca = 1; //Busca por filtros
+      _nomeFiltro = _controllerNome.text;
+      _paisFiltro = _controllerPais.text;
+      _cidadeFiltro = _controllerCidade.text;
+      _dataFiltro = _controllerData.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.lightGreenAccent,
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Row(
+    return new Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(2),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 16),
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Veja os detalhes.",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Candal',
+                        ),
+                      ),
+                      Text("Crie também seu próprio torneio!!!",
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 12,
+                          fontFamily: 'Candal',
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: GestureDetector(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.find_in_page,
+                                color: Color(0xff086ba4),
+                              ),
+                              Text(" Pesquisa de torneios",
+                                style: TextStyle(
+                                  color: Color(0xff086ba4),
+                                  fontSize: 12,
+                                  fontFamily: 'Candal',
+                                ),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            showDialog(context: context, builder: (context){
+                              return AlertDialog(
+                                title: Text("Pesquise seu torneio"),
+                                content: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          labelText: "Nome",
+                                        ),
+                                        controller: _controllerNome,
+                                      ),
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          labelText: "Cidade ou local",
+                                        ),
+                                        controller: _controllerCidade,
+                                      ),
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          labelText: "Datas",
+                                        ),
+                                        controller: _controllerData,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Pesquisar",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      _pesquisarTorneios();
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 2, 10, 0),
                 child: RaisedButton(
-                  color: Colors.blue,
+                  color: Color(0xff086ba4),
                   textColor: Colors.white,
                   padding: EdgeInsets.all(15),
                   child: Text(
                     "Novo torneio",
                     style: TextStyle(
-                        fontSize: 20
+                      fontSize: 12,
+                      fontFamily: 'Candal',
                     ),
                   ),
-                  onPressed: () {
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                  onPressed: (){
                     Navigator.pushNamed(context, "/novo_torneio");
                   },
                 ),
-              )
+              ),
             ],
           ),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: RaisedButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(15),
-                  child: Text(
-                    "Jogos",
-                    style: TextStyle(
-                        fontSize: 20
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => JogosView(idSubView: 1),
-                    ));
-                  },
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: RaisedButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(15),
-                  child: Text(
-                    "Ranking",
-                    style: TextStyle(
-                        fontSize: 20
-                    ),
-                  ),
-                  onPressed: () {
-                    //Navigator.pushNamed(context, "/resultados");
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => ResultadosView(idTorneio: 10, nomeTorneio: "Copa Nordeste de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Porto de Galinhas", dataTorneio: "10.07.2020")
-                    ));
-                  },
-                ),
-              )
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: RaisedButton(
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(15),
-                  child: Text(
-                    "Participantes",
-                    style: TextStyle(
-                        fontSize: 20
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => ParticipantesView(idTorneio: 20, nomeTorneio: "Copa Brasil de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Rio de Janeiro", dataTorneio: "15.10.2020")
-                    ));
-                  },
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+        ),
+        Expanded(
+          child: TorneiosSubView(_indiceDeBusca, _nomeFiltro, _paisFiltro, _cidadeFiltro, _dataFiltro),
+        )
+      ],
     );
   }
 }
+

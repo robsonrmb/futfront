@@ -6,8 +6,8 @@ class TorneioModel {
   String _estado;
   String _cidade;
   String _local;
-  DateTime _dataInicio;
-  DateTime _dataFim;
+  String _dataInicio;
+  String _dataFim;
   int _ano;
   int _qtdDuplas;
   String _genero;
@@ -33,10 +33,13 @@ class TorneioModel {
   int _idClassificacaoTorneio;
   int _idEntidadeTorneio;
   int _idRankingEntidadeTorneio;
+  String _logoTorneio;
 
   TorneioModel.Novo(this._id, this._nome, this._idTipoTorneio, this._idClassificacaoTorneio,
       this._genero, this._idEntidadeTorneio, this._idRankingEntidadeTorneio, this._pais, this._cidade,
       this._local, this._dataInicio, this._dataFim, this._qtdDuplas, this._info);
+
+  TorneioModel.Filtro(this._nome, this._pais, this._cidade, this._dataInicio);
 
   TorneioModel(this._id, this._nome, this._status, this._pais, this._estado, this._cidade,
       this._local, this._dataInicio, this._dataFim, this._ano, this._qtdDuplas,
@@ -47,7 +50,7 @@ class TorneioModel {
       this._atletaTerceiroLugar1, this._atletaTerceiroLugar2,
       this._atletaTerceiroLugar3, this._atletaTerceiroLugar4,
       this._atletaTerceiroLugar5, this._idTipoTorneio, this._idClassificacaoTorneio,
-      this._idEntidadeTorneio, this._idRankingEntidadeTorneio);
+      this._idEntidadeTorneio, this._idRankingEntidadeTorneio, this._logoTorneio);
 
   factory TorneioModel.fromJson(Map<String, dynamic> json) {
     return TorneioModel(
@@ -84,6 +87,7 @@ class TorneioModel {
       json["idClassificacaoTorneio"],
       json["idEntidadeTorneio"],
       json["idRankingEntidadeTorneio"],
+      json["logoTorneio"],
     );
   }
 
@@ -231,15 +235,15 @@ class TorneioModel {
     _ano = value;
   }
 
-  DateTime get dataFim => _dataFim;
+  String get dataFim => _dataFim;
 
-  set dataFim(DateTime value) {
+  set dataFim(String value) {
     _dataFim = value;
   }
 
-  DateTime get dataInicio => _dataInicio;
+  String get dataInicio => _dataInicio;
 
-  set dataInicio(DateTime value) {
+  set dataInicio(String value) {
     _dataInicio = value;
   }
 
@@ -283,6 +287,12 @@ class TorneioModel {
 
   set id(int value) {
     _id = value;
+  }
+
+  String get logoTorneio => _logoTorneio;
+
+  set logoTorneio(String value) {
+    _logoTorneio = value;
   }
 
 }

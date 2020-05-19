@@ -38,8 +38,8 @@ class _ParticipantesTorneioSubViewState extends State<ParticipantesTorneioSubVie
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
 
-                  List<ParticipanteModel> paticipantes = snapshot.data;
-                  ParticipanteModel participante = paticipantes[index];
+                  List<ParticipanteModel> participantes = snapshot.data;
+                  ParticipanteModel participante = participantes[index];
 
                   return Container(
                     margin: EdgeInsets.fromLTRB(8, 8, 8, 0),

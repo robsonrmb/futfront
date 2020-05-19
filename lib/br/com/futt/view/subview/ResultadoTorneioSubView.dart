@@ -73,11 +73,13 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                               ),
                             ),
                           ),
-                          Text(
-                            " ${resultado.nomeJogador1} e ${resultado.nomeJogador2}",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                          Flexible(
+                            child: Text(
+                              " ${resultado.nomeJogador1} e ${resultado.nomeJogador2}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],

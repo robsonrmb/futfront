@@ -127,31 +127,25 @@ class TorneioService {
     }
   }
 
-  Future<List<TorneioModel>> listaPorFiltros(var torneioModel, {bool fixo}) {
+  Future<List<TorneioModel>> listaPorFiltros(var torneioModel, bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}/filtros";
     TorneioRest torneioRest = TorneioRest();
     return torneioRest.processaHttpPostReturn(url, torneioModel, fixo);
   }
 
-  Future<List<TorneioModel>> listaPorStatus(var status, {bool fixo}) {
+  Future<List<TorneioModel>> listaPorStatus(var status, bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}/status?status=${status}";
     TorneioRest torneioRest = TorneioRest();
     return torneioRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<TorneioModel>> listaTodos({bool fixo}) {
+  Future<List<TorneioModel>> listaTodos(bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}";
     TorneioRest torneioRest = TorneioRest();
     return torneioRest.processaHttpGetList(url, fixo);
   }
 
-  Future<List<ParticipanteModel>> listaParticipantesDoTorneio(String idTorneio, {bool fixo}) {
-    String url = "${ConstantesRest.URL_TORNEIOS}/participantes/${idTorneio}";
-    TorneioRest torneioRest = TorneioRest();
-    return torneioRest.processaHttpGetListParticipante(url, fixo);
-  }
-
-  Future<TorneioModel> getTorneio(String idTorneio, {bool fixo}) {
+  Future<TorneioModel> getTorneio(String idTorneio, bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}";
     TorneioRest torneioRest = TorneioRest();
     return torneioRest.processaHttpGetObject(url, fixo);
