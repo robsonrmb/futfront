@@ -1,28 +1,40 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
-import 'package:com/br/com/futt/model/ResultadoModel.dart';
-import 'package:com/br/com/futt/service/ResultadoService.dart';
+import 'package:com/br/com/futt/model/RankingModel.dart';
+import 'package:com/br/com/futt/service/RankingService.dart';
 import 'package:flutter/material.dart';
 
-class ResultadoTorneioSubView extends StatefulWidget {
+class RankingSubView extends StatefulWidget {
 
-  int idTorneio;
-  ResultadoTorneioSubView(this.idTorneio);
+  int ano;
+  int idRankingEntidade;
+  int anoDefault;
+  int idRankingEntidadeDefault;
+  RankingSubView(this.ano, this.idRankingEntidade, this.anoDefault, this.idRankingEntidadeDefault);
 
   @override
-  _ResultadoTorneioSubViewState createState() => _ResultadoTorneioSubViewState();
+  _RankingSubViewState createState() => _RankingSubViewState();
 }
 
-class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
+class _RankingSubViewState extends State<RankingSubView> {
 
-  Future<List<ResultadoModel>> _listaResultados() async {
-    ResultadoService resultadoService = ResultadoService();
-    return resultadoService.listaResultadoDoTorneio(widget.idTorneio, ConstantesConfig.SERVICO_FIXO);
+  Future<List<RankingModel>> _listaRanking() async {
+    if (widget.ano == 0 || widget.idRankingEntidade == 0) {
+      RankingService rankingService = RankingService();
+      return rankingService.listaRanking(
+          widget.anoDefault, widget.idRankingEntidadeDefault,
+          ConstantesConfig.SERVICO_FIXO);
+    }else{
+      RankingService rankingService = RankingService();
+      return rankingService.listaRanking(
+          widget.ano, widget.idRankingEntidade,
+          ConstantesConfig.SERVICO_FIXO);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ResultadoModel>>(
-      future: _listaResultados(),
+    return FutureBuilder<List<RankingModel>>(
+      future: _listaRanking(),
       builder: (context, snapshot) {
         switch( snapshot.connectionState ) {
           case ConnectionState.none :
@@ -38,8 +50,8 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
 
-                  List<ResultadoModel> resultados = snapshot.data;
-                  ResultadoModel resultado = resultados[index];
+                  List<RankingModel> ranking = snapshot.data;
+                  RankingModel resultado = ranking[index];
 
                   return Container(
                     margin: EdgeInsets.fromLTRB(8, 8, 8, 0),
@@ -49,7 +61,7 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage: NetworkImage('${resultado.fotoJogador1}'),
+                        backgroundImage: NetworkImage('${resultado.fotoUsuario}'),
                         radius: 30.0,
                       ),
                       title: Row(
@@ -65,14 +77,14 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                                 style: TextStyle(
                                   fontFamily: 'Candal',
                                   color: Colors.white,
-                                  fontSize: 25,
+                                  fontSize: 20,
                                 ),
                               ),
                             ),
                           ),
                           Flexible(
                             child: Text(
-                              " ${resultado.nomeJogador1} e ${resultado.nomeJogador2}",
+                              " ${resultado.nomeUsuario}",
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -81,7 +93,6 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                           ),
                         ],
                       ),
-                      /*
                       subtitle: Row(
                         children: <Widget>[
                           Container(
@@ -94,47 +105,43 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
                                 style: TextStyle(
                                   fontFamily: 'Candal',
                                   color: Colors.grey[300],
-                                  fontSize: 25,
+                                  fontSize: 20,
                                 ),
                               ),
                             ),
                           ),
                           Text(
-                            "  ${resultado.apelidoJogador1} e ${resultado.apelidoJogador2}",
+                            "  ${resultado.apelidoUsuario}",
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
-                      ),*/
+                      ),
                       trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            CircleAvatar(
-                              backgroundImage: NetworkImage('${resultado.fotoJogador2}'),
-                              radius: 30.0,
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff093352),
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  " ${resultado.pontuacao} ",
+                                  style: TextStyle(
+                                    fontFamily: 'Candal',
+                                    color: Colors.orange,
+                                    fontSize: 25,
+                                  ),
+                                ),
+                              ),
                             ),
-                            /*
-                            GestureDetector(
-                              child: Icon(Icons.flight_land),
-                              onTap: (){},
-                            ),
-                            GestureDetector(
-                              child: Icon(Icons.flight_takeoff),
-                              onTap: (){
-                                Navigator.pushNamed(context, "/novo_torneio");
-                              },
-                            ),*/
                           ]),
                     ),
                   );
                 },
-                /*
-                separatorBuilder: (context, index) => Divider(
-                  height: 3,
-                  color: Colors.amber,
-                ),*/
               );
             }else{
               return Center(
@@ -147,4 +154,3 @@ class _ResultadoTorneioSubViewState extends State<ResultadoTorneioSubView> {
     );
   }
 }
-

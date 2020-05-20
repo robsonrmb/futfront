@@ -5,16 +5,14 @@ import 'package:com/br/com/futt/rest/RankingRest.dart';
 
 class RankingService {
 
-  Future<List<RankingModel>> listaRanking(String ano, String idRanking, {bool fixo}) {
+  Future<List<RankingModel>> listaRanking(int ano, int idRanking, bool fixo) {
     String url = "${ConstantesRest.URL_RANKING}/${ano}/${idRanking}";
     RankingRest rankingRest = RankingRest();
-    return rankingRest.processaHttpGetList(url, fixo);
-  }
-
-  Future<List<RankingEntidadeModel>> listaRankingEntidade({bool fixo}) {
-    String url = "${ConstantesRest.URL_RANKING_ENTIDADE}/ativas";
-    RankingRest rankingRest = RankingRest();
-    return rankingRest.processaHttpGetListRankingEntidade(url, fixo);
+    bool _filtro = true;
+    if (ano%2 == 0) {
+      _filtro = false;
+    }
+    return rankingRest.processaHttpGetList(url, _filtro, fixo);
   }
 
 }

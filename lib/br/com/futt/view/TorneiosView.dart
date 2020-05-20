@@ -1,4 +1,7 @@
+import 'package:com/br/com/futt/model/utils/PaisModel.dart';
+import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/view/subview/TorneiosSubView.dart';
+import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,27 +10,10 @@ class TorneiosView extends StatefulWidget {
   _TorneiosViewState createState() => _TorneiosViewState();
 }
 
-/*
-novo torneio:
-  Navigator.pushNamed(context, "/novo_torneio");
-jogos:
-  Navigator.push(context, MaterialPageRoute(
-      builder: (context) => JogosView(idSubView: 1),
-  ));
-ranking / resultados:
-  Navigator.push(context, MaterialPageRoute(
-      builder: (context) => ResultadosView(idTorneio: 10, nomeTorneio: "Copa Nordeste de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Porto de Galinhas", dataTorneio: "10.07.2020")
-  ));
-participantes:
-  Navigator.push(context, MaterialPageRoute(
-      builder: (context) => ParticipantesView(idTorneio: 20, nomeTorneio: "Copa Brasil de Futevolei", paisTorneio: "Brasil", cidadeTorneio: "Rio de Janeiro", dataTorneio: "15.10.2020")
-  ));
- */
-
 class _TorneiosViewState extends State<TorneiosView> {
 
   TextEditingController _controllerNome = TextEditingController();
-  TextEditingController _controllerPais = TextEditingController();
+  String _controllerPais = "";
   TextEditingController _controllerCidade = TextEditingController();
   TextEditingController _controllerData = TextEditingController();
 
@@ -41,10 +27,15 @@ class _TorneiosViewState extends State<TorneiosView> {
     setState(() {
       _indiceDeBusca = 1; //Busca por filtros
       _nomeFiltro = _controllerNome.text;
-      _paisFiltro = _controllerPais.text;
+      _paisFiltro = _controllerPais;
       _cidadeFiltro = _controllerCidade.text;
       _dataFiltro = _controllerData.text;
     });
+  }
+
+  Future<List<PaisModel>> _listaPaises() async {
+    PaisService paisService = PaisService();
+    return paisService.listaPaises();
   }
 
   @override
@@ -109,15 +100,28 @@ class _TorneiosViewState extends State<TorneiosView> {
                                       ),
                                       TextField(
                                         decoration: InputDecoration(
+                                          labelText: "Datas",
+                                        ),
+                                        controller: _controllerData,
+                                      ),
+                                      TextField(
+                                        decoration: InputDecoration(
                                           labelText: "Cidade ou local",
                                         ),
                                         controller: _controllerCidade,
                                       ),
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          labelText: "Datas",
+                                      Padding(
+                                        padding: EdgeInsets.only(bottom: 10),
+                                        child: FindDropdown<PaisModel>(
+                                          label: "País",
+                                          showSearchBox: false,
+                                          onFind: (String filter) => _listaPaises(),
+                                          searchBoxDecoration: InputDecoration(
+                                            hintText: "Search",
+                                            border: OutlineInputBorder(),
+                                          ),
+                                          onChanged: (PaisModel data) => _controllerPais = data.id,
                                         ),
-                                        controller: _controllerData,
                                       ),
                                     ],
                                   ),

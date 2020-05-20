@@ -10,7 +10,6 @@ import 'package:com/br/com/futt/service/EntidadeService.dart';
 import 'package:com/br/com/futt/service/GeneroService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
-import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

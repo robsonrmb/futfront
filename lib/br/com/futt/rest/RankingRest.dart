@@ -1,4 +1,4 @@
-import 'package:com/br/com/futt/model/RankingEntidadeModel.dart';
+import 'package:com/br/com/futt/model/RankingModel.dart';
 import 'package:com/br/com/futt/model/RankingModel.dart';
 import 'package:com/br/com/futt/rest/BaseRest.dart';
 import 'package:com/br/com/futt/service/fixo/RankingServiceFixo.dart';
@@ -7,45 +7,47 @@ import 'dart:convert';
 
 class RankingRest extends BaseRest {
 
-  Future<List<RankingModel>> processaHttpGetList(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+  Future<List<RankingModel>> processaHttpGetList(String url, bool filtro, bool fixo) async {
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaRankingModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         RankingServiceFixo serviceFixo = RankingServiceFixo();
-        dadosJson = serviceFixo.responseRankingLista();
-      }
-      List<RankingModel> lista = List();
-      for (var registro in dadosJson) {
-        RankingModel rankingModel = RankingModel.fromJson(
-            registro); //.converteJson
-        lista.add(rankingModel);
-      }
-      return lista;
+        var dadosJson = json.decode(serviceFixo.responseLista(filtro));
+        return _parseListaRankingModel(dadosJson);
 
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
+      if (fixo != null && fixo == true) {
+        RankingServiceFixo serviceFixo = RankingServiceFixo();
+        var dadosJson = json.decode(serviceFixo.responseLista(filtro));
+        return _parseListaRankingModel(dadosJson);
+
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
     }
   }
 
-  Future<List<RankingEntidadeModel>> processaHttpGetListRankingEntidade(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
-      if (fixo != null && fixo == true) {
-        RankingServiceFixo serviceFixo = RankingServiceFixo();
-        dadosJson = serviceFixo.responseRankingEntidadeLista();
-      }
-      List<RankingEntidadeModel> lista = List();
-      for (var registro in dadosJson) {
-        RankingEntidadeModel rankingEntidadeModel = RankingEntidadeModel
-            .fromJson(
-            registro); //.converteJson
-        lista.add(rankingEntidadeModel);
-      }
-      return lista;
-    } else {
-      throw Exception('Failed to load Tipo Torneio!!!');
+  List<RankingModel> _parseListaRankingModel(dadosJson) {
+    List<RankingModel> lista = List();
+    for (var registro in dadosJson) {
+      RankingModel resultadoModel = RankingModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
     }
+    return lista;
   }
 }

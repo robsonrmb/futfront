@@ -1,15 +1,43 @@
 class RankingEntidadeModel {
-  int id;
-  String nome;
-  String descricao;
+  int _id;
+  String _nome;
+  String _descricao;
 
-  RankingEntidadeModel({this.id, this.nome, this.descricao});
+  RankingEntidadeModel(this._id, this._nome, this._descricao);
 
   factory RankingEntidadeModel.fromJson(Map<String, dynamic> json) {
     return RankingEntidadeModel(
-      id: json["id"],
-      nome: json["nome"],
-      descricao: json["descricao"],
+      json["id"],
+      json["nome"],
+      json["descricao"],
     );
   }
+
+  @override
+  String toString() => _descricao;
+
+  @override
+  operator ==(o) => o is RankingEntidadeModel && o.id == id;
+
+  @override
+  int get hashCode => id.hashCode^descricao.hashCode;
+
+  String get descricao => _descricao;
+
+  set descricao(String value) {
+    _descricao = value;
+  }
+
+  String get nome => _nome;
+
+  set nome(String value) {
+    _nome = value;
+  }
+
+  int get id => _id;
+
+  set id(int value) {
+    _id = value;
+  }
+
 }
