@@ -237,7 +237,7 @@ class _CadastroViewState extends State<CadastroView> {
                         Padding(
                           padding: EdgeInsets.only(top: 5),
                           child: RaisedButton(
-                            color: Colors.amber,
+                            color: Colors.orange,
                             textColor: Colors.white,
                             padding: EdgeInsets.all(15),
                             child: Text(

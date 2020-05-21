@@ -44,6 +44,7 @@ class _LoginViewState extends State<LoginView> {
       await prefs.setString(ConstantesConfig.PREFERENCES_SENHA, _controllerSenha.text);
 
       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
+      //Navigator.popAndPushNamed(context, "/home");
 
     }else{
       setState(() {
@@ -209,7 +210,7 @@ class _LoginViewState extends State<LoginView> {
                         Padding(
                           padding: EdgeInsets.only(top: 5),
                           child: RaisedButton(
-                            color: Colors.amber,
+                            color: Colors.orange,
                             textColor: Colors.white,
                             padding: EdgeInsets.all(15),
                             child: Text(

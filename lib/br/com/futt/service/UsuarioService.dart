@@ -2,7 +2,6 @@ import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/UsuarioModel.dart';
 import 'package:com/br/com/futt/rest/UsuarioRest.dart';
 import 'package:com/br/com/futt/rest/fixo/BaseRestFixo.dart';
-import 'package:com/br/com/futt/service/fixo/UsuarioServiceFixo.dart';
 
 class UsuarioService {
 
@@ -18,19 +17,7 @@ class UsuarioService {
     }
   }
 
-  incluiFoto(var usuarioModel, {bool fixo}) {
-    if (fixo == null || fixo == false) {
-      String url = "${ConstantesRest.URL_USUARIOS}/${usuarioModel.id}/foto, usuarioModel";
-      UsuarioRest usuarioRest = UsuarioRest();
-      usuarioRest.processaHttpPost(url, usuarioModel);
-
-    }else{
-      BaseRestFixo serviceFixo = BaseRestFixo();
-      serviceFixo.processaHttpPostFixo();
-    }
-  }
-
-  atualiza(var usuarioModel, {bool fixo}) {
+  atualiza(var usuarioModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_USUARIOS}";
       UsuarioRest usuarioRest = UsuarioRest();
