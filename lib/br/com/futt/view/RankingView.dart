@@ -73,7 +73,7 @@ class _RankingViewState extends State<RankingView> {
                     onTap: () {
                       showDialog(context: context, builder: (context){
                         return AlertDialog(
-                          title: Text("Pesquise ranking"),
+                          title: Text("Pesquisa de ranking"),
                           content: SingleChildScrollView(
                             child: Column(
                               children: <Widget>[
@@ -82,6 +82,7 @@ class _RankingViewState extends State<RankingView> {
                                   decoration: InputDecoration(
                                     labelText: "Ano",
                                   ),
+                                  maxLength: 4,
                                   controller: _controllerAno,
                                 ),
                                 Padding(

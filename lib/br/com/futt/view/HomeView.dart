@@ -22,7 +22,7 @@ class _HomeViewState extends State<HomeView> {
     List<Widget> views = [
       TorneiosView(),
       DashboardView(),
-      EscolinhasView()
+      EscolinhasView("","")
     ];
 
     _abrirAvaliacoes() {

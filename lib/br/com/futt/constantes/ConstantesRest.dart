@@ -12,6 +12,7 @@ class ConstantesRest {
   static const URL_AREA_ESTATISTICA = "${URL_BASE}/areaestatisticas";
   static const URL_AVALIACOES = "${URL_BASE}/avaliacoes";
   static const URL_ENTIDADE = "${URL_BASE}/entidades";
+  static const URL_ESCOLINHA = "${URL_BASE}/escolinhas";
   static const URL_ESTATISTICAS = "${URL_BASE}/estatisticas";
   static const URL_JOGO = "${URL_BASE}/jogos";
   static const URL_JOGO_REDE = "${URL_BASE}/jogosredes";
