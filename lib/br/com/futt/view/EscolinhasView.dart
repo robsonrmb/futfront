@@ -72,7 +72,7 @@ class _EscolinhasViewState extends State<EscolinhasView> {
                                 decoration: InputDecoration(
                                   labelText: "Cidade",
                                 ),
-                                maxLength: 4,
+                                maxLength: 20,
                                 controller: _controllerCidade,
                               ),
                               Padding(
