@@ -30,9 +30,9 @@ class TorneioService {
     }
   }
 
-  adicionaParticipante(var participanteModel, {bool fixo}) {
+  adicionaParticipante(var participanteModel, bool fixo) {
     if (fixo == null || fixo == false) {
-      String url = "${ConstantesRest.URL_TORNEIOS}/adicionapatrocinador";
+      String url = "${ConstantesRest.URL_TORNEIOS}/adicionaparticipante";
       TorneioRest torneioRest = TorneioRest();
       torneioRest.processaHttpPost(url, participanteModel);
 

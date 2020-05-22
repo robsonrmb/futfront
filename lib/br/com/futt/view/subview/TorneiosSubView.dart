@@ -138,7 +138,8 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                                                                                 nomeTorneio: torneio.nome,
                                                                                 paisTorneio: torneio.pais,
                                                                                 cidadeTorneio: torneio.cidade,
-                                                                                dataTorneio: torneio.dataInicio)
+                                                                                dataTorneio: torneio.dataInicio,
+                                                                                statusTorneio: torneio.status,)
                                     ));
                                   },
                                 ),

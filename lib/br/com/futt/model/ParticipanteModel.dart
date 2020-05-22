@@ -6,9 +6,12 @@ class ParticipanteModel {
   String _pais;
   String _cidade;
   int _idTorneio;
+  String _email;
 
   ParticipanteModel(this._idUsuario, this._nome, this._nomeFoto, this._pais,
       this._cidade, this._idTorneio);
+
+  ParticipanteModel.Novo(this._idUsuario, this._email);
 
   factory ParticipanteModel.fromJson(Map<String, dynamic> json) {
     return ParticipanteModel(
@@ -55,6 +58,12 @@ class ParticipanteModel {
 
   set idUsuario(int value) {
     _idUsuario = value;
+  }
+
+  String get email => _email;
+
+  set email(String value) {
+    _email = value;
   }
 
 }
