@@ -44,142 +44,130 @@ class _TorneiosViewState extends State<TorneiosView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(2),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: EdgeInsets.all(10),
+          color: Color(0xff093352),
+          child: Column(
             children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Veja os detalhes.",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontFamily: 'Candal',
-                        ),
-                      ),
-                      Text("Crie também seu próprio torneio!!!",
-                        style: TextStyle(
-                          color: Colors.grey[500],
-                          fontSize: 12,
-                          fontFamily: 'Candal',
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: GestureDetector(
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.find_in_page,
-                                color: Color(0xff086ba4),
-                              ),
-                              Text(" Pesquisa de torneios",
-                                style: TextStyle(
-                                  color: Color(0xff086ba4),
-                                  fontSize: 12,
-                                  fontFamily: 'Candal',
-                                ),
-                              ),
-                            ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, "/novo_torneio");
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            "Novo",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontFamily: 'Candal'
+                            ),
                           ),
-                          onTap: () {
-                            showDialog(context: context, builder: (context){
-                              return AlertDialog(
-                                title: Text("Pesquise seu torneio"),
-                                content: SingleChildScrollView(
-                                  child: Column(
-                                    children: <Widget>[
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          labelText: "Nome",
-                                        ),
-                                        controller: _controllerNome,
-                                      ),
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          labelText: "Datas",
-                                        ),
-                                        controller: _controllerData,
-                                      ),
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          labelText: "Cidade ou local",
-                                        ),
-                                        controller: _controllerCidade,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 10),
-                                        child: FindDropdown<PaisModel>(
-                                          label: "País",
-                                          showSearchBox: false,
-                                          onFind: (String filter) => _listaPaises(),
-                                          searchBoxDecoration: InputDecoration(
-                                            hintText: "Search",
-                                            border: OutlineInputBorder(),
-                                          ),
-                                          onChanged: (PaisModel data) => _controllerPais = data.id,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: RaisedButton(
-                                      color: Color(0xff086ba4),
-                                      textColor: Colors.white,
-                                      padding: EdgeInsets.all(15),
-                                      child: Text(
-                                        "Pesquisar",
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontFamily: 'Candal',
-                                        ),
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(2),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      _pesquisarTorneios();
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                          },
                         ),
-                      ),
-                    ],
-                  ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 2, 10, 0),
-                child: RaisedButton(
-                  color: Color(0xff086ba4),
-                  textColor: Colors.white,
-                  padding: EdgeInsets.all(15),
-                  child: Text(
-                    "Novo torneio",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Candal',
+                      ],
                     ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2),
+                  GestureDetector(
+                    onTap: (){
+                      showDialog(context: context, builder: (context){
+                        return AlertDialog(
+                          title: Text("Pesquise seu torneio"),
+                          content: SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                TextField(
+                                  decoration: InputDecoration(
+                                    labelText: "Nome",
+                                  ),
+                                  controller: _controllerNome,
+                                ),
+                                TextField(
+                                  decoration: InputDecoration(
+                                    labelText: "Datas",
+                                  ),
+                                  controller: _controllerData,
+                                ),
+                                TextField(
+                                  decoration: InputDecoration(
+                                    labelText: "Cidade ou local",
+                                  ),
+                                  controller: _controllerCidade,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: FindDropdown<PaisModel>(
+                                    label: "País",
+                                    showSearchBox: false,
+                                    onFind: (String filter) => _listaPaises(),
+                                    searchBoxDecoration: InputDecoration(
+                                      hintText: "Search",
+                                      border: OutlineInputBorder(),
+                                    ),
+                                    onChanged: (PaisModel data) => _controllerPais = data.id,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: RaisedButton(
+                                color: Color(0xff086ba4),
+                                textColor: Colors.white,
+                                padding: EdgeInsets.all(15),
+                                child: Text(
+                                  "Pesquisar",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontFamily: 'Candal',
+                                  ),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                              ),
+                              onPressed: () {
+                                _pesquisarTorneios();
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      });
+                    },
+                    child: Text(
+                      "Pesquisa",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontFamily: 'Candal'
+                      ),
+                    ),
                   ),
-                  onPressed: (){
-                    Navigator.pushNamed(context, "/novo_torneio");
-                  },
-                ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, "/meustorneios");
+                    },
+                    child: Text(
+                      "Meus torneios",
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                          fontFamily: 'Candal'
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
+        ),
+        Container(
+          padding: EdgeInsets.all(5),
+          color: Colors.orange, height: 4,
         ),
         Expanded(
           child: TorneiosSubView(_indiceDeBusca, _nomeFiltro, _paisFiltro, _cidadeFiltro, _dataFiltro),

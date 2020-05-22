@@ -51,7 +51,7 @@ class _DashboardViewState extends State<DashboardView> {
                               child: Text(
                                 "Notícias",
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     color: _aba1? Colors.white : Colors.grey[500],
                                     fontFamily: 'Candal'
                                 ),
@@ -72,7 +72,7 @@ class _DashboardViewState extends State<DashboardView> {
                         child: Text(
                           "Estatísticas",
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: _aba2? Colors.white : Colors.grey[500],
                               fontFamily: 'Candal'
                           ),
@@ -90,7 +90,7 @@ class _DashboardViewState extends State<DashboardView> {
                         child: Text(
                           "Ranking",
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               color: _aba3? Colors.white : Colors.grey[500],
                               fontFamily: 'Candal'
                           ),

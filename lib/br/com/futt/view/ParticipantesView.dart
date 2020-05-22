@@ -160,7 +160,7 @@ class _ParticipantesViewState extends State<ParticipantesView> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       setState(() {
                         _mensagem = "";
                       });
