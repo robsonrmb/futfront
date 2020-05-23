@@ -145,6 +145,12 @@ class TorneioService {
     return torneioRest.processaHttpGetList(url, fixo);
   }
 
+  Future<List<TorneioModel>> listaMeusTorneios(bool fixo) {
+    String url = "${ConstantesRest.URL_MEUSTORNEIOS}";
+    TorneioRest torneioRest = TorneioRest();
+    return torneioRest.processaHttpPostReturnSemParam(url, fixo);
+  }
+
   Future<TorneioModel> getTorneio(String idTorneio, bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}";
     TorneioRest torneioRest = TorneioRest();

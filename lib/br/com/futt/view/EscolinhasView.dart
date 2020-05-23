@@ -2,6 +2,7 @@ import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/view/subview/EscolinhaSubView.dart';
 import 'package:find_dropdown/find_dropdown.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class EscolinhasView extends StatefulWidget {
@@ -39,19 +40,20 @@ class _EscolinhasViewState extends State<EscolinhasView> {
     return new Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(1),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                 child: GestureDetector(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Icon(Icons.find_in_page,
                         color: Color(0xff086ba4),
                       ),
-                      Text(" Pesquisa escolinha",
+                      Text("PESQUISA ESCOLINHAS",
                         style: TextStyle(
                           color: Color(0xff086ba4),
                           fontSize: 12,

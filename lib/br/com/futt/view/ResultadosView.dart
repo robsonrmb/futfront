@@ -48,8 +48,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 5),
+                      Container(
                         child: Text("${widget.nomeTorneio}",
                           style: TextStyle(
                               color: Colors.black,

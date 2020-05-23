@@ -25,6 +25,7 @@ class ConstantesRest {
   static const URL_TIPO_AVALIACOES = "${URL_BASE}/tipoavaliacoes";
   static const URL_TIPO_TORNEIO = "${URL_BASE}/tipotorneio";
   static const URL_TORNEIOS = "${URL_BASE}/torneios";
+  static const URL_MEUSTORNEIOS = "${URL_BASE}/meustorneios";
   static const URL_USUARIOS = "${URL_BASE}/usuarios";
 
 }

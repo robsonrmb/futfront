@@ -41,27 +41,20 @@ class _RankingViewState extends State<RankingView> {
     return new Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(1),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  "CBFv - Profissional!",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontFamily: 'Candal'
-                  ),
-                ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
                   child: GestureDetector(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.find_in_page,
                           color: Color(0xff086ba4),
                         ),
-                        Text(" Pesquisa ranking",
+                        Text("PESQUISA RANKING DE OUTRAS ENTIDADES",
                           style: TextStyle(
                             color: Color(0xff086ba4),
                             fontSize: 12,
@@ -127,6 +120,14 @@ class _RankingViewState extends State<RankingView> {
                         );
                       });
                     },
+                  ),
+                ),
+                Text(
+                  "CBFv - Profissional!",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontFamily: 'Candal'
                   ),
                 ),
               ],

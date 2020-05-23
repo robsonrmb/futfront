@@ -1,5 +1,6 @@
 import 'package:com/br/com/futt/view/AvaliacoesView.dart';
 import 'package:com/br/com/futt/view/CadastroView.dart';
+import 'package:com/br/com/futt/view/EdicaoTorneioView.dart';
 import 'package:com/br/com/futt/view/HomeView.dart';
 import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:com/br/com/futt/view/LoginView.dart';
@@ -21,6 +22,7 @@ void main() {
       "/resultados" : (context) => ResultadosView(),
       "/participantes" : (context) => ParticipantesView(),
       "/novo_torneio" : (context) => NovoTorneioView(),
+      "/edicao_torneio" : (context) => EdicaoTorneioView(),
       "/meustorneios" : (context) => MeusTorneiosView(),
       "/perfil" : (context) => PerfilView(),
       "/avaliacoes" : (context) => AvaliacoesView(),
