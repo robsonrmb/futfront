@@ -28,11 +28,8 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
     return torneioService.listaMeusTorneios(ConstantesConfig.SERVICO_FIXO);
   }
 
-  _alteraStatus (int idTorneio) async {
+  _processa(var _url, var _dados, String _mensagemDeSucesso) async {
     try {
-      var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus";
-      var _dados = "";
-
       if (ConstantesConfig.SERVICO_FIXO == true) {
         _url = "https://jsonplaceholder.typicode.com/posts/1";
         _dados = jsonEncode({ 'userId': 200, 'id': null, 'title': 'Título', 'body': 'Corpo da mensagem' });
@@ -46,8 +43,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
         setState(() {
           _atualizaTorneios = true;
         });
-
-        _mensagem = "Status alterado com sucesso!!!";
+        _mensagem = _mensagemDeSucesso;
 
       }else{
         setState(() {
@@ -73,7 +69,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
           color: Colors.black,
         ),
       ),
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 4),
       action: SnackBarAction(
         label: "",
         onPressed: () {
@@ -84,29 +80,40 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
     Scaffold.of(context).showSnackBar(snackbar);
   }
 
+  _alteraStatus (int idTorneio) {
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus";
+    var _dados = "";
+    _processa(_url, _dados, "Status do torneio alterado com sucesso!!!");
+  }
+
   _resetTorneio (int idTorneio) {
-    print("resetando torneio...");
-    Navigator.pop(context);
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/reset";
+    var _dados = "";
+    _processa(_url, _dados, "Torneio reiniciado com sucesso!!!");
   }
 
   _finalizaJogos (int idTorneio) {
-    print("finalizando jogos...");
-    Navigator.pop(context);
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/finalizajogos";
+    var _dados = "";
+    _processa(_url, _dados, "Status do torneio alterado com sucesso!!!");
   }
 
   _gravaRanking (int idTorneio) {
-    print("gravando ranking...");
-    Navigator.pop(context);
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/gravaranking";
+    var _dados = "";
+    _processa(_url, _dados, "Ranking gerado/atualizado com sucesso!!!");
   }
 
   _finalizaTorneio (int idTorneio) {
-    print("finalizando torneio...");
-    Navigator.pop(context);
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/finaliza";
+    var _dados = "";
+    _processa(_url, _dados, "Torneio finalizado com sucesso!!!");
   }
 
   _desativa (int idTorneio) {
-    print("finalizando torneio...");
-    Navigator.pop(context);
+    var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/desativa";
+    var _dados = "";
+    _processa(_url, _dados, "Torneio desativado com sucesso!!!");
   }
 
   @override
@@ -243,7 +250,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _finalizaJogos(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(
