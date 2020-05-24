@@ -1,6 +1,7 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
+import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:flutter/material.dart';
 
 class MeusTorneiosSubView extends StatefulWidget {
@@ -277,7 +278,9 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.pushNamed(context, "/edicao_torneio");
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, idSubView: _getIdSubView(), editaPlacar: true),
+                        ));
                       },
                     ),
                   );

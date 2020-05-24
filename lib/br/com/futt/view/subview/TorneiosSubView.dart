@@ -171,7 +171,7 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                         ),
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, idSubView: _getIdSubView()),
+                          builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, idSubView: _getIdSubView(), editaPlacar: false),
                         ));
                       },
                     ),

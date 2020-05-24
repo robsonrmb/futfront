@@ -640,6 +640,48 @@ class JogoServiceFixo {
         '} '
       ']';
 
+  String retornoJogoFinalAtualizado = '[ '
+        '{'
+          '"id": 1, '
+          '"numero": 1, '
+          '"pontuacao1": 8, '
+          '"pontuacao2": 18, '
+          '"data": null, '
+          '"idFase": 2, '
+          '"idTorneio": 4, '
+          '"idJogador1": 1, '
+          '"idJogador2": 2, '
+          '"idJogador3": 7, '
+          '"idJogador4": 8, '
+          '"idJogador5": 0, '
+          '"idJogador6": 0, '
+          '"idJogador7": 0, '
+          '"idJogador8": 0, '
+          '"idJogador9": 0, '
+          '"idJogador10": 0, '
+          '"nomeJogador1": "Robson", '
+          '"nomeJogador2": "Pedro", '
+          '"nomeJogador3": "Iuca", '
+          '"nomeJogador4": "Lucas", '
+          '"nomeJogador5": "", '
+          '"nomeJogador6": "", '
+          '"nomeJogador7": "", '
+          '"nomeJogador8": "", '
+          '"nomeJogador9": "", '
+          '"nomeJogador10": "", '
+          '"apelidoJogador1": "Robinho", '
+          '"apelidoJogador2": "Pedrinho", '
+          '"apelidoJogador3": "Iuquiba", '
+          '"apelidoJogador4": "Luquinhas", '
+          '"apelidoJogador5": "", '
+          '"apelidoJogador6": "", '
+          '"apelidoJogador7": "", '
+          '"apelidoJogador8": "", '
+          '"apelidoJogador9": "", '
+          '"apelidoJogador10": ""'
+        '} '
+      ']';
+
   String responseLista(int idFase) {
     if (idFase == 10) {
       return retornoJogosOitavas;
@@ -649,6 +691,18 @@ class JogoServiceFixo {
       return retornoJogosSemi;
     }else{
       return retornoJogosFinal;
+    }
+  }
+
+  String responseListaPlacarAtualizado(int idFase) {
+    if (idFase == 10) {
+      return retornoJogosOitavas;
+    }else if (idFase == 11) {
+      return retornoJogosQuartas;
+    }else if (idFase == 12) {
+      return retornoJogosSemi;
+    }else{
+      return retornoJogoFinalAtualizado;
     }
   }
 

@@ -8,7 +8,8 @@ class JogosView extends StatefulWidget {
   int idTorneio;
   String nomeTorneio;
   int idSubView;
-  JogosView({this.idTorneio, this.nomeTorneio, this.idSubView});
+  bool editaPlacar;
+  JogosView({this.idTorneio, this.nomeTorneio, this.idSubView, this.editaPlacar});
 
   @override
   _JogosViewState createState() => _JogosViewState();
@@ -138,7 +139,7 @@ class _JogosViewState extends State<JogosView> {
   Widget build(BuildContext context) {
 
     List<Widget> subViews = [
-      JogosTorneioSubView(widget.idTorneio, _paramFase),
+      JogosTorneioSubView(widget.idTorneio, _paramFase, widget.editaPlacar),
     ];
 
     return Scaffold(

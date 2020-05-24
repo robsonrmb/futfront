@@ -72,10 +72,15 @@ class JogoService {
     return jogoRest.processaHttpGetList(url, 0, fixo);
   }
 
-  Future<List<JogoModel>> listaPorTorneios(int idTorneio, int idFase, bool fixo) async {
+  Future<List<JogoModel>> listaPorTorneios(int idTorneio, int idFase, bool atualizouPlacar, bool fixo) async {
     String url = "${ConstantesRest.URL_JOGO}/torneios/${idTorneio}/${idFase}";
     JogoRest jogoRest = JogoRest();
-    return jogoRest.processaHttpGetList(url, idFase, fixo);
+    if (!atualizouPlacar) {
+      return jogoRest.processaHttpGetList(url, idFase, fixo);
+    }else{
+      return jogoRest.processaHttpGetListPlacarAtualizado(
+          url, idFase, atualizouPlacar, fixo);
+    }
   }
 
 }

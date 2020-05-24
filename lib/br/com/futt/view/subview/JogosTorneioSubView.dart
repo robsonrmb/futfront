@@ -7,7 +7,8 @@ class JogosTorneioSubView extends StatefulWidget {
 
   int idTorneio;
   int idFase;
-  JogosTorneioSubView(this.idTorneio, this.idFase);
+  bool editaPlacar;
+  JogosTorneioSubView(this.idTorneio, this.idFase, this.editaPlacar);
 
   @override
   _JogosTorneioSubViewState createState() => _JogosTorneioSubViewState();
@@ -15,15 +16,27 @@ class JogosTorneioSubView extends StatefulWidget {
 
 class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
 
-  Future<List<JogoModel>> _listaJogos() async {
+  TextEditingController _controllerPontuacao1 = TextEditingController();
+  TextEditingController _controllerPontuacao2 = TextEditingController();
+  bool _atualizaJogos = false;
+
+  Future<List<JogoModel>> _listaJogos(_atualizaJogos) async {
     JogoService jogoService = JogoService();
-    return jogoService.listaPorTorneios(widget.idTorneio, widget.idFase, ConstantesConfig.SERVICO_FIXO);
+    return jogoService.listaPorTorneios(widget.idTorneio, widget.idFase, _atualizaJogos, ConstantesConfig.SERVICO_FIXO);
+  }
+
+  _atualizaPlacar(int idJogo, int idNumeroJogo) {
+    Navigator.pop(context);
+    _listaJogos(true);
+    setState(() {
+      _atualizaJogos = true;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<JogoModel>>(
-      future: _listaJogos(),
+      future: _listaJogos(_atualizaJogos),
       builder: (context, snapshot) {
         switch( snapshot.connectionState ) {
           case ConnectionState.none :
@@ -116,12 +129,85 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
                                   ]
                               ),
                             ),
-                            GestureDetector(
+                            widget.editaPlacar == true ? new GestureDetector(
                               child: Icon(Icons.arrow_drop_down, color: Colors.grey[300],)
+                            ) : new Padding(
+                              padding: EdgeInsets.all(1),
                             ),
-                            GestureDetector(
+                            widget.editaPlacar == true ? new GestureDetector(
                               child: Icon(Icons.edit),
-                              onTap: (){},
+                              onTap: (){
+                                showDialog(context: context, builder: (context){
+                                  return AlertDialog(
+                                    title: Text("Informe o placar"),
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: <Widget>[
+                                          TextField(
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              labelText: "Pontuação (${jogo.nomeJogador1}/${jogo.nomeJogador2})",
+                                            ),
+                                            maxLength: 2,
+                                            controller: _controllerPontuacao1,
+                                          ),
+                                          TextField(
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              labelText: "Pontuação (${jogo.nomeJogador3}/${jogo.nomeJogador4})",
+                                            ),
+                                            maxLength: 2,
+                                            controller: _controllerPontuacao2,
+                                          ),
+                                          RaisedButton(
+                                            color: Color(0xff086ba4),
+                                            textColor: Colors.white,
+                                            padding: EdgeInsets.all(15),
+                                            child: Text(
+                                              "Atualiza placar",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontFamily: 'Candal',
+                                              ),
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(2),
+                                            ),
+                                            onPressed: () {
+                                              _atualizaPlacar(jogo.id, jogo.numero);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: RaisedButton(
+                                          color: Color(0xff086ba4),
+                                          textColor: Colors.white,
+                                          padding: EdgeInsets.all(15),
+                                          child: Text(
+                                            "Fechar",
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Candal',
+                                            ),
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(2),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                              },
+                            ) : new Padding(
+                                padding: EdgeInsets.all(1),
                             ),
                           ]),
                     ),
