@@ -209,7 +209,7 @@ class _JogosViewState extends State<JogosView> {
                             fontFamily: 'Candal',
                           ),
                         ),
-                        Text(widget.nomeTorneio, // ${_indiceFase}
+                        Text(widget.nomeTorneio,
                           style: TextStyle(
                             color: Colors.grey[500],
                             fontSize: 14,

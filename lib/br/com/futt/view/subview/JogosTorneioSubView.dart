@@ -1,7 +1,10 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
+import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/JogoModel.dart';
 import 'package:com/br/com/futt/service/JogoService.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class JogosTorneioSubView extends StatefulWidget {
 
@@ -26,14 +29,46 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
     return jogoService.listaPorTorneios(widget.idTorneio, widget.idFase, _atualizaJogos, ConstantesConfig.SERVICO_FIXO);
   }
 
-  _atualizaPlacar(int idJogo, int idNumeroJogo) {
-    Navigator.pop(context);
-    _listaJogos(true);
-    setState(() {
-      _atualizaJogos = true;
-    });
+  _atualizaPlacar(int idJogo, int idNumeroJogo) async {
+    try {
+      JogoModel jogoModel = JogoModel.NovoPlacar(idJogo, idNumeroJogo, int.parse(_controllerPontuacao1.text), int.parse(_controllerPontuacao2.text));
 
-    _mensagem = "Placar atualizado com sucesso!!!";
+      var _url = "${ConstantesRest.URL_JOGO}/atualizaplacar";
+      var _dados = jogoModel.toJsonNovoPlacar();
+
+      if (ConstantesConfig.SERVICO_FIXO == true) {
+        _url = "https://jsonplaceholder.typicode.com/posts/1";
+        _dados = jsonEncode({ 'userId': 200, 'id': null, 'title': 'Título', 'body': 'Corpo da mensagem' });
+      }
+      http.Response response = await http.put(_url,
+          headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},
+          body: _dados
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Navigator.pop(context);
+        setState(() {
+          _atualizaJogos = true;
+        });
+
+        _mensagem = "Placar atualizado com sucesso!!!";
+
+      }else{
+        setState(() {
+          _mensagem = "Falha durante o processamento!!!";
+        });
+      }
+
+    } on Exception catch (exception) {
+      print(exception.toString());
+      setState(() {
+        _mensagem = exception.toString();
+      });
+    } catch (error) {
+      setState(() {
+        _mensagem = error.toString();
+      });
+    }
+
     final snackbar = SnackBar(
       backgroundColor: Colors.orangeAccent,
       content: Text("${_mensagem}",

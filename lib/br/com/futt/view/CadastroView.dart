@@ -1,3 +1,5 @@
+import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
+import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/CadastroLoginModel.dart';
 import 'package:com/br/com/futt/view/LoginView.dart';
 import 'package:flutter/material.dart';
@@ -31,18 +33,19 @@ class _CadastroViewState extends State<CadastroView> {
       //UsuarioService usuarioService = UsuarioService();
       //usuarioService.inclui(cadastroLoginModel, ConstantesConfig.SERVICO_FIXO);
 
-      http.Response response = await http.post(
-          "https://jsonplaceholder.typicode.com/posts",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: json.encode({
-              "userId": 200,
-              "id": null,
-              "title": "Título",
-              "body": "Corpo da mensagem"
-          })
+      var _url = "${ConstantesRest.URL_USUARIOS}";
+      var _dados = "";
+
+      if (ConstantesConfig.SERVICO_FIXO == true) {
+        _url = "https://jsonplaceholder.typicode.com/posts";
+        _dados = jsonEncode({ 'userId': 200, 'id': null, 'title': 'Título', 'body': 'Corpo da mensagem' });
+      }
+
+      http.Response response = await http.post(_url,
+          headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},
+          body: _dados
       );
+
       if (response.statusCode >= 200 && response.statusCode < 300) {
         Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
 

@@ -1,10 +1,13 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
+import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:com/br/com/futt/view/CadastroCampeoesView.dart';
 import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:com/br/com/futt/view/NovoParticipanteView.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class MeusTorneiosSubView extends StatefulWidget {
   @override
@@ -13,19 +16,103 @@ class MeusTorneiosSubView extends StatefulWidget {
 
 class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
 
+  String _mensagem = "";
+  bool _atualizaTorneios = false;
+
   int _getIdSubView() {
     return 1;
   }
 
-  Future<List<TorneioModel>> _listaMeusTorneios() async {
+  Future<List<TorneioModel>> _listaMeusTorneios(_atualizaTorneios) async {
     TorneioService torneioService = TorneioService();
     return torneioService.listaMeusTorneios(ConstantesConfig.SERVICO_FIXO);
+  }
+
+  _alteraStatus (int idTorneio) async {
+    try {
+      var _url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}/alterastatus";
+      var _dados = "";
+
+      if (ConstantesConfig.SERVICO_FIXO == true) {
+        _url = "https://jsonplaceholder.typicode.com/posts/1";
+        _dados = jsonEncode({ 'userId': 200, 'id': null, 'title': 'Título', 'body': 'Corpo da mensagem' });
+      }
+      http.Response response = await http.put(_url,
+          headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},
+          body: _dados
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        Navigator.pop(context);
+        setState(() {
+          _atualizaTorneios = true;
+        });
+
+        _mensagem = "Status alterado com sucesso!!!";
+
+      }else{
+        setState(() {
+          _mensagem = "Falha durante o processamento!!!";
+        });
+      }
+
+    } on Exception catch (exception) {
+      print(exception.toString());
+      setState(() {
+        _mensagem = exception.toString();
+      });
+    } catch (error) {
+      setState(() {
+        _mensagem = error.toString();
+      });
+    }
+
+    final snackbar = SnackBar(
+      backgroundColor: Colors.orangeAccent,
+      content: Text("${_mensagem}",
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: "",
+        onPressed: () {
+          // Codigo para desfazer alteração
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
+  }
+
+  _resetTorneio (int idTorneio) {
+    print("resetando torneio...");
+    Navigator.pop(context);
+  }
+
+  _finalizaJogos (int idTorneio) {
+    print("finalizando jogos...");
+    Navigator.pop(context);
+  }
+
+  _gravaRanking (int idTorneio) {
+    print("gravando ranking...");
+    Navigator.pop(context);
+  }
+
+  _finalizaTorneio (int idTorneio) {
+    print("finalizando torneio...");
+    Navigator.pop(context);
+  }
+
+  _desativa (int idTorneio) {
+    print("finalizando torneio...");
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<TorneioModel>>(
-      future: _listaMeusTorneios(),
+      future: _listaMeusTorneios(_atualizaTorneios),
       builder: (context, snapshot) {
         switch( snapshot.connectionState ) {
           case ConnectionState.none :
@@ -110,7 +197,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _alteraStatus(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(
@@ -133,7 +220,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _resetTorneio(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(
@@ -179,7 +266,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _gravaRanking(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(
@@ -202,7 +289,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _finalizaTorneio(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(
@@ -225,7 +312,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   borderRadius: BorderRadius.circular(2),
                                                 ),
                                                 onPressed: () {
-                                                  Navigator.pop(context);
+                                                  _desativa(torneio.id);
                                                 },
                                               ),
                                             ) : new Padding(

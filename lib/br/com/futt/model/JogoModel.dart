@@ -48,6 +48,8 @@ class JogoModel {
       this._apelidoJogador3, this._apelidoJogador4, this._apelidoJogador5, this._apelidoJogador6,
       this._apelidoJogador7, this._apelidoJogador8, this._apelidoJogador9, this._apelidoJogador10);
 
+  JogoModel.NovoPlacar(this._id, this._numero, this._pontuacao1, this._pontuacao2);
+
   factory JogoModel.fromJson(Map<String, dynamic> json) {
     return JogoModel(
       json["id"],
@@ -88,6 +90,15 @@ class JogoModel {
       json["apelidoJogador9"],
       json["apelidoJogador10"],
     );
+  }
+
+  String toJsonNovoPlacar() {
+    return '{'
+              '"id": ${_id},'
+              '"numero": ${_numero},'
+              '"pontuacao1": ${_pontuacao1},'
+              '"pontuacao2": ${_pontuacao2},'
+            '}';
   }
 
   int get idJogador10 => _idJogador10;

@@ -96,38 +96,6 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                           trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                /*GestureDetector(
-                                  child: Container(
-                                    height: 30, width: 30,
-                                    padding: EdgeInsets.all(5),
-                                    decoration: BoxDecoration(
-                                        color: Color(0xff086ba4).withOpacity(0.0),
-                                        borderRadius: BorderRadius.circular(5.0),
-                                        border: Border.all(
-                                          width: 1.0,
-                                          color: Colors.orange,
-                                        )
-                                    ),
-                                    child: Center(
-                                      child: Text(" P ",
-                                        style: TextStyle(
-                                          fontFamily: 'Candal',
-                                          color: Colors.orange,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) => ParticipantesView(idTorneio: torneio.id,
-                                                                                nomeTorneio: torneio.nome,
-                                                                                paisTorneio: torneio.pais,
-                                                                                cidadeTorneio: torneio.cidade,
-                                                                                dataTorneio: torneio.dataInicio)
-                                    ));
-                                  },
-                                ),*/
                                 GestureDetector(
                                   child: Icon(Icons.people,
                                     //color: Colors.black,
@@ -143,18 +111,12 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                                     ));
                                   },
                                 ),
-                                GestureDetector(
-                                  child: Text("..",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.grey[300],
+                                torneio.status >= 60 ? new GestureDetector(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(Icons.filter_1,
+                                      //color: Colors.black
                                     ),
-                                  ),
-                                  onTap: (){},
-                                ),
-                                GestureDetector(
-                                  child: Icon(Icons.filter_1,
-                                   //color: Colors.black
                                   ),
                                   onTap: (){
                                     Navigator.push(context, MaterialPageRoute(
@@ -165,6 +127,8 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                                                                                    dataTorneio: torneio.dataInicio)
                                     ));
                                   },
+                                ) : new Padding(
+                                  padding: EdgeInsets.all(1),
                                 ),
                               ]
                           ),
