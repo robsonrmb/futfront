@@ -303,7 +303,7 @@ class TorneioModel {
     }else if (status == 30) {
       return "EM FASE DE ANÁLISE";
     }else if (status == 40) {
-      return "EM ANDAMENTO (JOGOS)";
+      return "EM ANDAMENTO";
     }else if (status == 50) {
       return "JOGOS FINALIZADOS";
     }else if (status == 60) {

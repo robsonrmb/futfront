@@ -1,7 +1,9 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
+import 'package:com/br/com/futt/view/CadastroCampeoesView.dart';
 import 'package:com/br/com/futt/view/JogosView.dart';
+import 'package:com/br/com/futt/view/NovoParticipanteView.dart';
 import 'package:flutter/material.dart';
 
 class MeusTorneiosSubView extends StatefulWidget {
@@ -260,77 +262,32 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
-                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
-                                child: Text("..",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.grey[300],
+                              torneio.status < 50 ? new GestureDetector(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(Icons.person_add,
+                                    //color: Colors.black
                                   ),
                                 ),
-                                onTap: (){},
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => NovoParticipanteView(torneio.id),
+                                  ));
+                                },
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
-                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
-                                child: Icon(Icons.people,
-                                  //color: Colors.black
+                              torneio.status == 40 ? new GestureDetector(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(Icons.people,
+                                    //color: Colors.black
+                                  ),
                                 ),
                                 onTap: (){
-                                  showDialog(context: context, builder: (context){
-                                    return AlertDialog(
-                                      title: Text("${torneio.nome}"),
-                                      content: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Informar campeões",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: RaisedButton(
-                                            color: Color(0xff086ba4),
-                                            textColor: Colors.white,
-                                            padding: EdgeInsets.all(15),
-                                            child: Text(
-                                              "Fechar",
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontFamily: 'Candal',
-                                              ),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(2),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  });
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => CadastroCampeoesView(),
+                                  ));
                                 },
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),

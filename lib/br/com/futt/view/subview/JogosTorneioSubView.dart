@@ -19,6 +19,7 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
   TextEditingController _controllerPontuacao1 = TextEditingController();
   TextEditingController _controllerPontuacao2 = TextEditingController();
   bool _atualizaJogos = false;
+  String _mensagem = "";
 
   Future<List<JogoModel>> _listaJogos(_atualizaJogos) async {
     JogoService jogoService = JogoService();
@@ -31,6 +32,24 @@ class _JogosTorneioSubViewState extends State<JogosTorneioSubView> {
     setState(() {
       _atualizaJogos = true;
     });
+
+    _mensagem = "Placar atualizado com sucesso!!!";
+    final snackbar = SnackBar(
+      backgroundColor: Colors.orangeAccent,
+      content: Text("${_mensagem}",
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ),
+      duration: Duration(seconds: 3),
+      action: SnackBarAction(
+        label: "",
+        onPressed: () {
+          // Codigo para desfazer alteração
+        },
+      ),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
   }
 
   @override

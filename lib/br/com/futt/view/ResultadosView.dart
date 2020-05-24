@@ -42,13 +42,14 @@ class _ResultadosViewState extends State<ResultadosView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(left: 10),
                     child: Image.asset("images/torneios.png", height: 46, width: 46,),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
+                        padding: EdgeInsets.only(left: 10),
                         child: Text("${widget.nomeTorneio}",
                           style: TextStyle(
                               color: Colors.black,
@@ -58,7 +59,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 5),
+                        padding: EdgeInsets.only(left: 10),
                         child: Text("${widget.paisTorneio} - ${widget.cidadeTorneio}",
                           style: TextStyle(
                               color: Colors.black,
@@ -67,7 +68,7 @@ class _ResultadosViewState extends State<ResultadosView> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 5),
+                        padding: EdgeInsets.only(left: 10),
                         child: Text("${widget.dataTorneio}",
                           style: TextStyle(
                               color: Colors.black,
