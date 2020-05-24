@@ -30,13 +30,13 @@ class TorneioModel {
   int _atletaTerceiroLugar5;
 
   int _idTipoTorneio;
-  int _idClassificacaoTorneio;
-  int _idEntidadeTorneio;
-  int _idRankingEntidadeTorneio;
+  int _idClassificacao;
+  int _idEntidade;
+  int _idRankingEntidade;
   String _logoTorneio;
 
-  TorneioModel.Novo(this._id, this._nome, this._idTipoTorneio, this._idClassificacaoTorneio,
-      this._genero, this._idEntidadeTorneio, this._idRankingEntidadeTorneio, this._pais, this._cidade,
+  TorneioModel.Novo(this._id, this._nome, this._idTipoTorneio, this._idClassificacao,
+      this._genero, this._idEntidade, this._idRankingEntidade, this._pais, this._cidade,
       this._local, this._dataInicio, this._dataFim, this._qtdDuplas, this._info);
 
   TorneioModel.Filtro(this._nome, this._pais, this._cidade, this._dataInicio);
@@ -49,8 +49,8 @@ class TorneioModel {
       this._atletaViceCampeao3, this._atletaViceCampeao4, this._atletaViceCampeao5,
       this._atletaTerceiroLugar1, this._atletaTerceiroLugar2,
       this._atletaTerceiroLugar3, this._atletaTerceiroLugar4,
-      this._atletaTerceiroLugar5, this._idTipoTorneio, this._idClassificacaoTorneio,
-      this._idEntidadeTorneio, this._idRankingEntidadeTorneio, this._logoTorneio);
+      this._atletaTerceiroLugar5, this._idTipoTorneio, this._idClassificacao,
+      this._idEntidade, this._idRankingEntidade, this._logoTorneio);
 
   factory TorneioModel.fromJson(Map<String, dynamic> json) {
     return TorneioModel(
@@ -84,29 +84,29 @@ class TorneioModel {
       json["atletaTerceiroLugar4"],
       json["atletaTerceiroLugar5"],
       json["idTipoTorneio"],
-      json["idClassificacaoTorneio"],
-      json["idEntidadeTorneio"],
-      json["idRankingEntidadeTorneio"],
+      json["idClassificacao"],
+      json["idEntidade"],
+      json["idRankingEntidade"],
       json["logoTorneio"],
     );
   }
 
-  int get idRankingEntidadeTorneio => _idRankingEntidadeTorneio;
+  int get idRankingEntidade => _idRankingEntidade;
 
-  set idRankingEntidadeTorneio(int value) {
-    _idRankingEntidadeTorneio = value;
+  set idRankingEntidade(int value) {
+    _idRankingEntidade = value;
   }
 
-  int get idEntidadeTorneio => _idEntidadeTorneio;
+  int get idEntidade => _idEntidade;
 
-  set idEntidadeTorneio(int value) {
-    _idEntidadeTorneio = value;
+  set idEntidade(int value) {
+    _idEntidade = value;
   }
 
-  int get idClassificacaoTorneio => _idClassificacaoTorneio;
+  int get idClassificacao => _idClassificacao;
 
-  set idClassificacaoTorneio(int value) {
-    _idClassificacaoTorneio = value;
+  set idClassificacao(int value) {
+    _idClassificacao = value;
   }
 
   int get idTipoTorneio => _idTipoTorneio;
@@ -293,6 +293,34 @@ class TorneioModel {
 
   set logoTorneio(String value) {
     _logoTorneio = value;
+  }
+
+  String getStatusFormatado () {
+    if (status == 10) {
+      return "EM FASE DE DIVULGAÇÃO";
+    }else if (status == 20) {
+      return "EM FASE DE INSCRIÇÃO";
+    }else if (status == 30) {
+      return "EM FASE DE ANÁLISE";
+    }else if (status == 40) {
+      return "EM ANDAMENTO (JOGOS)";
+    }else if (status == 50) {
+      return "JOGOS FINALIZADOS";
+    }else if (status == 60) {
+      return "GERAÇÃO DE RANKING";
+    }else if (status == 70) {
+      return "FINALIZADO";
+    }else if (status == 99) {
+      return "DESATIVADO";
+    }
+  }
+
+  int getStatusJogosFinalizadosComTorneiosAutomaticos () {
+    if (status == 50 && idRankingEntidade != 0) {
+      return 51;
+    }else if (status == 60 || (status == 50 && idRankingEntidade == 0)) {
+      return 52;
+    }
   }
 
 }

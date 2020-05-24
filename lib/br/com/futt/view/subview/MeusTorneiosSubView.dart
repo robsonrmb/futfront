@@ -69,8 +69,9 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                           ],
                         ),
                         subtitle: Text(
-                          "${torneio.dataInicio}",
+                          "${torneio.getStatusFormatado()}",
                           style: TextStyle(
+                            color: Colors.orange,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -78,7 +79,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                         trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              GestureDetector(
+                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
                                 child: Icon(Icons.edit,
                                   //color: Colors.black
                                 ),
@@ -90,7 +91,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.stretch,
                                           children: <Widget>[
-                                            Padding(
+                                            torneio.status < 40 ? new Padding(
                                               padding: EdgeInsets.only(top: 10),
                                               child: RaisedButton(
                                                 color: Color(0xff086ba4),
@@ -110,8 +111,10 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   Navigator.pop(context);
                                                 },
                                               ),
+                                            ) : new Padding(
+                                              padding: EdgeInsets.only(top: 1),
                                             ),
-                                            Padding(
+                                            torneio.status == 40 ? new Padding(
                                               padding: EdgeInsets.only(top: 10),
                                               child: RaisedButton(
                                                 color: Color(0xff086ba4),
@@ -131,15 +134,17 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   Navigator.pop(context);
                                                 },
                                               ),
+                                            ) : new Padding(
+                                                padding: EdgeInsets.only(top: 1),
                                             ),
-                                            Padding(
+                                            torneio.status == 40 ? new Padding(
                                               padding: EdgeInsets.only(top: 10),
                                               child: RaisedButton(
                                                 color: Color(0xff086ba4),
                                                 textColor: Colors.white,
                                                 padding: EdgeInsets.all(15),
                                                 child: Text(
-                                                  "Finalizar",
+                                                  "Finalizar jogos",
                                                   style: TextStyle(
                                                     fontSize: 16,
                                                     fontFamily: 'Candal',
@@ -152,8 +157,10 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   Navigator.pop(context);
                                                 },
                                               ),
+                                            ) : new Padding(
+                                              padding: EdgeInsets.only(top: 1),
                                             ),
-                                            Padding(
+                                            torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 51 ? new Padding(
                                               padding: EdgeInsets.only(top: 10),
                                               child: RaisedButton(
                                                 color: Color(0xff086ba4),
@@ -173,6 +180,54 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                                   Navigator.pop(context);
                                                 },
                                               ),
+                                            ) : new Padding(
+                                              padding: EdgeInsets.only(top: 1),
+                                            ),
+                                            torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 52 ? new Padding(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: RaisedButton(
+                                                color: Color(0xff086ba4),
+                                                textColor: Colors.white,
+                                                padding: EdgeInsets.all(15),
+                                                child: Text(
+                                                  "Finalizar torneio",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Candal',
+                                                  ),
+                                                ),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(2),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ) : new Padding(
+                                              padding: EdgeInsets.only(top: 1),
+                                            ),
+                                            torneio.status < 60 ? new Padding(
+                                              padding: EdgeInsets.only(top: 10),
+                                              child: RaisedButton(
+                                                color: Color(0xff086ba4),
+                                                textColor: Colors.white,
+                                                padding: EdgeInsets.all(15),
+                                                child: Text(
+                                                  "Desativar",
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontFamily: 'Candal',
+                                                  ),
+                                                ),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(2),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ) : new Padding(
+                                              padding: EdgeInsets.only(top: 1),
                                             ),
                                           ],
                                         ),
@@ -202,8 +257,10 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                     );
                                   });
                                 },
+                              ) : new Padding(
+                                padding: EdgeInsets.all(1),
                               ),
-                              GestureDetector(
+                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
                                 child: Text("..",
                                   style: TextStyle(
                                     fontSize: 20,
@@ -211,8 +268,10 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                   ),
                                 ),
                                 onTap: (){},
+                              ) : new Padding(
+                                padding: EdgeInsets.all(1),
                               ),
-                              GestureDetector(
+                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
                                 child: Icon(Icons.people,
                                   //color: Colors.black
                                 ),
@@ -273,13 +332,15 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                     );
                                   });
                                 },
+                              ) : new Padding(
+                                padding: EdgeInsets.all(1),
                               ),
                             ]
                         ),
                       ),
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, idSubView: _getIdSubView(), editaPlacar: true),
+                          builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, statusTorneio: torneio.status, idSubView: _getIdSubView(), editaPlacar: true),
                         ));
                       },
                     ),
