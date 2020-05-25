@@ -146,8 +146,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: GestureDetector(
-                      child:
-                      ListTile(
+                      child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage('${torneio.logoTorneio}'),
                           radius: 20.0,
@@ -181,178 +180,9 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                   //color: Colors.black
                                 ),
                                 onTap: (){
-                                  showDialog(context: context, builder: (context){
-                                    return AlertDialog(
-                                      title: Text("${torneio.nome}"),
-                                      content: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                                          children: <Widget>[
-                                            torneio.status < 40 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Alterar status",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _alteraStatus(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                              padding: EdgeInsets.only(top: 1),
-                                            ),
-                                            torneio.status == 40 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Resetar",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _resetTorneio(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                                padding: EdgeInsets.only(top: 1),
-                                            ),
-                                            torneio.status == 40 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Finalizar jogos",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _finalizaJogos(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                              padding: EdgeInsets.only(top: 1),
-                                            ),
-                                            torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 51 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Gravar ranking",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _gravaRanking(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                              padding: EdgeInsets.only(top: 1),
-                                            ),
-                                            torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 52 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Finalizar torneio",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _finalizaTorneio(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                              padding: EdgeInsets.only(top: 1),
-                                            ),
-                                            torneio.status < 60 ? new Padding(
-                                              padding: EdgeInsets.only(top: 10),
-                                              child: RaisedButton(
-                                                color: Color(0xff086ba4),
-                                                textColor: Colors.white,
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(
-                                                  "Desativar",
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontFamily: 'Candal',
-                                                  ),
-                                                ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2),
-                                                ),
-                                                onPressed: () {
-                                                  _desativa(torneio.id);
-                                                },
-                                              ),
-                                            ) : new Padding(
-                                              padding: EdgeInsets.only(top: 1),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: RaisedButton(
-                                            color: Color(0xff086ba4),
-                                            textColor: Colors.white,
-                                            padding: EdgeInsets.all(15),
-                                            child: Text(
-                                              "Fechar",
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontFamily: 'Candal',
-                                              ),
-                                            ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(2),
-                                            ),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  });
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => EdicaoTorneioView(torneioModel: torneio),
+                                  ));
                                 },
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
@@ -396,9 +226,178 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                         ));
                       },
                       onLongPress: (){
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => EdicaoTorneioView(torneioModel: torneio),
-                        ));
+                        showDialog(context: context, builder: (context){
+                          return AlertDialog(
+                            title: Text("${torneio.nome}"),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  torneio.status < 40 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Alterar status",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _alteraStatus(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                  torneio.status == 40 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Resetar",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _resetTorneio(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                  torneio.status == 40 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Finalizar jogos",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _finalizaJogos(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                  torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 51 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Gravar ranking",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _gravaRanking(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                  torneio.getStatusJogosFinalizadosComTorneiosAutomaticos() == 52 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Finalizar torneio",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _finalizaTorneio(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                  torneio.status < 60 ? new Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: RaisedButton(
+                                      color: Color(0xff086ba4),
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(15),
+                                      child: Text(
+                                        "Desativar",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'Candal',
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(2),
+                                      ),
+                                      onPressed: () {
+                                        _desativa(torneio.id);
+                                      },
+                                    ),
+                                  ) : new Padding(
+                                    padding: EdgeInsets.only(top: 1),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: RaisedButton(
+                                  color: Color(0xff086ba4),
+                                  textColor: Colors.white,
+                                  padding: EdgeInsets.all(15),
+                                  child: Text(
+                                    "Fechar",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'Candal',
+                                    ),
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(2),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        });
                       },
                     ),
                   );

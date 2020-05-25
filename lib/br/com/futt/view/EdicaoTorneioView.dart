@@ -91,6 +91,16 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
         _mensagem = error.toString();
       });
     }
+    final snackbar = SnackBar(
+      backgroundColor: Colors.orangeAccent,
+      content: Text("${_mensagem}",
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ),
+      duration: Duration(seconds: 3),
+    );
+    Scaffold.of(context).showSnackBar(snackbar);
   }
 
   void _valida() {
@@ -148,6 +158,18 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
   Future<List<GeneroModel>> _listaGeneros() async {
     GeneroService generoService = GeneroService();
     return generoService.listaGeneros();
+  }
+
+  String _getDescricaoGenero() {
+    String _descricao = "";
+    if (widget.torneioModel.genero == "1") {
+      _descricao = "Masculino";
+    }else if (widget.torneioModel.genero == "2") {
+      _descricao = "Feminino";
+    }else if (widget.torneioModel.genero == "3") {
+      _descricao = "Misto";
+    }
+    return _descricao;
   }
 
   _atualizaValoresIniciais(TorneioModel torneioOrigem) {
@@ -281,7 +303,7 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
                         child: FindDropdown<GeneroModel>(
-                          selectedItem: GeneroModel(widget.torneioModel.genero, widget.torneioModel.genero),
+                          selectedItem: GeneroModel(widget.torneioModel.genero, _getDescricaoGenero()),
                           showSearchBox: false,
                           onFind: (String filter) => _listaGeneros(),
                           searchBoxDecoration: InputDecoration(
