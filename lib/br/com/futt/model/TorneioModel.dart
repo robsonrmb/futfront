@@ -66,6 +66,10 @@ class TorneioModel {
 
   TorneioModel.Filtro(this._nome, this._pais, this._cidade, this._dataInicio);
 
+  TorneioModel.Campeoes(this._atletaCampeao1, this._atletaCampeao2, this._atletaViceCampeao1, this._atletaViceCampeao2);
+
+  TorneioModel.Terceiro(this._atletaTerceiroLugar1, this._atletaTerceiroLugar2);
+
   factory TorneioModel.fromJson(Map<String, dynamic> json) {
     int _idTipoTorneioProvisorio = null;
     String _nomeTipoTorneioProvisorio = "";

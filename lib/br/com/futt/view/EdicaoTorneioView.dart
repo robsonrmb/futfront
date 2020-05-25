@@ -501,7 +501,7 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
                           controller: _controllerMais,
                         ),
                       ),
-                      Padding(
+                      widget.torneioModel.status < 40 ? new Padding(
                         padding: EdgeInsets.only(top: 10),
                         child: RaisedButton(
                           color: Color(0xff086ba4),
@@ -519,6 +519,8 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
                           ),
                           onPressed: _atualizar,
                         ),
+                      ) : new Padding(
+                        padding: EdgeInsets.all(1),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 15),

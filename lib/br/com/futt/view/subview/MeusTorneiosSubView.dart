@@ -175,24 +175,9 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                         trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              torneio.status != 70 && torneio.status != 99 ? new GestureDetector(
-                                child: Icon(Icons.edit,
-                                  //color: Colors.black
-                                ),
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => EdicaoTorneioView(torneioModel: torneio),
-                                  ));
-                                },
-                              ) : new Padding(
-                                padding: EdgeInsets.all(1),
-                              ),
                               torneio.status == 20 || torneio.status == 30  ? new GestureDetector(
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(Icons.person_add,
-                                    //color: Colors.black
-                                  ),
+                                child: Icon(Icons.person_add,
+                                  //color: Colors.black
                                 ),
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(
@@ -202,18 +187,27 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
-                              torneio.status == 40 ? new GestureDetector(
+                              GestureDetector(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child: Icon(Icons.star,
+                                  child: Icon(Icons.edit,
                                     //color: Colors.black
                                   ),
                                 ),
                                 onTap: (){
                                   Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => CadastroCampeoesView(),
+                                    builder: (context) => EdicaoTorneioView(torneioModel: torneio),
                                   ));
                                 },
+                              ),
+                              torneio.status < 70 ? new GestureDetector(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(Icons.monetization_on,
+                                    //color: Colors.black
+                                  ),
+                                ),
+                                onTap: (){},
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
