@@ -96,27 +96,9 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                           trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                GestureDetector(
-                                  child: Icon(Icons.people,
-                                    //color: Colors.black,
-                                  ),
-                                  onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(
-                                        builder: (context) => ParticipantesView(idTorneio: torneio.id,
-                                                                                nomeTorneio: torneio.nome,
-                                                                                paisTorneio: torneio.pais,
-                                                                                cidadeTorneio: torneio.cidade,
-                                                                                dataTorneio: torneio.dataInicio,
-                                                                                statusTorneio: torneio.status,)
-                                    ));
-                                  },
-                                ),
                                 torneio.status >= 60 ? new GestureDetector(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Icon(Icons.filter_1,
-                                      //color: Colors.black
-                                    ),
+                                  child: Icon(Icons.filter_1,
+                                    //color: Colors.black
                                   ),
                                   onTap: (){
                                     Navigator.push(context, MaterialPageRoute(
@@ -129,6 +111,24 @@ class _TorneiosSubViewState extends State<TorneiosSubView> {
                                   },
                                 ) : new Padding(
                                   padding: EdgeInsets.all(1),
+                                ),
+                                GestureDetector(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Icon(Icons.people,
+                                      //color: Colors.black,
+                                    ),
+                                  ),
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) => ParticipantesView(idTorneio: torneio.id,
+                                          nomeTorneio: torneio.nome,
+                                          paisTorneio: torneio.pais,
+                                          cidadeTorneio: torneio.cidade,
+                                          dataTorneio: torneio.dataInicio,
+                                          statusTorneio: torneio.status,)
+                                    ));
+                                  },
                                 ),
                               ]
                           ),

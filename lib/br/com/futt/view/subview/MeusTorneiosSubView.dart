@@ -187,6 +187,17 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
+                              torneio.status < 70 ? new GestureDetector(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(Icons.monetization_on,
+                                    //color: Colors.black
+                                  ),
+                                ),
+                                onTap: (){},
+                              ) : new Padding(
+                                padding: EdgeInsets.all(1),
+                              ),
                               GestureDetector(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10),
@@ -199,17 +210,6 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                                     builder: (context) => EdicaoTorneioView(torneioModel: torneio),
                                   ));
                                 },
-                              ),
-                              torneio.status < 70 ? new GestureDetector(
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(Icons.monetization_on,
-                                    //color: Colors.black
-                                  ),
-                                ),
-                                onTap: (){},
-                              ) : new Padding(
-                                padding: EdgeInsets.all(1),
                               ),
                             ]
                         ),

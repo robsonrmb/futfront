@@ -717,7 +717,7 @@ class TorneioServiceFixo {
         '{ '
           '"id": 11, '
           '"nome": "Liga do Pontal", '
-          '"status": 50, '
+          '"status": 70, '
           '"pais": "Brasil", '
           '"estado": null, '
           '"cidade": "Rio de Janeiro", '
