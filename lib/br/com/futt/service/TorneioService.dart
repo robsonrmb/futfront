@@ -42,7 +42,7 @@ class TorneioService {
     }
   }
 
-  atualiza(var torneioModel, {bool fixo}) {
+  atualiza(var torneioModel, bool fixo) {
     if (fixo == null || fixo == false) {
       String url = "${ConstantesRest.URL_TORNEIOS}/atualiza";
       TorneioRest torneioRest = TorneioRest();
@@ -151,7 +151,7 @@ class TorneioService {
     return torneioRest.processaHttpPostReturnSemParam(url, fixo);
   }
 
-  Future<TorneioModel> getTorneio(String idTorneio, bool fixo) {
+  Future<TorneioModel> getTorneio(int idTorneio, bool fixo) {
     String url = "${ConstantesRest.URL_TORNEIOS}/${idTorneio}";
     TorneioRest torneioRest = TorneioRest();
     return torneioRest.processaHttpGetObject(url, fixo);

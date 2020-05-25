@@ -28,31 +28,73 @@ class TorneioModel {
   int _atletaTerceiroLugar3;
   int _atletaTerceiroLugar4;
   int _atletaTerceiroLugar5;
-
-  int _idTipoTorneio;
-  int _idClassificacao;
-  int _idEntidade;
-  int _idRankingEntidade;
   String _logoTorneio;
 
-  TorneioModel.Novo(this._id, this._nome, this._idTipoTorneio, this._idClassificacao,
+  int _idTipoTorneio;
+  String _nomeTipoTorneio;
+
+  int _idClassificacao;
+  String _nomeClassificacao;
+
+  int _idEntidade;
+  String _nomeEntidade;
+
+  int _idRankingEntidade;
+  String _descricaoRankingEntidade;
+
+  TorneioModel(this._id, this._nome, this._status, this._pais, this._estado,
+      this._cidade, this._local, this._dataInicio, this._dataFim, this._ano,
+      this._qtdDuplas, this._genero, this._info, this._usuarioAdministrador,
+      this._atletaCampeao1, this._atletaCampeao2, this._atletaCampeao3,
+      this._atletaCampeao4, this._atletaCampeao5, this._atletaViceCampeao1,
+      this._atletaViceCampeao2, this._atletaViceCampeao3,
+      this._atletaViceCampeao4, this._atletaViceCampeao5,
+      this._atletaTerceiroLugar1, this._atletaTerceiroLugar2,
+      this._atletaTerceiroLugar3, this._atletaTerceiroLugar4,
+      this._atletaTerceiroLugar5, this._logoTorneio, this._idTipoTorneio,
+      this._nomeTipoTorneio, this._idClassificacao, this._nomeClassificacao,
+      this._idEntidade, this._nomeEntidade, this._idRankingEntidade,
+      this._descricaoRankingEntidade);
+
+  TorneioModel.Novo(this._nome, this._idTipoTorneio, this._idClassificacao,
+      this._genero, this._idEntidade, this._idRankingEntidade, this._pais, this._cidade,
+      this._local, this._dataInicio, this._dataFim, this._qtdDuplas, this._info);
+
+  TorneioModel.Edita(this._id, this._nome, this._idTipoTorneio, this._idClassificacao,
       this._genero, this._idEntidade, this._idRankingEntidade, this._pais, this._cidade,
       this._local, this._dataInicio, this._dataFim, this._qtdDuplas, this._info);
 
   TorneioModel.Filtro(this._nome, this._pais, this._cidade, this._dataInicio);
 
-  TorneioModel(this._id, this._nome, this._status, this._pais, this._estado, this._cidade,
-      this._local, this._dataInicio, this._dataFim, this._ano, this._qtdDuplas,
-      this._genero, this._info, this._usuarioAdministrador, this._atletaCampeao1,
-      this._atletaCampeao2, this._atletaCampeao3, this._atletaCampeao4,
-      this._atletaCampeao5, this._atletaViceCampeao1, this._atletaViceCampeao2,
-      this._atletaViceCampeao3, this._atletaViceCampeao4, this._atletaViceCampeao5,
-      this._atletaTerceiroLugar1, this._atletaTerceiroLugar2,
-      this._atletaTerceiroLugar3, this._atletaTerceiroLugar4,
-      this._atletaTerceiroLugar5, this._idTipoTorneio, this._idClassificacao,
-      this._idEntidade, this._idRankingEntidade, this._logoTorneio);
-
   factory TorneioModel.fromJson(Map<String, dynamic> json) {
+    int _idTipoTorneioProvisorio = null;
+    String _nomeTipoTorneioProvisorio = "";
+    if (json["tipo"] != null) {
+      _idTipoTorneioProvisorio = json["tipo"]["id"];
+      _nomeTipoTorneioProvisorio = json["tipo"]["nome"];
+    }
+
+    int _idClassificacaoProvisorio = null;
+    String _nomeClassificacaoProvisorio = "";
+    if (json["classificacao"] != null) {
+      _idClassificacaoProvisorio = json["classificacao"]["id"];
+      _nomeClassificacaoProvisorio = json["classificacao"]["nome"];
+    }
+
+    int _idEntidadeProvisorio = null;
+    String _nomeEntidadeProvisorio = "";
+    if (json["entidade"] != null) {
+      _idEntidadeProvisorio = json["entidade"]["id"];
+      _nomeEntidadeProvisorio = json["entidade"]["nome"];
+    }
+
+    int _idRankingEntidadeProvisorio = null;
+    String _descricaoRankingEntidadeProvisorio = "";
+    if (json["rankingEntidade"] != null) {
+      _idRankingEntidadeProvisorio = json["rankingEntidade"]["id"];
+      _descricaoRankingEntidadeProvisorio = json["rankingEntidade"]["descricao"];
+    }
+
     return TorneioModel(
       json["id"],
       json["nome"],
@@ -83,11 +125,15 @@ class TorneioModel {
       json["atletaTerceiroLugar3"],
       json["atletaTerceiroLugar4"],
       json["atletaTerceiroLugar5"],
-      json["idTipoTorneio"],
-      json["idClassificacao"],
-      json["idEntidade"],
-      json["idRankingEntidade"],
       json["logoTorneio"],
+      _idTipoTorneioProvisorio,
+      _nomeTipoTorneioProvisorio,
+      _idClassificacaoProvisorio,
+      _nomeClassificacaoProvisorio,
+      _idEntidadeProvisorio,
+      _nomeEntidadeProvisorio,
+      _idRankingEntidadeProvisorio,
+      _descricaoRankingEntidadeProvisorio,
     );
   }
 
@@ -293,6 +339,30 @@ class TorneioModel {
 
   set logoTorneio(String value) {
     _logoTorneio = value;
+  }
+
+  String get nomeTipoTorneio => _nomeTipoTorneio;
+
+  set nomeTipoTorneio(String value) {
+    _nomeTipoTorneio = value;
+  }
+
+  String get nomeClassificacao => _nomeClassificacao;
+
+  String get descricaoRankingEntidade => _descricaoRankingEntidade;
+
+  set descricaoRankingEntidade(String value) {
+    _descricaoRankingEntidade = value;
+  }
+
+  String get nomeEntidade => _nomeEntidade;
+
+  set nomeEntidade(String value) {
+    _nomeEntidade = value;
+  }
+
+  set nomeClassificacao(String value) {
+    _nomeClassificacao = value;
   }
 
   String getStatusFormatado () {

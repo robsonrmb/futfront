@@ -4,6 +4,7 @@ class RankingEntidadeModel {
   String _descricao;
 
   RankingEntidadeModel(this._id, this._nome, this._descricao);
+  RankingEntidadeModel.Dropdown(this._id, this._descricao);
 
   factory RankingEntidadeModel.fromJson(Map<String, dynamic> json) {
     return RankingEntidadeModel(

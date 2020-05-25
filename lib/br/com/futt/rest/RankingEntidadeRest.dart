@@ -14,7 +14,7 @@ class RankingEntidadeRest extends BaseRest {
         return _parseListaRankingEntidadeModel(dadosJson);
 
       } else {
-        throw Exception('Failed to load Tipo Torneio!!!');
+        throw Exception('Failed to load ranking entidade!!!');
       }
     } on Exception catch (exception) {
       print(exception.toString());

@@ -6,6 +6,8 @@ class ClassificacaoTorneioModel {
 
   ClassificacaoTorneioModel(this._id, this._nome, this._descricao);
 
+  ClassificacaoTorneioModel.Dropdown(this._id, this._nome);
+
   factory ClassificacaoTorneioModel.fromJson(Map<String, dynamic> json) {
     return ClassificacaoTorneioModel(
       json["id"],

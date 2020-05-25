@@ -1,14 +1,15 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
+import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/ClassificacaoTorneioModel.dart';
-import 'package:com/br/com/futt/model/EntidadeModel.dart';
+import 'package:com/br/com/futt/model/RankingEntidadeModel.dart';
 import 'package:com/br/com/futt/model/TipoTorneioModel.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/model/utils/GeneroModel.dart';
 import 'package:com/br/com/futt/model/utils/PaisModel.dart';
 import 'package:com/br/com/futt/service/ClassificacaoTorneioService.dart';
-import 'package:com/br/com/futt/service/EntidadeService.dart';
 import 'package:com/br/com/futt/service/GeneroService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
+import 'package:com/br/com/futt/service/RankingEntidadeService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,11 +42,13 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
 
   void _cadastrar() async {
     try {
-      valida();
+      String _msg = "";
+
+      _valida();
 
       //Grava torneios
       TorneioModel torneioModel = TorneioModel.Novo(
-          null, _controllerNome.text, _controllerTipoTorneio, _controllerClassificacaoTorneio, _controllerGeneroTorneio,
+          _controllerNome.text, _controllerTipoTorneio, _controllerClassificacaoTorneio, _controllerGeneroTorneio,
           _controllerEntidadeTorneio, _controllerRankingEntidadeTorneio, _controllerPaisTorneio, _controllerCidade.text,
           _controllerLocal.text, _controllerDataInicio.text, _controllerDataFim.text,
           int.parse(_controllerQtdDuplas.text), _controllerMais.text
@@ -53,27 +56,27 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
       //TorneioService torneioService = TorneioService();
       //torneioService.inclui(torneioModel, ConstantesConfig.SERVICO_FIXO);
 
-      http.Response response = await http.post(
-          "https://jsonplaceholder.typicode.com/posts",
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          },
-          body: json.encode({
-            "userId": 200,
-            "id": null,
-            "title": "Título",
-            "body": "Corpo da mensagem"
-          })
-      );
-      if (response.statusCode >= 200 && response.statusCode < 300) {
-        Navigator.pop(context);
+      var _url = "${ConstantesRest.URL_TORNEIOS}/adiciona";
+      var _dados = "";
 
-      }else{
-        setState(() {
-          _mensagem = "Falha durante o processamento!!!";
-        });
+      if (ConstantesConfig.SERVICO_FIXO == true) {
+        _url = "https://jsonplaceholder.typicode.com/posts";
+        _dados = jsonEncode({ 'userId': 1, 'id': 1, 'title': 'Título', 'body': 'Corpo da mensagem' });
       }
 
+      http.Response response = await http.post(_url,
+          headers: <String, String>{'Content-Type': 'application/json; charset=UTF-8',},
+          body: _dados
+      );
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        _msg = "Torneio inserido com sucesso!!!";
+      }else{
+        _msg = "Falha durante o processamento!!!";
+      }
+      setState(() {
+        _mensagem = _msg;
+      });
 
     } on Exception catch (exception) {
       print(exception.toString());
@@ -87,7 +90,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
     }
   }
 
-  void valida() {
+  void _valida() {
     if (_controllerNome.text == "") {
       throw Exception('Informe o título do torneio.');
     }else if (_controllerTipoTorneio == 0) {
@@ -124,9 +127,9 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
     return resultadoService.listaTodos(ConstantesConfig.SERVICO_FIXO);
   }
 
-  Future<List<EntidadeModel>> _listaEntidadesDoUsuario() async {
-    EntidadeService entidadeService = EntidadeService();
-    return entidadeService.listaPorUsuario(ConstantesConfig.SERVICO_FIXO);
+  Future<List<RankingEntidadeModel>> _listaEntidadesDoUsuario() async {
+    RankingEntidadeService rankingEntidadeService = RankingEntidadeService();
+    return rankingEntidadeService.listaPorUsuario(ConstantesConfig.SERVICO_FIXO);
   }
 
   Future<List<ClassificacaoTorneioModel>> _listaClassificacaoTorneios() async {
@@ -263,14 +266,14 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10),
-                        child: FindDropdown<EntidadeModel>(
+                        child: FindDropdown<RankingEntidadeModel>(
                           showSearchBox: false,
                           onFind: (String filter) => _listaEntidadesDoUsuario(),
                           searchBoxDecoration: InputDecoration(
                             hintText: "Search",
                             border: OutlineInputBorder(),
                           ),
-                          onChanged: (EntidadeModel data) => _controllerEntidadeTorneio = data.id,
+                          onChanged: (RankingEntidadeModel data) => _controllerEntidadeTorneio = data.id,
                         ),
                       ),
                       Padding(

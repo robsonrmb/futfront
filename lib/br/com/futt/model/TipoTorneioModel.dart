@@ -5,6 +5,7 @@ class TipoTorneioModel {
   String _descricao;
   String _geracaoJogos;
 
+  TipoTorneioModel.Dropdown(this._id, this._nome);
   TipoTorneioModel(this._id, this._nome, this._descricao, this._geracaoJogos);
 
   factory TipoTorneioModel.fromJson(Map<String, dynamic> json) {

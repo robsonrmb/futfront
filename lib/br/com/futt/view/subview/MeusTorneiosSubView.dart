@@ -3,6 +3,7 @@ import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:com/br/com/futt/view/CadastroCampeoesView.dart';
+import 'package:com/br/com/futt/view/EdicaoTorneioView.dart';
 import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:com/br/com/futt/view/NovoParticipanteView.dart';
 import 'package:flutter/material.dart';
@@ -356,7 +357,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               ) : new Padding(
                                 padding: EdgeInsets.all(1),
                               ),
-                              torneio.status < 50 ? new GestureDetector(
+                              torneio.status == 20 || torneio.status == 30  ? new GestureDetector(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10),
                                   child: Icon(Icons.person_add,
@@ -374,7 +375,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               torneio.status == 40 ? new GestureDetector(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child: Icon(Icons.people,
+                                  child: Icon(Icons.star,
                                     //color: Colors.black
                                   ),
                                 ),
@@ -392,6 +393,11 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) => JogosView(idTorneio: torneio.id, nomeTorneio: torneio.nome, statusTorneio: torneio.status, idSubView: _getIdSubView(), editaPlacar: true),
+                        ));
+                      },
+                      onLongPress: (){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => EdicaoTorneioView(torneioModel: torneio),
                         ));
                       },
                     ),
