@@ -201,7 +201,7 @@ class _MeusTorneiosSubViewState extends State<MeusTorneiosSubView> {
                               GestureDetector(
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 10),
-                                  child: Icon(Icons.edit,
+                                  child: Icon(torneio.status < 40 ? Icons.edit : Icons.remove_red_eye,
                                     //color: Colors.black
                                   ),
                                 ),

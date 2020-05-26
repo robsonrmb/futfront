@@ -1,5 +1,6 @@
 import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/view/HomeView.dart';
+import 'package:com/br/com/futt/view/components/DialogFutt.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,6 +48,11 @@ class _LoginViewState extends State<LoginView> {
       //Navigator.popAndPushNamed(context, "/home");
 
     }else{
+      DialogFutt dialogFutt = new DialogFutt();
+      dialogFutt.waiting(context, "Mensagem", "Dados incorretos!!!");
+      await Future.delayed(Duration(seconds: 2));
+      Navigator.pop(context);
+
       setState(() {
         _mensagem = "Dados incorretos!!!";
       });
@@ -54,6 +60,7 @@ class _LoginViewState extends State<LoginView> {
   }
 
   void _abrirCadastro() {
+    _mensagem = "";
     Navigator.pushNamed(context, "/cadastro");
     /*
     Navigator.push(

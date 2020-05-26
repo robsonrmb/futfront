@@ -2,6 +2,7 @@ import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/CadastroLoginModel.dart';
 import 'package:com/br/com/futt/view/LoginView.dart';
+import 'package:com/br/com/futt/view/components/DialogFutt.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,13 +22,35 @@ class _CadastroViewState extends State<CadastroView> {
 
   void _cadastrar() async {
     try {
+      _mensagem = "";
       CadastroLoginModel cadastroLoginModel = CadastroLoginModel();
       cadastroLoginModel.email = _controllerEmail.text;
       cadastroLoginModel.senha = _controllerSenha.text;
       cadastroLoginModel.nome = _controllerNome.text;
 
-      if (_controllerSenha.text != _controllerSenhaConfirmacao.text) {
-        throw Exception('Confirme a senha corretamente!!!');
+      if (_controllerNome.text == "") {
+        _mensagem = "Informe seu nome!!!";
+
+      }else if (_controllerEmail.text == "") {
+        _mensagem = "Informe seu email!!!";
+
+      }else if (_controllerSenha.text == "") {
+        _mensagem = "Informe a senha!!!";
+
+      }else if (_controllerSenhaConfirmacao.text == "") {
+        _mensagem = "Confirme a senha!!!";
+
+      }else if (_controllerSenha.text != _controllerSenhaConfirmacao.text) {
+        _mensagem = "Confirme a senha corretamente!!!";
+      }
+
+      if (_mensagem != "") {
+        DialogFutt dialogFutt = new DialogFutt();
+        dialogFutt.waiting(context, "Mensagem", "${_mensagem}");
+        await Future.delayed(Duration(seconds: 2));
+        Navigator.pop(context);
+
+        throw Exception(_mensagem);
       }
 
       //UsuarioService usuarioService = UsuarioService();

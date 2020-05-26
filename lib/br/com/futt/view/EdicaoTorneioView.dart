@@ -12,6 +12,7 @@ import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/RankingEntidadeService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
+import 'package:com/br/com/futt/view/components/DialogFutt.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -91,16 +92,11 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
         _mensagem = error.toString();
       });
     }
-    final snackbar = SnackBar(
-      backgroundColor: Colors.orangeAccent,
-      content: Text("${_mensagem}",
-        style: TextStyle(
-          color: Colors.black,
-        ),
-      ),
-      duration: Duration(seconds: 3),
-    );
-    Scaffold.of(context).showSnackBar(snackbar);
+
+    DialogFutt dialogFutt = new DialogFutt();
+    dialogFutt.waiting(context, "Edição de torneio", "${_mensagem}");
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pop(context);
   }
 
   void _valida() {

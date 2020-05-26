@@ -11,6 +11,7 @@ import 'package:com/br/com/futt/service/GeneroService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/RankingEntidadeService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
+import 'package:com/br/com/futt/view/components/DialogFutt.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
   TextEditingController _controllerQtdDuplas = TextEditingController();
   TextEditingController _controllerMais = TextEditingController();
 
-  void _cadastrar() async {
+  void _cadastrar(BuildContext context) async {
     try {
       String _msg = "";
 
@@ -88,6 +89,11 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
         _mensagem = error.toString();
       });
     }
+
+    DialogFutt dialogFutt = new DialogFutt();
+    dialogFutt.waiting(context, "Novo torneio", "${_mensagem}");
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.pop(context);
   }
 
   void _valida() {
@@ -466,7 +472,9 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(2),
                           ),
-                          onPressed: _cadastrar,
+                          onPressed: () {
+                            _cadastrar(context);
+                          },
                         ),
                       ),
                       Padding(
