@@ -1,6 +1,3 @@
-import 'package:com/br/com/futt/model/JogoModel.dart';
-import 'dart:convert';
-
 class JogoServiceFixo {
 
   String retornoJogo = '{'
@@ -708,11 +705,6 @@ class JogoServiceFixo {
 
   String responseObjeto() {
     return retornoJogo;
-  }
-
-  Future<JogoModel> _buscaJogoFixo() async {
-    var dadosJson = json.decode(retornoJogo);
-    return JogoModel.fromJson(dadosJson); //.converteJson
   }
 
 }

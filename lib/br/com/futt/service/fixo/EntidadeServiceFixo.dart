@@ -1,6 +1,3 @@
-import 'package:com/br/com/futt/model/EntidadeModel.dart';
-import 'dart:convert';
-
 class EntidadeServiceFixo {
 
   String retornoEntidade = '{'
@@ -52,29 +49,6 @@ class EntidadeServiceFixo {
 
   String responseObjeto() {
     return retornoEntidade;
-  }
-
-  Future<EntidadeModel> _buscaEntidadeFixo() async {
-    var dadosJson = json.decode(retornoEntidade);
-    return EntidadeModel.fromJson(dadosJson); //.converteJson
-  }
-
-  Future<List<EntidadeModel>> _listaEntidadesFixo() async {
-    var dadosJson = json.decode(retornoEntidades);
-    List<EntidadeModel> lista = List();
-    for (var registro in dadosJson) {
-      EntidadeModel entidadeModel = EntidadeModel.fromJson(registro); //.converteJson
-      lista.add(entidadeModel);
-    }
-    return lista;
-  }
-
-  Future<List<EntidadeModel>> listaPorUsuario() async {
-    return _listaEntidadesFixo();
-  }
-
-  Future<List<EntidadeModel>> listaAtivas() async {
-    return _listaEntidadesFixo();
   }
 
 }

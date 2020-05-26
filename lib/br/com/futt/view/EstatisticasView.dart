@@ -12,17 +12,21 @@ class _EstatisticasViewState extends State<EstatisticasView> {
       color: Colors.amberAccent,
       child: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  "Conteúdo das estatísticas",
-                  style: TextStyle(
-                      fontSize: 20
-                  ),
-                ),
-              ],
+            Text(
+              "Conteúdo das estatísticas",
+              style: TextStyle(
+                  fontSize: 20
+              ),
+            ),
+            Text(
+              "EM DESENVOLVIMENTO!!!",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),

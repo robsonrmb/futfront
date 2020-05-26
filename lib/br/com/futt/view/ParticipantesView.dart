@@ -1,10 +1,5 @@
-import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
-import 'package:com/br/com/futt/model/ParticipanteModel.dart';
-import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:com/br/com/futt/view/subview/ParticipantesTorneioSubView.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class ParticipantesView extends StatefulWidget {
 

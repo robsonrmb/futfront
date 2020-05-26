@@ -1,55 +1,106 @@
-import 'package:com/br/com/futt/model/AvaliacaoModel.dart';
-import 'dart:convert';
-
 class AvaliacaoServiceFixo {
 
   String retornoAvaliacao = '{'
-      '"id: 1,'
-      '"idUsuario": 1,'
-      '"idAvaliado": 1,'
-      '"data": null,'
-      '"status": "1",'
-      '"respostaPe": "1",'
-      '"respostaLevantada": "1",'
-      '"respostaRecepcao": "1",'
-      '"respostaAtaque": "1",'
-      '"respostaDefesa": "1",'
-      '"respostaShark": "1",'
-      '"respostaFintaPescoco": "1",'
-      '"respostaFintaOmbro": "1",'
-      '"respostaConstante": "1",'
-      '"respostaVariacao": "1",'
-      '"respostaInteligente": "1",'
-      '"respostaTatico": "1",'
-      '"respostaCompetitivo": "1",'
-      '"respostaPreparo": "1",'
-      '"nomeUsuario": "Robson",'
-      '"nomeAvaliado": "LEVANTADA",'
+      '"id": 1, '
+      '"idUsuario": 1, '
+      '"idAvaliado": 2, '
+      '"data": "2020-07-01", '
+      '"status": "1", '
+      '"respostaPe": "1", '
+      '"respostaLevantada": "1", '
+      '"respostaRecepcao": "1", '
+      '"respostaAtaque": "1", '
+      '"respostaDefesa": "1", '
+      '"respostaShark": "1", '
+      '"respostaFintaPescoco": "1", '
+      '"respostaFintaOmbro": "1", '
+      '"respostaConstante": "1", '
+      '"respostaVariacao": "1", '
+      '"respostaInteligente": "1", '
+      '"respostaTatico": "1", '
+      '"respostaCompetitivo": "1", '
+      '"respostaPreparo": "1", '
+      '"nomeUsuario": "Robson", '
+      '"nomeAvaliado": "LEVANTADA", '
+      '"fotoUsuario": "", '
+      '"fotoAvaliado": "https://i.pinimg.com/originals/88/31/be/8831be300e5b4b7758f0bc34ef6d5db8.jpg" '
     '}';
 
   String retornoAvaliacoes = '['
       '{'
-        '"id: 1,'
-        '"idUsuario": 1,'
-        '"idAvaliado": 1,'
-        '"data": null,'
-        '"status": "1",'
-        '"respostaPe": "1",'
-        '"respostaLevantada": "1",'
-        '"respostaRecepcao": "1",'
-        '"respostaAtaque": "1",'
-        '"respostaDefesa": "1",'
-        '"respostaShark": "1",'
-        '"respostaFintaPescoco": "1",'
-        '"respostaFintaOmbro": "1",'
-        '"respostaConstante": "1",'
-        '"respostaVariacao": "1",'
-        '"respostaInteligente": "1",'
-        '"respostaTatico": "1",'
-        '"respostaCompetitivo": "1",'
-        '"respostaPreparo": "1",'
-        '"nomeUsuario": "Robson",'
-        '"nomeAvaliado": "LEVANTADA"'
+        '"id": 1, '
+        '"idUsuario": 1, '
+        '"idAvaliado": 2, '
+        '"data": "2020-07-01", '
+        '"status": "1", '
+        '"respostaPe": "1", '
+        '"respostaLevantada": "1", '
+        '"respostaRecepcao": "1", '
+        '"respostaAtaque": "1", '
+        '"respostaDefesa": "1", '
+        '"respostaShark": "1", '
+        '"respostaFintaPescoco": "1", '
+        '"respostaFintaOmbro": "1", '
+        '"respostaConstante": "1", '
+        '"respostaVariacao": "1", '
+        '"respostaInteligente": "1", '
+        '"respostaTatico": "1", '
+        '"respostaCompetitivo": "1", '
+        '"respostaPreparo": "1", '
+        '"nomeUsuario": "Robson", '
+        '"nomeAvaliado": "Messi", '
+        '"fotoUsuario": "", '
+        '"fotoAvaliado": "https://i.pinimg.com/originals/88/31/be/8831be300e5b4b7758f0bc34ef6d5db8.jpg" '
+      '}, '
+      '{'
+        '"id": 1, '
+        '"idUsuario": 1, '
+        '"idAvaliado": 2, '
+        '"data": "2020-07-01", '
+        '"status": "1", '
+        '"respostaPe": "1", '
+        '"respostaLevantada": "1", '
+        '"respostaRecepcao": "1", '
+        '"respostaAtaque": "1", '
+        '"respostaDefesa": "1", '
+        '"respostaShark": "1", '
+        '"respostaFintaPescoco": "1", '
+        '"respostaFintaOmbro": "1", '
+        '"respostaConstante": "1", '
+        '"respostaVariacao": "1", '
+        '"respostaInteligente": "1", '
+        '"respostaTatico": "1", '
+        '"respostaCompetitivo": "1", '
+        '"respostaPreparo": "1", '
+        '"nomeUsuario": "Robson", '
+        '"nomeAvaliado": "Suarez", '
+        '"fotoUsuario": "", '
+        '"fotoAvaliado": "https://3.bp.blogspot.com/-HCGJETqqJP0/VDspCWJ_1DI/AAAAAAAAAoI/warI-4pJH9A/s1600/suarez14.jpg" '
+      '}, '
+      '{'
+        '"id": 1, '
+        '"idUsuario": 1, '
+        '"idAvaliado": 2, '
+        '"data": "2020-07-01", '
+        '"status": "1", '
+        '"respostaPe": "1", '
+        '"respostaLevantada": "1", '
+        '"respostaRecepcao": "1", '
+        '"respostaAtaque": "1", '
+        '"respostaDefesa": "1", '
+        '"respostaShark": "1", '
+        '"respostaFintaPescoco": "1", '
+        '"respostaFintaOmbro": "1", '
+        '"respostaConstante": "1", '
+        '"respostaVariacao": "1", '
+        '"respostaInteligente": "1", '
+        '"respostaTatico": "1", '
+        '"respostaCompetitivo": "1", '
+        '"respostaPreparo": "1", '
+        '"nomeUsuario": "Robson", '
+        '"nomeAvaliado": "MBappé", '
+        '"fotoUsuario": "", '
+        '"fotoAvaliado": "https://pbs.twimg.com/media/Dk0iKh4XoAERLOB.jpg" '
       '}'
     ']';
 
@@ -59,29 +110,6 @@ class AvaliacaoServiceFixo {
 
   String responseObjeto() {
     return retornoAvaliacao;
-  }
-
-  Future<AvaliacaoModel> _buscaAreaAvaliacaoFixo() async {
-    var dadosJson = json.decode(retornoAvaliacao);
-    return AvaliacaoModel.fromJson(dadosJson); //.converteJson
-  }
-
-  Future<List<AvaliacaoModel>> _listaAvaliacoesFixo() async {
-    var dadosJson = json.decode(retornoAvaliacoes);
-    List<AvaliacaoModel> lista = List();
-    for (var registro in dadosJson) {
-      AvaliacaoModel avaliacaoModel = AvaliacaoModel.fromJson(registro); //.converteJson
-      lista.add(avaliacaoModel);
-    }
-    return lista;
-  }
-
-  Future<List<AvaliacaoModel>> listaRecebidasPendentes(String idUsuario) async {
-    return _listaAvaliacoesFixo();
-  }
-
-  Future<List<AvaliacaoModel>> listaRecebidas(String idUsuario, String status) async {
-    return _listaAvaliacoesFixo();
   }
 
 }
