@@ -2,7 +2,6 @@ import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
 import 'package:com/br/com/futt/model/TorneioModel.dart';
 import 'package:com/br/com/futt/service/TorneioService.dart';
-import 'package:com/br/com/futt/view/CadastroCampeoesView.dart';
 import 'package:com/br/com/futt/view/EdicaoTorneioView.dart';
 import 'package:com/br/com/futt/view/JogosView.dart';
 import 'package:com/br/com/futt/view/NovoParticipanteView.dart';
