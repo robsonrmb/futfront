@@ -29,7 +29,12 @@ class _LoginViewState extends State<LoginView> {
 
     if (email != null && senha != null && email != "" && senha != "") {
       // validar dados na base
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeView()),
+            (Route<dynamic> route) => false,
+      );
 
     }else{
       setState(() {
@@ -44,8 +49,12 @@ class _LoginViewState extends State<LoginView> {
       await prefs.setString(ConstantesConfig.PREFERENCES_EMAIL, _controllerEmail.text);
       await prefs.setString(ConstantesConfig.PREFERENCES_SENHA, _controllerSenha.text);
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
-      //Navigator.popAndPushNamed(context, "/home");
+      //Navigator.push(context, MaterialPageRoute(builder: (context) => HomeView()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeView()),
+        (Route<dynamic> route) => false,
+      );
 
     }else{
       DialogFutt dialogFutt = new DialogFutt();

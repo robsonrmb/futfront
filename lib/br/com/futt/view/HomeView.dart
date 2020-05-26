@@ -40,7 +40,12 @@ class _HomeViewState extends State<HomeView> {
       await prefs.remove(ConstantesConfig.PREFERENCES_EMAIL);
       await prefs.remove(ConstantesConfig.PREFERENCES_SENHA);
 
-      Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
+      //Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginView()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => LoginView()),
+            (Route<dynamic> route) => false,
+      );
     }
 
     String _getTitleAppBar(indice) {
