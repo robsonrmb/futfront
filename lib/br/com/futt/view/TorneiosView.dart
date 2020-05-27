@@ -53,6 +53,25 @@ class _TorneiosViewState extends State<TorneiosView> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: (){
+                      Navigator.pushNamed(context, "/novo_torneio");
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            "Novo",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontFamily: 'Candal'
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
                       showDialog(context: context, builder: (context){
                         return AlertDialog(
                           title: Text("Pesquise seu torneio"),
@@ -130,29 +149,10 @@ class _TorneiosViewState extends State<TorneiosView> {
                   ),
                   GestureDetector(
                     onTap: (){
-                      Navigator.pushNamed(context, "/novo_torneio");
-                    },
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            "Novo",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontFamily: 'Candal'
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
                       Navigator.pushNamed(context, "/meustorneios");
                     },
                     child: Text(
-                      "Meus torneios",
+                      "Meus",
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.white,
