@@ -11,7 +11,6 @@ import 'package:com/br/com/futt/service/GeneroService.dart';
 import 'package:com/br/com/futt/service/PaisService.dart';
 import 'package:com/br/com/futt/service/RankingEntidadeService.dart';
 import 'package:com/br/com/futt/service/TipoTorneioService.dart';
-import 'package:com/br/com/futt/service/TorneioService.dart';
 import 'package:com/br/com/futt/view/components/DialogFutt.dart';
 import 'package:find_dropdown/find_dropdown.dart';
 import 'package:flutter/material.dart';
@@ -497,35 +496,16 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
                           controller: _controllerMais,
                         ),
                       ),
-                      widget.torneioModel.status < 40 ? new Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: RaisedButton(
-                          color: Color(0xff086ba4),
-                          textColor: Colors.white,
-                          padding: EdgeInsets.all(15),
-                          child: Text(
-                            "Atualizar",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Candal',
-                            ),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          onPressed: _atualizar,
-                        ),
-                      ) : new Padding(
-                        padding: EdgeInsets.all(1),
-                      ),
                       Padding(
                         padding: EdgeInsets.only(top: 15),
-                        child: Text(
-                          _mensagem,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Candal'
+                        child: Center(
+                          child: Text(
+                            _mensagem,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Candal'
+                            ),
                           ),
                         ),
                       ),
@@ -537,6 +517,28 @@ class _EdicaoTorneioViewState extends State<EdicaoTorneioView> {
           ),
         ),
       ),
+      bottomNavigationBar: widget.torneioModel.status < 40 ? BottomAppBar(
+        child: Container(
+          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+          color: Colors.grey[300],
+          child: RaisedButton(
+            color: Color(0xff086ba4),
+            textColor: Colors.white,
+            padding: EdgeInsets.all(15),
+            child: Text(
+              "Atualizar",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Candal',
+              ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(2),
+            ),
+            onPressed: _atualizar,
+          ),
+        ),
+      ) : null,
     );
   }
 }

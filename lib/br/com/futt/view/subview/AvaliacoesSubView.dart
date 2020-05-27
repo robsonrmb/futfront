@@ -69,7 +69,7 @@ class _AvaliacoesSubViewState extends State<AvaliacoesSubView> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             GestureDetector(
-                              child: Icon(Icons.border_color),
+                              child: Icon(Icons.star_half),
                               onTap: (){
                                 _avaliar(avaliacao.id);
                               },

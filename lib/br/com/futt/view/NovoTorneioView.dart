@@ -457,34 +457,15 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: RaisedButton(
-                          color: Color(0xff086ba4),
-                          textColor: Colors.white,
-                          padding: EdgeInsets.all(15),
-                          child: Text(
-                            "Cadastrar",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: 'Candal',
-                            ),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          onPressed: () {
-                            _cadastrar(context);
-                          },
-                        ),
-                      ),
-                      Padding(
                         padding: EdgeInsets.only(top: 15),
-                        child: Text(
-                          _mensagem,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Candal'
+                        child: Center(
+                          child: Text(
+                            _mensagem,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Candal'
+                            ),
                           ),
                         ),
                       ),
@@ -496,6 +477,30 @@ class _NovoTorneioViewState extends State<NovoTorneioView> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+          color: Colors.grey[300],
+          child: RaisedButton(
+            color: Color(0xff086ba4),
+            textColor: Colors.white,
+            padding: EdgeInsets.all(15),
+            child: Text(
+              "Cadastrar",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Candal',
+              ),
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(2),
+            ),
+            onPressed: () {
+              _cadastrar(context);
+            },
+          ),
+        ),
+      )
     );
   }
 

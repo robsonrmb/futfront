@@ -47,7 +47,7 @@ class _AvaliacoesViewState extends State<AvaliacoesView> {
           ),
           Padding(
             padding: EdgeInsets.all(5),
-            child: Text("Avaliações pendentes de atletas que enfrentou em torneios.",
+            child: Text("Atletas que enfrentou em torneios anteriores.",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
