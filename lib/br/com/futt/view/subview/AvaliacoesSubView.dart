@@ -18,7 +18,7 @@ class _AvaliacoesSubViewState extends State<AvaliacoesSubView> {
   }
 
   _avaliar(int idAvaliacao) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => NovaAvaliacaoView()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => NovaAvaliacaoView(idAvaliacao)));
   }
 
   @override

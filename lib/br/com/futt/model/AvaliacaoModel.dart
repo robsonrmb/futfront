@@ -33,6 +33,12 @@ class AvaliacaoModel {
       this._respostaTatico, this._respostaCompetitivo, this._respostaPreparo,
       this._nomeUsuario, this._nomeAvaliado, this._fotoUsuario, this._fotoAvaliado);
 
+  AvaliacaoModel.RespostaStr(this._id, this._respostaRecepcao, this._respostaLevantada,
+      this._respostaAtaque, this._respostaDefesa, this._respostaShark,
+      this._respostaFintaPescoco, this._respostaFintaOmbro, this._respostaPe,
+      this._respostaConstante, this._respostaVariacao, this._respostaInteligente,
+      this._respostaTatico, this._respostaCompetitivo, this._respostaPreparo);
+
   factory AvaliacaoModel.fromJson(Map<String, dynamic> json) {
     return AvaliacaoModel(
       json["id"],
@@ -59,6 +65,10 @@ class AvaliacaoModel {
       json["fotoUsuario"],
       json["fotoAvaliado"],
     );
+  }
+
+  String getStringRespostaStr() {
+    return "";
   }
 
   String get nomeAvaliado => _nomeAvaliado;

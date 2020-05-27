@@ -26,7 +26,7 @@ void main() {
       "/meustorneios" : (context) => MeusTorneiosView(),
       "/perfil" : (context) => PerfilView(),
       "/avaliacoes" : (context) => AvaliacoesView(),
-      "/nova_avaliacao" : (context) => NovaAvaliacaoView(),
+      "/nova_avaliacao" : (context) => NovaAvaliacaoView(0),
     },
     home: LoginView(),
     theme: ThemeData(

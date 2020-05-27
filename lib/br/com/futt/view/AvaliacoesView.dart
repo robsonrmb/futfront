@@ -9,14 +9,6 @@ class AvaliacoesView extends StatefulWidget {
 
 class _AvaliacoesViewState extends State<AvaliacoesView> {
 
-  _abrirNovaAvaliacao() {
-    //Navigator.pushNamed(context, "/nova_avaliacao");
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => NovaAvaliacaoView())
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
