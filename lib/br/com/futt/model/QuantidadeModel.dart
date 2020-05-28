@@ -1,11 +1,18 @@
 class QuantidadeModel {
-  int quantidade;
+  int _quantidade;
 
-  QuantidadeModel({this.quantidade});
+  QuantidadeModel(this._quantidade);
 
   factory QuantidadeModel.fromJson(Map<String, dynamic> json) {
     return QuantidadeModel(
-      quantidade: json["quantidade"],
+      json["quantidade"],
     );
   }
+
+  int get quantidade => _quantidade;
+
+  set quantidade(int value) {
+    _quantidade = value;
+  }
+
 }

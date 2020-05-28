@@ -1,77 +1,77 @@
-import 'package:com/br/com/futt/model/QuantidadeModel.dart';
-import 'package:com/br/com/futt/model/RespPerformanceModel.dart';
-import 'package:com/br/com/futt/model/RespQuantidadeModel.dart';
-import 'dart:convert';
-
 class EstatisticaServiceFixo {
 
-  String retornoEstatistica = '{'
-        '"valor1": 10, '
-        '"valor2": 5, '
-        '"valor3": 0, '
-        '"valor4": 0, '
-      '} ';
+  String retornoPerformancePadrao = '['
+        '{'
+          '"ruim": 10,'
+          '"regular": "15",'
+          '"bom": "20",'
+          '"otimo": "17"'
+        '}'
+      ']';
 
-  String retornoPerformance = '{'
-      '"ruim": 10, '
-      '"regular": 5, '
-      '"bom": 15, '
-      '"otimo": 12, '
-      '} ';
+  String retornoPerformanceRecepcao = '['
+        '{'
+          '"ruim": 10,'
+          '"regular": "15",'
+          '"bom": "20",'
+          '"otimo": "17"'
+        '}'
+      ']';
 
-  String retornoQuantidade = '{'
-      '"quantidade": 60 '
-      '} ';
+  /*
+    ESTATÍSTICAS DE QUANTIDADES.
+   */
+  String retornoQuantidadePadrao = '['
+        '{'
+          '"valor1": 10,'
+          '"valor2": "15"'
+        '}'
+      ']';
 
-  String responseObjeto() {
-    return retornoEstatistica;
+  String retornoQuantidadeVD = '['
+        '{'
+          '"valor1": 10,'
+          '"valor2": "15"'
+        '}'
+      ']';
+
+  /*
+    QUANTIDADES.
+   */
+  String retornoQuantidadeUnicaPadrao = '['
+        '{'
+          '"quantidade": 10'
+        '}'
+      ']';
+
+  String retornoQuantidadeUnicaPontos = '['
+        '{'
+          '"quantidade": 12'
+        '}'
+      ']';
+
+  String responseListaPerformance(int tipo) {
+    if (tipo == 0) {
+      return retornoPerformancePadrao;
+    }else if (tipo == 1) {
+      return retornoPerformanceRecepcao;
+    }
   }
 
-  Future<RespQuantidadeModel> _buscaEstatisticaFixo() async {
-    var dadosJson = json.decode(retornoEstatistica);
-    return RespQuantidadeModel.fromJson(dadosJson); //.converteJson
+  String responseListaQuantidade(int tipo) {
+    if (tipo == 0) {
+      return retornoQuantidadePadrao;
+    }else if (tipo == 1) {
+      return retornoQuantidadeVD;
+    }
   }
 
-  Future<QuantidadeModel> _buscaQuantidadeFixo() async {
-    var dadosJson = json.decode(retornoEstatistica);
-    return QuantidadeModel.fromJson(dadosJson); //.converteJson
-  }
-
-  Future<RespPerformanceModel> _buscaAvaliativaFixo() async {
-    var dadosJson = json.decode(retornoEstatistica);
-    return RespPerformanceModel.fromJson(dadosJson); //.converteJson
-  }
-
-  Future<RespQuantidadeModel> vitoriasDerrotas(String idUsuario, String ano, String id, String tipo) async {
-    return _buscaEstatisticaFixo();
-  }
-
-  Future<RespQuantidadeModel> tiebreaks(String idUsuario, String ano, String idTorneio) async {
-    return _buscaEstatisticaFixo();
-  }
-
-  Future<RespQuantidadeModel> pontos(String idUsuario, String ano, String id, String tipo) async {
-    return _buscaEstatisticaFixo();
-  }
-
-  Future<RespQuantidadeModel> jogos(String idUsuario, String ano, String id, String tipo) async {
-    return _buscaEstatisticaFixo();
-  }
-
-  Future<RespPerformanceModel> avaliativa(String idUsuario, String tipo, String ano) async {
-    return _buscaAvaliativaFixo();
-  }
-
-  Future<QuantidadeModel> quantitativa(String idUsuario, String tipoestatistica, String ano, String id, String tipo) async {
-    return _buscaQuantidadeFixo();
-  }
-
-  Future<RespQuantidadeModel> qtdAceitas(String idUsuario) async {
-    return _buscaEstatisticaFixo();
-  }
-
-  Future<RespQuantidadeModel> qtdRecusadas(String idUsuario) async {
-    return _buscaEstatisticaFixo();
+  String responseQuantidade(int tipo) {
+    if (tipo == 0) {
+      return retornoQuantidadeUnicaPadrao;
+    }else if (tipo == 1) {
+      return retornoQuantidadeUnicaPontos;
+    }
   }
 
 }

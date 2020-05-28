@@ -8,48 +8,114 @@ import 'dart:convert';
 
 class EstatisticaRest extends BaseRest {
 
-  Future<RespQuantidadeModel> processaHttpGetObjectRespQuantidade(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+  Future<List<RespQuantidadeModel>> processaHttpGetListRespQuantidade(String url, int tipo, bool fixo) async {
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaRespQuantidadeModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         EstatisticaServiceFixo serviceFixo = EstatisticaServiceFixo();
-        dadosJson = serviceFixo.responseObjeto();
-      }
-      return RespQuantidadeModel.fromJson(dadosJson); //.converteJson
+        var dadosJson = json.decode(serviceFixo.responseListaQuantidade(tipo));
+        return _parseListaRespQuantidadeModel(dadosJson);
 
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
     }
+
   }
 
-  Future<RespPerformanceModel> processaHttpGetObjectRespPerformance(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+  Future<List<RespPerformanceModel>> processaHttpGetListRespPerformance(String url, int tipo, bool fixo) async {
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaRespPerformanceModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         EstatisticaServiceFixo serviceFixo = EstatisticaServiceFixo();
-        dadosJson = serviceFixo.responseObjeto();
-      }
-      return RespPerformanceModel.fromJson(dadosJson); //.converteJson
+        var dadosJson = json.decode(serviceFixo.responseListaPerformance(tipo));
+        return _parseListaRespPerformanceModel(dadosJson);
 
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
     }
+
   }
 
-  Future<QuantidadeModel> processaHttpGetObjectQuantidade(String url, bool fixo) async {
-    http.Response response = await http.get(url);
-    if (response.statusCode == 200 || (fixo != null && fixo == true)) {
-      var dadosJson = json.decode(response.body);
+  Future<List<QuantidadeModel>> processaHttpGetListQuantidade(String url, int tipo, bool fixo) async {
+    try {
+      http.Response response = await http.get(url);
+      if (response.statusCode == 200) {
+        var dadosJson = json.decode(response.body);
+        return _parseListaQuantidadeModel(dadosJson);
+
+      } else {
+        throw Exception('Failed to load Tipo Torneio!!!');
+      }
+    } on Exception catch (exception) {
+      print(exception.toString());
       if (fixo != null && fixo == true) {
         EstatisticaServiceFixo serviceFixo = EstatisticaServiceFixo();
-        dadosJson = serviceFixo.responseObjeto();
-      }
-      return QuantidadeModel.fromJson(dadosJson); //.converteJson
+        var dadosJson = json.decode(serviceFixo.responseQuantidade(tipo));
+        return _parseListaQuantidadeModel(dadosJson);
 
-    }else{
-      throw Exception('Failed to load Tipo Torneio!!!');
+      } else {
+        throw Exception('Falha ao listar resultados!!!');
+      }
+
+    } catch (error) {
+      print(error.toString());
     }
+
+  }
+
+  List<RespQuantidadeModel> _parseListaRespQuantidadeModel(dadosJson) {
+    List<RespQuantidadeModel> lista = List();
+    for (var registro in dadosJson) {
+      RespQuantidadeModel resultadoModel = RespQuantidadeModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
+    }
+    return lista;
+  }
+
+  List<RespPerformanceModel> _parseListaRespPerformanceModel(dadosJson) {
+    List<RespPerformanceModel> lista = List();
+    for (var registro in dadosJson) {
+      RespPerformanceModel resultadoModel = RespPerformanceModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
+    }
+    return lista;
+  }
+
+  List<QuantidadeModel> _parseListaQuantidadeModel(dadosJson) {
+    List<QuantidadeModel> lista = List();
+    for (var registro in dadosJson) {
+      QuantidadeModel resultadoModel = QuantidadeModel.fromJson(
+          registro); //.converteJson
+      lista.add(resultadoModel);
+    }
+    return lista;
   }
 }
