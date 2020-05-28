@@ -1,5 +1,8 @@
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:com/br/com/futt/constantes/ConstantesConfig.dart';
 import 'package:com/br/com/futt/model/RespPerformanceModel.dart';
+import 'package:com/br/com/futt/model/RespostaModel.dart';
+import 'package:com/br/com/futt/service/EstatisticaService.dart';
 import 'package:com/br/com/futt/view/graphics/HorizontalGroupBarChart.dart';
 import 'package:flutter/material.dart';
 
@@ -10,67 +13,53 @@ class EstatisticasView extends StatefulWidget {
 
 class _EstatisticasViewState extends State<EstatisticasView> {
 
-  static List<charts.Series<RespPerformanceModel, String>> _createSampleData() {
-    final data = [
-      new RespPerformanceModel.GraficoSimples("Recepção", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Levantada", 12, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Ataque", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Defesa", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Shark", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Pescoço", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Ombro", 10, 15, 20, 18),
-      new RespPerformanceModel.GraficoSimples("Pé", 10, 15, 20, 18),
-    ];
-    return [
-      new charts.Series<RespPerformanceModel, String>(
-        id: 'Recepção',
-        domainFn: (RespPerformanceModel resp, _) => resp.descricao,
-        measureFn:  (RespPerformanceModel resp, _) => 10,
-        data: data,
-      )
-    ];
-  }
+  List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTecnicas() {
 
-  static List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTecnicas() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pTecnica = estatisticaService.getPerformanceTecnica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+
+    String valor = '10#12#15#20#18#10#12#15#20#18#10#12#15#22#18#10#12#15#24#18#10#12#15#20#18#10#12#15#20#18#8#3';
+    var _valores = valor.split("#");
+
     final dataRuim = [
-      new RespPerformanceModel.Grafico("Recepção", 10),
-      new RespPerformanceModel.Grafico("Levantada", 12),
-      new RespPerformanceModel.Grafico("Ataque", 16),
-      new RespPerformanceModel.Grafico("Defesa", 11),
-      new RespPerformanceModel.Grafico("Shark", 1),
-      new RespPerformanceModel.Grafico("Pescoço", 1),
-      new RespPerformanceModel.Grafico("Ombro", 7),
-      new RespPerformanceModel.Grafico("Pé", 11),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[0])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[2])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[3])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[4])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[5])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[6])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[7])),
     ];
     final dataRegular = [
-      new RespPerformanceModel.Grafico("Recepção", 5),
-      new RespPerformanceModel.Grafico("Levantada", 10),
-      new RespPerformanceModel.Grafico("Ataque", 10),
-      new RespPerformanceModel.Grafico("Defesa", 23),
-      new RespPerformanceModel.Grafico("Shark", 9),
-      new RespPerformanceModel.Grafico("Pescoço", 1),
-      new RespPerformanceModel.Grafico("Ombro", 16),
-      new RespPerformanceModel.Grafico("Pé", 12),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[8])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[9])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[10])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[11])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[12])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[13])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[14])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[15])),
     ];
     final dataBom = [
-      new RespPerformanceModel.Grafico("Recepção", 10),
-      new RespPerformanceModel.Grafico("Levantada", 12),
-      new RespPerformanceModel.Grafico("Ataque", 16),
-      new RespPerformanceModel.Grafico("Defesa", 11),
-      new RespPerformanceModel.Grafico("Shark", 10),
-      new RespPerformanceModel.Grafico("Pescoço", 12),
-      new RespPerformanceModel.Grafico("Ombro", 11),
-      new RespPerformanceModel.Grafico("Pé", 13),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[16])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[17])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[18])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[19])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[20])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[21])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[22])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[23])),
     ];
     final dataOtimo = [
-      new RespPerformanceModel.Grafico("Recepção", 5),
-      new RespPerformanceModel.Grafico("Levantada", 10),
-      new RespPerformanceModel.Grafico("Ataque", 10),
-      new RespPerformanceModel.Grafico("Defesa", 21),
-      new RespPerformanceModel.Grafico("Shark", 20),
-      new RespPerformanceModel.Grafico("Pescoço", 21),
-      new RespPerformanceModel.Grafico("Ombro", 10),
-      new RespPerformanceModel.Grafico("Pé", 10),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[24])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[25])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[26])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[27])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[28])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[29])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[30])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[31])),
     ];
     return [
       new charts.Series<RespPerformanceModel, String>(
@@ -103,38 +92,45 @@ class _EstatisticasViewState extends State<EstatisticasView> {
     ];
   }
 
-  static List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTaticas() {
+  List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTaticas() {
+
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pTatica = estatisticaService.getPerformanceTatica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+
+    String valor = '10#12#15#20#18#10#12#18#10#12#15#22#18#10#12#15#24#18#12#15#20#18#8#3';
+    var _valores = valor.split("#");
+
     final dataRuim = [
-      new RespPerformanceModel.Grafico("Constante", 10),
-      new RespPerformanceModel.Grafico("Variação", 12),
-      new RespPerformanceModel.Grafico("Inteligente", 16),
-      new RespPerformanceModel.Grafico("Tático", 11),
-      new RespPerformanceModel.Grafico("Competitivo", 1),
-      new RespPerformanceModel.Grafico("Preparo", 1),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[0])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[2])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[3])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[4])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[5])),
     ];
     final dataRegular = [
-      new RespPerformanceModel.Grafico("Constante", 5),
-      new RespPerformanceModel.Grafico("Variação", 10),
-      new RespPerformanceModel.Grafico("Inteligente", 10),
-      new RespPerformanceModel.Grafico("Tático", 23),
-      new RespPerformanceModel.Grafico("Competitivo", 9),
-      new RespPerformanceModel.Grafico("Preparo", 1),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[6])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[7])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[8])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[9])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[10])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[11])),
     ];
     final dataBom = [
-      new RespPerformanceModel.Grafico("Constante", 10),
-      new RespPerformanceModel.Grafico("Variação", 12),
-      new RespPerformanceModel.Grafico("Inteligente", 16),
-      new RespPerformanceModel.Grafico("Tático", 11),
-      new RespPerformanceModel.Grafico("Competitivo", 10),
-      new RespPerformanceModel.Grafico("Preparo", 12),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[12])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[13])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[14])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[15])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[16])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[17])),
     ];
     final dataOtimo = [
-      new RespPerformanceModel.Grafico("Constante", 5),
-      new RespPerformanceModel.Grafico("Variação", 10),
-      new RespPerformanceModel.Grafico("Inteligente", 10),
-      new RespPerformanceModel.Grafico("Tático", 21),
-      new RespPerformanceModel.Grafico("Competitivo", 20),
-      new RespPerformanceModel.Grafico("Preparo", 21),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[18])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[19])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[20])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[21])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[22])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[23])),
     ];
     return [
       new charts.Series<RespPerformanceModel, String>(

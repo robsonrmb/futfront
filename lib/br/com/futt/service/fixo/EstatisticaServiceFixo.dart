@@ -1,3 +1,5 @@
+import 'package:com/br/com/futt/constantes/ConstantesEstatisticas.dart';
+
 class EstatisticaServiceFixo {
 
   String retornoPerformancePadrao = '['
@@ -50,6 +52,18 @@ class EstatisticaServiceFixo {
         '}'
       ']';
 
+  String retornoPerformanceTecnica = '['
+        '{'
+          '"resposta": "10#12#15#20#18#10#12#15#20#18#10#12#15#20#18#10#12#15#20#18#10#12#15#20#18#10#12#15#20#18#8#3"'
+        '}'
+      ']';
+
+  String retornoPerformanceTatica = '['
+        '{'
+        '"resposta": "10#12#15#20#18#10#12#15#20#18#10#12#15#18#10#12#15#20#12#15#20#18#8#3"'
+        '}'
+      ']';
+
   String responseListaPerformance(int tipo) {
     if (tipo == 0) {
       return retornoPerformancePadrao;
@@ -71,6 +85,14 @@ class EstatisticaServiceFixo {
       return retornoQuantidadeUnicaPadrao;
     }else if (tipo == 1) {
       return retornoQuantidadeUnicaPontos;
+    }
+  }
+
+  String responsePerformance(int tipo) {
+    if (tipo == ConstantesEstatisticas.TECNICA) {
+      return retornoPerformanceTecnica;
+    }else if (tipo == ConstantesEstatisticas.TATICA) {
+      return retornoPerformanceTatica;
     }
   }
 
