@@ -104,7 +104,7 @@ class EstatisticaRest extends BaseRest {
       print(exception.toString());
       if (fixo != null && fixo == true) {
         EstatisticaServiceFixo serviceFixo = EstatisticaServiceFixo();
-        var dadosJson = json.decode(serviceFixo.responsePerformance(tipo));
+        var dadosJson = json.decode(serviceFixo.responseEstatisticas(tipo));
         return _parseListaRespostaModel(dadosJson);
 
       } else {

@@ -56,4 +56,10 @@ class EstatisticaService {
     return estatisticaRest.processaHttpGetListResposta(url, ConstantesEstatisticas.TATICA, fixo); //táticas
   }
 
+  Future<List<RespostaModel>> getQuantitativas(int idUsuario, int ano, int tipo, bool fixo) {
+    String url = "${ConstantesRest.URL_ESTATISTICAS}/quantitativas/${idUsuario}?ano=${ano}";
+    EstatisticaRest estatisticaRest = EstatisticaRest();
+    return estatisticaRest.processaHttpGetListResposta(url, tipo, fixo); //quantitativas
+  }
+
 }

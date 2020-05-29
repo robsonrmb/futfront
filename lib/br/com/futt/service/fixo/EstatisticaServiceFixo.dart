@@ -64,6 +64,30 @@ class EstatisticaServiceFixo {
         '}'
       ']';
 
+  String retornoVD = '['
+        '{'
+          '"resposta": "10#12"'
+        '}'
+      ']';
+
+  String retornoTIE = '['
+        '{'
+          '"resposta": "20#15"'
+        '}'
+      ']';
+
+  String retornoCAPOTE = '['
+        '{'
+          '"resposta": "10#31"'
+        '}'
+      ']';
+
+  String retornoA2 = '['
+        '{'
+          '"resposta": "19#12"'
+        '}'
+      ']';
+
   String responseListaPerformance(int tipo) {
     if (tipo == 0) {
       return retornoPerformancePadrao;
@@ -88,11 +112,19 @@ class EstatisticaServiceFixo {
     }
   }
 
-  String responsePerformance(int tipo) {
+  String responseEstatisticas(int tipo) {
     if (tipo == ConstantesEstatisticas.TECNICA) {
       return retornoPerformanceTecnica;
     }else if (tipo == ConstantesEstatisticas.TATICA) {
       return retornoPerformanceTatica;
+    }else if (tipo == ConstantesEstatisticas.VD) {
+      return retornoVD;
+    }else if (tipo == ConstantesEstatisticas.TIE) {
+      return retornoTIE;
+    }else if (tipo == ConstantesEstatisticas.CAPOTE) {
+      return retornoCAPOTE;
+    }else if (tipo == ConstantesEstatisticas.A2) {
+      return retornoA2;
     }
   }
 
