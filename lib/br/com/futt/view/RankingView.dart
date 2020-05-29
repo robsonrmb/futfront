@@ -30,7 +30,10 @@ class _RankingViewState extends State<RankingView> {
 
   _pesquisarRanking() {
     setState(() {
-      _ano = _controllerAno.text;
+      _ano = "0";
+      if(_controllerAno.text != "") {
+        _ano = _controllerAno.text;
+      }
       _idRankingEntidade = _controllerRankingEntidade;
     });
   }

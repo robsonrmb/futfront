@@ -16,56 +16,56 @@ class EstatisticasView extends StatefulWidget {
 
 class _EstatisticasViewState extends State<EstatisticasView> {
 
+  var _valoresQuantitativos;
+  var _valoresPerformanceTecnicas;
+  var _valoresPerformanceTaticas;
+  var _valoresJogosEPontos;
+  var _valoresSequenciais;
+  
   /*
    ESTATÍSTICAS DE PERFORMANCE - TÉCNICAS
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTecnicas() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pTecnica = estatisticaService.getPerformanceTecnica(0, 2020, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '10#12#15#20#18#10#12#15#20#18#10#12#15#22#18#10#12#15#24#18#10#12#15#20#18#10#12#15#20#18#8#3';
-    var _valores = valor.split("#");
-
     final dataRuim = [
-      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[1])),
-      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[2])),
-      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[3])),
-      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[4])),
-      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[5])),
-      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[6])),
-      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[7])),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valoresPerformanceTecnicas[0])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valoresPerformanceTecnicas[1])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valoresPerformanceTecnicas[2])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valoresPerformanceTecnicas[3])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valoresPerformanceTecnicas[4])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valoresPerformanceTecnicas[5])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valoresPerformanceTecnicas[6])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valoresPerformanceTecnicas[7])),
     ];
     final dataRegular = [
-      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[8])),
-      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[9])),
-      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[10])),
-      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[11])),
-      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[12])),
-      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[13])),
-      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[14])),
-      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[15])),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valoresPerformanceTecnicas[8])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valoresPerformanceTecnicas[9])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valoresPerformanceTecnicas[10])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valoresPerformanceTecnicas[11])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valoresPerformanceTecnicas[12])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valoresPerformanceTecnicas[13])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valoresPerformanceTecnicas[14])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valoresPerformanceTecnicas[15])),
     ];
     final dataBom = [
-      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[16])),
-      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[17])),
-      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[18])),
-      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[19])),
-      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[20])),
-      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[21])),
-      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[22])),
-      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[23])),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valoresPerformanceTecnicas[16])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valoresPerformanceTecnicas[17])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valoresPerformanceTecnicas[18])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valoresPerformanceTecnicas[19])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valoresPerformanceTecnicas[20])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valoresPerformanceTecnicas[21])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valoresPerformanceTecnicas[22])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valoresPerformanceTecnicas[23])),
     ];
     final dataOtimo = [
-      new RespPerformanceModel.Grafico("Recepção", int.parse(_valores[24])),
-      new RespPerformanceModel.Grafico("Levantada", int.parse(_valores[25])),
-      new RespPerformanceModel.Grafico("Ataque", int.parse(_valores[26])),
-      new RespPerformanceModel.Grafico("Defesa", int.parse(_valores[27])),
-      new RespPerformanceModel.Grafico("Shark", int.parse(_valores[28])),
-      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valores[29])),
-      new RespPerformanceModel.Grafico("Ombro", int.parse(_valores[30])),
-      new RespPerformanceModel.Grafico("Pé", int.parse(_valores[31])),
+      new RespPerformanceModel.Grafico("Recepção", int.parse(_valoresPerformanceTecnicas[24])),
+      new RespPerformanceModel.Grafico("Levantada", int.parse(_valoresPerformanceTecnicas[25])),
+      new RespPerformanceModel.Grafico("Ataque", int.parse(_valoresPerformanceTecnicas[26])),
+      new RespPerformanceModel.Grafico("Defesa", int.parse(_valoresPerformanceTecnicas[27])),
+      new RespPerformanceModel.Grafico("Shark", int.parse(_valoresPerformanceTecnicas[28])),
+      new RespPerformanceModel.Grafico("Pescoço", int.parse(_valoresPerformanceTecnicas[29])),
+      new RespPerformanceModel.Grafico("Ombro", int.parse(_valoresPerformanceTecnicas[30])),
+      new RespPerformanceModel.Grafico("Pé", int.parse(_valoresPerformanceTecnicas[31])),
     ];
     return [
       new charts.Series<RespPerformanceModel, String>(
@@ -103,43 +103,37 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsPerformanceTaticas() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pTatica = estatisticaService.getPerformanceTatica(0, 2020, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '10#12#15#20#18#10#12#18#10#12#15#22#18#10#12#15#24#18#12#15#20#18#8#3';
-    var _valores = valor.split("#");
-
     final dataRuim = [
-      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[1])),
-      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[2])),
-      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[3])),
-      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[4])),
-      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[5])),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valoresPerformanceTaticas[0])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valoresPerformanceTaticas[1])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valoresPerformanceTaticas[2])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valoresPerformanceTaticas[3])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valoresPerformanceTaticas[4])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valoresPerformanceTaticas[5])),
     ];
     final dataRegular = [
-      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[6])),
-      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[7])),
-      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[8])),
-      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[9])),
-      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[10])),
-      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[11])),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valoresPerformanceTaticas[6])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valoresPerformanceTaticas[7])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valoresPerformanceTaticas[8])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valoresPerformanceTaticas[9])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valoresPerformanceTaticas[10])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valoresPerformanceTaticas[11])),
     ];
     final dataBom = [
-      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[12])),
-      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[13])),
-      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[14])),
-      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[15])),
-      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[16])),
-      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[17])),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valoresPerformanceTaticas[12])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valoresPerformanceTaticas[13])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valoresPerformanceTaticas[14])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valoresPerformanceTaticas[15])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valoresPerformanceTaticas[16])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valoresPerformanceTaticas[17])),
     ];
     final dataOtimo = [
-      new RespPerformanceModel.Grafico("Constante", int.parse(_valores[18])),
-      new RespPerformanceModel.Grafico("Variação", int.parse(_valores[19])),
-      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valores[20])),
-      new RespPerformanceModel.Grafico("Tático", int.parse(_valores[21])),
-      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valores[22])),
-      new RespPerformanceModel.Grafico("Preparo", int.parse(_valores[23])),
+      new RespPerformanceModel.Grafico("Constante", int.parse(_valoresPerformanceTaticas[18])),
+      new RespPerformanceModel.Grafico("Variação", int.parse(_valoresPerformanceTaticas[19])),
+      new RespPerformanceModel.Grafico("Inteligente", int.parse(_valoresPerformanceTaticas[20])),
+      new RespPerformanceModel.Grafico("Tático", int.parse(_valoresPerformanceTaticas[21])),
+      new RespPerformanceModel.Grafico("Competitivo", int.parse(_valoresPerformanceTaticas[22])),
+      new RespPerformanceModel.Grafico("Preparo", int.parse(_valoresPerformanceTaticas[23])),
     ];
     return [
       new charts.Series<RespPerformanceModel, String>(
@@ -177,15 +171,9 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsVD() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pVD = estatisticaService.getQuantitativas(0, 2020, ConstantesEstatisticas.VD, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '2#50#2#10#5#0#1#10';
-    var _valores = valor.split("#");
-
     final dataVD = [
-      new RespPerformanceModel.Grafico("Vitórias", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Derrotas", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Vitórias", int.parse(_valoresQuantitativos[0])),
+      new RespPerformanceModel.Grafico("Derrotas", int.parse(_valoresQuantitativos[1])),
     ];
 
     return [
@@ -205,15 +193,9 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsTIE() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pTIE = estatisticaService.getQuantitativas(0, 2020, ConstantesEstatisticas.TIE, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '18#8';
-    var _valores = valor.split("#");
-
     final dataTIE = [
-      new RespPerformanceModel.Grafico("Tiebreaks vencidos", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Tiebreaks perdidos", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Tiebreaks vencidos", int.parse(_valoresQuantitativos[2])),
+      new RespPerformanceModel.Grafico("Tiebreaks perdidos", int.parse(_valoresQuantitativos[3])),
     ];
 
     return [
@@ -233,15 +215,9 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsCapote() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pCAPOTE = estatisticaService.getQuantitativas(0, 2020, ConstantesEstatisticas.CAPOTE, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '3#6';
-    var _valores = valor.split("#");
-
     final dataCapote = [
-      new RespPerformanceModel.Grafico("Capotes vencidos", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Capotes perdidos", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Capotes vencidos", int.parse(_valoresQuantitativos[4])),
+      new RespPerformanceModel.Grafico("Capotes perdidos", int.parse(_valoresQuantitativos[5])),
     ];
 
     return [
@@ -261,15 +237,9 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   List<charts.Series<RespPerformanceModel, String>> _createGraphicsA2() {
 
-    EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
-
-    String valor = '13#9';
-    var _valores = valor.split("#");
-
     final dataA2 = [
-      new RespPerformanceModel.Grafico("Jogos A2 vencidos", int.parse(_valores[0])),
-      new RespPerformanceModel.Grafico("Jogos A2 perdidos", int.parse(_valores[1])),
+      new RespPerformanceModel.Grafico("Jogos A2 vencidos", int.parse(_valoresQuantitativos[6])),
+      new RespPerformanceModel.Grafico("Jogos A2 perdidos", int.parse(_valoresQuantitativos[7])),
     ];
 
     return [
@@ -282,6 +252,70 @@ class _EstatisticasViewState extends State<EstatisticasView> {
         labelAccessorFn: (RespPerformanceModel resp, _) => '${resp.descricao} : ${resp.valor.toString()}',
       )
     ];
+  }
+
+  /*
+   ESTATÍSTICAS DE PERFORMANCE TÉCNICAS
+   */
+  String _getValoresPerformanceTecnicos() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pTecnica = estatisticaService.getPerformanceTecnica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+
+    return '10#12#15#20#18#10#12#15#20#18#10#12#15#22#18#10#12#15#24#18#10#12#15#20#18#10#12#15#20#18#8#3';
+  }
+
+  /*
+   ESTATÍSTICAS DE PERFORMANCE TÁTICAS
+   */
+  String _getValoresPerformanceTaticas() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pTatica = estatisticaService.getPerformanceTatica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+
+    return '10#12#15#20#18#10#12#18#10#12#15#22#18#10#12#15#24#18#12#15#20#18#8#3';
+  }
+
+  /*
+   ESTATÍSTICAS QUANTITATIVAS
+   */
+  String _getValoresQuantitativos() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
+        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+
+     return '24#13#18#8#3#6#13#9';
+  }
+
+  /*
+   ESTATÍSTICAS SEQUENCIAIS
+   */
+  String _getValoresJogosEPontos() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
+        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+
+    return '2020#79#2019#65#2018#41#220#350#2019#259#2018#288';
+  }
+
+  /*
+   ESTATÍSTICAS JOGOS E PONTOS
+   */
+  String _getValoresSequenciais() {
+    EstatisticaService estatisticaService = EstatisticaService();
+    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
+        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+
+    return 'V#D#D#V#D#1#4#2#10#8';
+  }
+
+  @override
+  void initState() {
+    _valoresPerformanceTecnicas = _getValoresPerformanceTecnicos().split("#");
+    _valoresPerformanceTaticas = _getValoresPerformanceTaticas().split("#");
+    _valoresQuantitativos = _getValoresQuantitativos().split("#");
+    _valoresJogosEPontos = _getValoresJogosEPontos().split("#");
+    _valoresSequenciais = _getValoresSequenciais().split("#");
+
+    super.initState();
   }
 
   @override
@@ -343,15 +377,15 @@ class _EstatisticasViewState extends State<EstatisticasView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Estatistica().jogo(true),
+                            new Estatistica().jogo(this._valoresSequenciais[0]),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogo(false),
+                            new Estatistica().jogo(this._valoresSequenciais[1]),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogo(false),
+                            new Estatistica().jogo(this._valoresSequenciais[2]),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogo(true),
+                            new Estatistica().jogo(this._valoresSequenciais[3]),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogo(false),
+                            new Estatistica().jogo(this._valoresSequenciais[4]),
                           ],
                         ),
                       ],
@@ -370,38 +404,15 @@ class _EstatisticasViewState extends State<EstatisticasView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Estatistica().torneio(1),
+                            new Estatistica().torneio(int.parse(this._valoresSequenciais[5])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().torneio(4),
+                            new Estatistica().torneio(int.parse(this._valoresSequenciais[6])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().torneio(3),
+                            new Estatistica().torneio(int.parse(this._valoresSequenciais[7])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().torneio(10),
+                            new Estatistica().torneio(int.parse(this._valoresSequenciais[8])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().torneio(12),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(padding: EdgeInsets.all(3),),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  color: Colors.white,
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        Text("PONTOS",style: TextStyle(fontWeight: FontWeight.bold),),
-                        Padding(padding: EdgeInsets.all(3),),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            new Estatistica().pontos(2020, 350),
-                            Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().pontos(2019, 251),
-                            Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().pontos(2018, 287),
+                            new Estatistica().torneio(int.parse(this._valoresSequenciais[9])),
                           ],
                         ),
                       ],
@@ -420,11 +431,34 @@ class _EstatisticasViewState extends State<EstatisticasView> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            new Estatistica().jogos(2020, 69),
+                            new Estatistica().jogos(int.parse(_valoresJogosEPontos[0]), int.parse(_valoresJogosEPontos[1])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogos(2019, 55),
+                            new Estatistica().jogos(int.parse(_valoresJogosEPontos[2]), int.parse(_valoresJogosEPontos[3])),
                             Padding(padding: EdgeInsets.all(3),),
-                            new Estatistica().jogos(2018, 31),
+                            new Estatistica().jogos(int.parse(_valoresJogosEPontos[4]), int.parse(_valoresJogosEPontos[5])),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(3),),
+                Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  color: Colors.white,
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        Text("PONTOS",style: TextStyle(fontWeight: FontWeight.bold),),
+                        Padding(padding: EdgeInsets.all(3),),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            new Estatistica().pontos(int.parse(_valoresJogosEPontos[6]), int.parse(_valoresJogosEPontos[7])),
+                            Padding(padding: EdgeInsets.all(3),),
+                            new Estatistica().pontos(int.parse(_valoresJogosEPontos[8]), int.parse(_valoresJogosEPontos[9])),
+                            Padding(padding: EdgeInsets.all(3),),
+                            new Estatistica().pontos(int.parse(_valoresJogosEPontos[10]), int.parse(_valoresJogosEPontos[11])),
                           ],
                         ),
                       ],

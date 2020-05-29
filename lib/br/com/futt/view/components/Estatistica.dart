@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 class Estatistica {
 
-    jogo(bool vitoria) {
+    jogo(String valor) {
+      bool vitoria = true;
+      if (valor != 'V') {
+        vitoria = false;
+      }
       return new Container(
         decoration: vitoria ? BoxDecoration(
           color: Color(0xff093352),
