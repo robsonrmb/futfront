@@ -64,21 +64,21 @@ class EstatisticaServiceFixo {
         '}'
       ']';
 
-  String retornoVD = '['
+  String retornoQuantitativos = '['
         '{'
-          '"resposta": "10#12"'
+          '"resposta": "24#13#18#8#3#6#13#9"'
         '}'
       ']';
 
-  String retornoTIE = '['
+  String retornoJogosPontos = '['
         '{'
-          '"resposta": "20#15"'
+          '"resposta": "2020#79#2019#65#2018#41#220#350#2019#259#2018#288"'
         '}'
       ']';
 
-  String retornoCAPOTE = '['
+  String retornoSequenciais = '['
         '{'
-          '"resposta": "10#31"'
+          '"resposta": "V#D#D#V#D#1#4#2#10#8"'
         '}'
       ']';
 
@@ -117,14 +117,12 @@ class EstatisticaServiceFixo {
       return retornoPerformanceTecnica;
     }else if (tipo == ConstantesEstatisticas.TATICA) {
       return retornoPerformanceTatica;
-    }else if (tipo == ConstantesEstatisticas.VD) {
-      return retornoVD;
-    }else if (tipo == ConstantesEstatisticas.TIE) {
-      return retornoTIE;
-    }else if (tipo == ConstantesEstatisticas.CAPOTE) {
-      return retornoCAPOTE;
-    }else if (tipo == ConstantesEstatisticas.A2) {
-      return retornoA2;
+    }else if (tipo == ConstantesEstatisticas.QUANTITATIVOS) {
+      return retornoQuantitativos;
+    }else if (tipo == ConstantesEstatisticas.JOGOSEPONTOS) {
+      return retornoJogosPontos;
+    }else if (tipo == ConstantesEstatisticas.SEQUENCIAIS) {
+      return retornoSequenciais;
     }
   }
 

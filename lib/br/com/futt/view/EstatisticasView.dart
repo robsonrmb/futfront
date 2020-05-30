@@ -259,7 +259,7 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   String _getValoresPerformanceTecnicos() {
     EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pTecnica = estatisticaService.getPerformanceTecnica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+    Future<List<RespostaModel>> respostas = estatisticaService.getPerformanceTecnica(0, 2020, ConstantesConfig.SERVICO_FIXO);
 
     return '10#12#15#20#18#10#12#15#20#18#10#12#15#22#18#10#12#15#24#18#10#12#15#20#18#10#12#15#20#18#8#3';
   }
@@ -269,7 +269,7 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   String _getValoresPerformanceTaticas() {
     EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pTatica = estatisticaService.getPerformanceTatica(0, 2020, ConstantesConfig.SERVICO_FIXO);
+    Future<List<RespostaModel>> respostas = estatisticaService.getPerformanceTatica(0, 2020, ConstantesConfig.SERVICO_FIXO);
 
     return '10#12#15#20#18#10#12#18#10#12#15#22#18#10#12#15#24#18#12#15#20#18#8#3';
   }
@@ -279,30 +279,27 @@ class _EstatisticasViewState extends State<EstatisticasView> {
    */
   String _getValoresQuantitativos() {
     EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
-        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+    Future<List<RespostaModel>> respostas = estatisticaService.getQuantitativas(2020, ConstantesEstatisticas.QUANTITATIVOS, ConstantesConfig.SERVICO_FIXO);
 
      return '24#13#18#8#3#6#13#9';
   }
 
   /*
-   ESTATÍSTICAS SEQUENCIAIS
+   ESTATÍSTICAS JOGOS E PONTOS
    */
   String _getValoresJogosEPontos() {
     EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
-        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+    Future<List<RespostaModel>> respostas = estatisticaService.getJogosEPontos(2020, ConstantesEstatisticas.JOGOSEPONTOS, ConstantesConfig.SERVICO_FIXO);
 
     return '2020#79#2019#65#2018#41#220#350#2019#259#2018#288';
   }
 
   /*
-   ESTATÍSTICAS JOGOS E PONTOS
+   ESTATÍSTICAS SEQUENCIAIS
    */
   String _getValoresSequenciais() {
     EstatisticaService estatisticaService = EstatisticaService();
-    Future<List<RespostaModel>> pA2 = estatisticaService.getQuantitativas(
-        0, 2020, ConstantesEstatisticas.A2, ConstantesConfig.SERVICO_FIXO);
+    Future<List<RespostaModel>> respostas = estatisticaService.getSequenciais(2020, ConstantesEstatisticas.SEQUENCIAIS, ConstantesConfig.SERVICO_FIXO);
 
     return 'V#D#D#V#D#1#4#2#10#8';
   }

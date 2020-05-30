@@ -1,5 +1,4 @@
 import 'package:com/br/com/futt/constantes/ConstantesRest.dart';
-import 'package:com/br/com/futt/model/RankingEntidadeModel.dart';
 import 'package:com/br/com/futt/model/RankingModel.dart';
 import 'package:com/br/com/futt/rest/RankingRest.dart';
 
