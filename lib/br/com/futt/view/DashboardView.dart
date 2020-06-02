@@ -10,9 +10,9 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
 
-  int _indiceSubviewAtual = 0;
-  bool _aba1 = true;
-  bool _aba2 = false;
+  int _indiceSubviewAtual = 1;
+  bool _aba1 = false;
+  bool _aba2 = true;
   bool _aba3 = false;
 
   List<Widget> subviews_dashboard = [

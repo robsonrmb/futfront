@@ -44,13 +44,14 @@ class _TorneiosViewState extends State<TorneiosView> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(10),
-          color: Color(0xff093352),
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          color: Colors.white,
           child: Column(
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  /*
                   GestureDetector(
                     onTap: (){
                       Navigator.pushNamed(context, "/novo_torneio");
@@ -70,8 +71,23 @@ class _TorneiosViewState extends State<TorneiosView> {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: (){
+                  */
+                  /*
+                  RaisedButton(
+                    color: Color(0xff086ba4),
+                    textColor: Colors.white,
+                    padding: EdgeInsets.all(15),
+                    child: Text(
+                      "Filtrar",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Candal',
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    onPressed: (){
                       showDialog(context: context, builder: (context){
                         return AlertDialog(
                           title: Text("Pesquise seu torneio"),
@@ -138,15 +154,9 @@ class _TorneiosViewState extends State<TorneiosView> {
                         );
                       });
                     },
-                    child: Text(
-                      "Pesquisa",
-                      style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                          fontFamily: 'Candal'
-                      ),
-                    ),
                   ),
+                  */
+                  /*
                   GestureDetector(
                     onTap: (){
                       Navigator.pushNamed(context, "/meustorneios");
@@ -160,15 +170,18 @@ class _TorneiosViewState extends State<TorneiosView> {
                       ),
                     ),
                   ),
+                  */
                 ],
               ),
             ],
           ),
         ),
+        /*
         Container(
           padding: EdgeInsets.all(5),
           color: Colors.orange, height: 4,
         ),
+        */
         Expanded(
           child: TorneiosSubView(_indiceDeBusca, _nomeFiltro, _paisFiltro, _cidadeFiltro, _dataFiltro),
         )

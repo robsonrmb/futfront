@@ -10,6 +10,7 @@ class _MeusTorneiosViewState extends State<MeusTorneiosView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white,
@@ -24,6 +25,7 @@ class _MeusTorneiosViewState extends State<MeusTorneiosView> {
         ),
         title: Text("Meus torneios"),
       ),
+      */
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
